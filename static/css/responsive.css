@@ -1,0 +1,778 @@
+@media  (width : 320px){
+.search-icon {
+	padding: 11px 12px;
+	font-size: 13px;
+}
+.social__button.social__button--facebook, .social__button.social__button--Google {
+	padding: 12px 11px!important;
+	font-size: 8px!important;
+}
+
+}
+@media only screen and (max-width : 480px){
+.phonebtn {
+	width: 150px !important;
+}
+ .innerwrap .nav-tabs.nav-justified > li > a {
+	 margin-bottom: 0px;
+
+}
+.innerwrap img {
+    margin: 0;
+}
+.innerwrap h1 {
+    float: left;
+}
+#searchdoctor .side {
+    float: left;
+    width: 100%;
+}
+}
+@media only screen and (max-width : 767px){
+.user {
+    height: 100% !important;
+    padding: 20px 0px;
+}
+.user_options-registered, .user_options-unregistered {
+	width: 100%;
+}
+
+.user_options-forms{
+
+	height: 680px !important;
+	width: 100% !important;
+	left: -100% !important;
+	top: 340px;
+	overflow: hidden !important;
+	position: relative !important;
+	z-index: 99 !important;
+
+}
+.loginform{
+ top:272px !important;
+}
+.phone {
+	margin: 46px auto;
+	width: 45%;
+}
+#contact_us .col-md-6, #contact_us .col-sm-6, #contact_us .col-xs-12 {
+    padding-left: 00px !important;
+    padding-right: 00px !important;
+}
+.tab-content img {
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+.doctorwrap {
+	margin:00px;
+}
+.social-Button {
+	text-align: center;
+	margin-top: 0px;
+}
+nav form {
+	height: 100%;
+	position: absolute;
+	top: 50px;
+	right: 20px;
+}
+.top-nav-links {
+	float: right;
+	margin-top:32px;
+}
+.phonebtn {
+	font-size: 10px;
+	padding: 11px;
+	left: 0px;
+	width: 228px;
+	bottom: 66px;
+}
+.social__button.social__button--facebook, .social__button.social__button--Google {
+	padding: 12px 10px;
+	font-size: 10px;
+}
+.smallfa{
+font-size:15px!important;
+}
+.or {
+	margin-top: 42px !important;
+}
+.checktxt {
+	padding-left: 11px;
+	font-size: 13px;
+}
+input[type="checkbox"] {
+	-ms-transform: scale(1);
+	-webkit-transform: scale(1);
+	transform: scale(1);
+
+}
+nav {
+	padding: 8px;
+	line-height: 16px !important;
+}
+.user_options-forms .user_forms-signup, .user_options-forms .user_forms-login {
+	position: absolute;
+	top: 7px;
+	left: 1px;
+	width: 100%;
+	padding: 10px;
+}
+.top-nav-links {
+	float: right;
+}
+#banner h1 {
+	font-size: 17px;
+	line-height: 30px;
+	padding: 00px;
+	margin: 0px;
+}
+.doctorwrap {
+	height:auto;
+}
+#banner p {
+font-size: 12px;
+line-height: 20px !important;
+letter-spacing: 0px;
+}
+div#myTopnav {
+	margin-bottom: 10px;
+	margin-top:26px;
+}
+i.left {
+	margin-right: 6px !important;
+}
+#find_doctor .card-footer {
+	position: absolute;
+	bottom: 7px;
+}
+
+.loginform{
+height:545px !important;
+}
+.user_options-forms .user_forms-login .forms_buttons-action {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.user_unregistered-title {
+	font-size: 19px !important;
+	line-height: 25px;
+}
+.user_registered-login, .user_unregistered-signup {
+	line-height: 3em!important;
+	padding: 10px!important;
+}
+.btn, .btn-large, .btn-flat {
+	height: 34px;
+	line-height: 30px;
+	padding: 0 17px !important;
+    font-size: 10px !important;
+}
+.tab-content h3 {
+    font-size: 15px;
+    text-align: center;
+}
+#qus {
+	width: 50%;
+}
+#complete .tooltip.top {
+	padding: 5px 0;
+	margin-top: -15px !important;
+	left: 00px !important;
+}
+
+#searchdoctor .container {
+	width: 100%;
+}
+
+}
+@media (min-width: 481px) and (max-width: 640px) {
+ .phonebtn {
+	font-size: 13px;
+	padding: 13px;
+	left: 25px;
+	width: 220px;
+	bottom: 69px;
+}
+a.brand-logo img {
+	display: block;
+	width: 169px;
+	margin: 14px auto;
+}
+.doctorwrap {
+	width: 67%;
+	height: auto;
+	margin: 0 auto;
+}
+nav form {
+	position: absolute;
+	top: 60px;
+}
+div#myTopnav {
+	margin-top: 17px;
+}
+.user {
+	height: 542px;
+	}
+.bannertxtwrap {
+	padding: 0 10px;
+	padding: 61px 55px;
+}
+.appdownload {
+	font-size: 12px;
+	padding: 6px;
+	bottom: 27px;
+	left: 46px;
+	width: 170px;
+	/* top: 6px; */
+}
+.doctorwrap {
+	width: 62%;
+	height:auto;
+}
+.user_options-forms .user_forms-signup, .user_options-forms .user_forms-login {
+	position: absolute;
+	top: 7px;
+	left: 1px;
+	width: 100%;
+	padding: 10px;
+}
+.social-Button {
+	font-size: 10px;
+}
+}
+@media (min-width: 641px) and (max-width: 767px) {
+.user {
+	height: 630px;
+}
+.doctorwrap {
+	height: auto;
+	width: 57%;
+	margin: 0 auto;
+}
+#contact_us .col-md-6, #contact_us .col-sm-6, #contact_us .col-xs-12 {
+    padding-left: 00px !important;
+    padding-right: 00px !important;
+}
+nav form {
+	position: absolute;
+	top: 53px;
+}
+.bannertxtwrap {
+	padding: 50px 51px;
+}
+#banner h1 {
+	font-size: 26px;
+	line-height: 38px;
+	padding: 00px;
+	margin: 0px;
+	margin-bottom: 20px;
+}
+#banner p {
+	font-size: 14px;
+	line-height: 29px !important;
+}
+.phonebtn {
+	font-size: 15px;
+	padding: 15px;
+	left: 0px;
+	width: 310px;
+	bottom: 108px;
+}
+.appdownload {
+	font-size: 16px;
+	padding: 14px;
+	bottom: 00px;
+	left: 40px;
+}
+a.brand-logo img {
+	display: block;
+	width: 156px;
+	margin: 14px auto;
+}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+.user_options-forms .user_forms-signup, .user_options-forms .user_forms-login {
+	top: 0px;
+}
+#contact_us .col-md-6, #contact_us .col-sm-6, #contact_us .col-xs-12 {
+    padding-left: 00px !important;
+    padding-right: 00px !important;
+}
+.other {
+	width: 100%;
+	padding: 00px;
+	height: 716px;
+}
+#find_doctor .card {
+	width: 100%;
+}
+.doctorbtn {
+	position: absolute;
+	left: 0px;
+}
+.user_options-forms {
+	min-height: 562px;
+	overflow: scroll;
+}
+.user_unregistered-title {
+	font-size: 29px !important;
+	margin-bottom: 18px !important;
+		line-height: 35px;
+}
+.user_unregistered-text, .user_registered-text {
+	position: relative;
+	bottom: 11px;
+}
+#signup-button {
+	background: #26a69a;
+	padding: 7px;
+	letter-spacing:2px;
+}
+.forms_buttons-forgot.forgot {
+	position: relative;
+	top: 30px;
+}
+.or {
+	margin-top: 45px !important;
+}
+#banner h1 {
+	font-size: 41px;
+}
+.bannertxtwrap {
+	padding: 40px;
+}
+.appdownload {
+	left: 00px;
+	position: relative;
+	padding: 17px;
+ bottom: 00px;
+}
+.phonebtn {
+	bottom: 112px;
+	left: 0;
+	width: 362px;
+	padding: 21px;
+}
+#Aihelp .box {
+	width: 100%;
+	margin: 10px auto;
+	display: block;
+}
+}
+@media  (width: 1024px) {
+.user_unregistered-text, .user_registered-text {
+	margin-bottom: 31px;
+}
+.forms_buttons-forgot.forgot {
+	position: relative;
+	top: 36px;
+	left: 68px;
+}
+.owl-theme .owl-nav {
+	display: none;
+}
+.or {
+	margin-top: 36px !important;
+}
+.bannertxtwrap {
+	padding: 75px;
+}
+.appdownload {
+    left: 68px;
+	bottom: 00px;
+	position:absolute;
+}
+.phonebtn {
+	position: absolute;
+	left: 101px !important;
+}
+}
+@media (width: 992px){
+.phonebtn {
+	bottom: 116px;
+	left: 98px;
+}
+#contact_us .col-md-6, #contact_us .col-sm-6, #contact_us .col-xs-12 {
+    padding-left: 00px !important;
+    padding-right: 00px !important;
+}
+#innertabs .wizard h3 {
+	margin-top: 0;
+	text-align: center;
+}
+#step5 .list-inline {
+	width: 100%;
+	text-align: center;
+}
+.or {
+	margin-top: 43px !important;
+}
+.user_options-forms {
+    min-height: 679px!important;
+    overflow:scroll;
+}
+#signup-button {
+	position: relative;
+	top: 30px;
+}
+#contact_us .other {
+	height: 721px;
+}
+.bannertxtwrap {
+	padding: 70px;
+}
+.appdownload {
+    left: 68px;
+	bottom: 00px;
+	position:absolute;
+}
+.owl-theme .owl-nav {
+	display: none;
+}
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+.user_options-forms {
+	min-height: 690px;
+	overflow:scroll;
+}
+.loginform{
+min-height: 570px;
+}
+
+#contact_us .col-md-6, #contact_us .col-sm-6, #contact_us .col-xs-12 {
+    padding-left: 00px !important;
+    padding-right: 00px !important;
+}
+}
+@media  (width: 1366px) {
+.user {
+	height: 1109px!important;
+}
+.login-user{
+	height: 700px !important;
+}
+
+#find_doctor .card {
+	width: 100%!important;
+}
+.phonebtn {
+	position: absolute;
+	left: 161px;
+}
+.user_options-forms {
+	min-height: 950px!important;
+	overflow:hidden;
+
+}
+
+.loginform{
+min-height: 570px !important;
+overflow:hidden !important;
+}
+
+}
+@media only screen and (max-width : 1366px)  and (min-width:1024px){
+	.phonebtn {
+	position: absolute;
+	left: 156px!important;
+	bottom: 124px;
+}
+#searchdoctor .container {
+	width: 90%;
+}
+#contact_us .col-md-6, #contact_us .col-sm-6, #contact_us .col-xs-12 {
+    padding-left: 00px !important;
+    padding-right: 00px !important;
+}
+#find_doctor .bio2 {
+	line-height: 0px!important;
+}
+#find_doctor .bio {
+	margin: 16px auto!important;
+}
+
+#contact_us .other {
+	background-image: url("../images/contactbg.jpg");
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	height: 724px;
+	width: 529px;
+	padding: 00px;
+	margin: 00px;
+}
+.user_forms-login input:not([type]), .user_forms-login input[type="text"],.user_forms-login  input[type="password"],.user_forms-login input[type="email"], .user_forms-login input[type="url"],.user_forms-login input[type="time"],.user_forms-login input[type="date"],.user_forms-login input[type="datetime"],.user_forms-login input[type="datetime-local"],.user_forms-login input[type="tel"],.user_forms-login input[type="number"],.user_forms-login input[type="search"],.user_forms-login textarea.materialize-textarea {
+	margin-bottom: 25px!important;
+
+}
+.social__button.social__button--Google {
+
+	padding: 0px 64px 16px 50px!important;
+	position: relative;
+	top: 19px!important;
+}
+#signup-button {
+	background: #26a69a!important;
+	padding: 14px!important;
+	position: relative;
+	top: 23px!important;
+}
+.errorpara {
+	line-height: 00px!important;
+	margin-top:00px;
+}
+textarea#your-symptoms {
+	padding: 10px!important;
+}
+#innertabs .wizard h3 {
+	margin-top: 0!important;
+	text-align: center!important;
+	color: #333;
+	margin: 1.46rem 0 1.168rem 0!important;
+}
+ #step5 p:nth-child(3) {
+	text-align: center!important;
+}
+#step5 .list-inline {
+	text-align: center!important;
+}
+}
+
+@media screen and (min-width:1200px) and (max-width: 1920px){
+header .container,#banner .container{
+width:90%;
+}
+.user_forms-login .forms_fieldset label {
+    font-size: 13px;
+    color: #2d2a2a;
+    margin-top: 29px;
+}
+
+
+#signup-button {
+    background: #26a69a;
+    padding: 15px;
+    position: relative;
+    top: 22px!important;
+}
+
+#find_doctor .card {
+	width: 88%;
+}
+.brand-logo img {
+	margin: 22px 0 0;
+	position: relative;
+	bottom: 12px;
+}
+.top-nav {
+	float: right;
+	margin: 24px 0 0;
+}
+.phonebtn {
+	position: absolute;
+	left: 273px;
+	padding: 17px;
+	bottom: 116px;
+}
+.feature {
+	width: 80%;
+}
+
+#find_doctor .container{
+width:80%;
+}
+#topfooter .fa {
+	text-align: center;
+	position: absolute;
+	top: -14px;
+	left: 43%;
+	font-size: 21px;
+}
+#contact_us .other::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -14px;
+	height: 725px;
+	width: 760px;
+	background: linear-gradient(45deg, rgb(36, 51, 66), rgba(36, 51, 66, 0.81));
+}
+#contact_us .col-md-6,#contact_us .col-sm-6,#contact_us .col-xs-12{
+padding-left:00px!important;
+padding-right:00px!important;
+}
+.input-group {
+	position: relative;
+	display: flex;
+	border-collapse: separate;
+}
+#contact_us .other {
+	background-image: url("../images/contactbg.jpg");
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 100%;
+	height: 725px;
+	position: relative;
+}
+.forms_fieldset label {
+	font-size: 13px;
+	color: #2d2a2a;
+}
+ .forms_fieldset .input-group {
+	position: relative;
+	display: flex;
+	border-collapse: separate;
+	position: relative;
+	top: 7px;
+	margin-top:00px;
+}
+
+.user_forms-login input {
+	height:25px;
+}
+
+.user_options-forms .forms_buttons-action {
+	margin-top: 24px;
+}
+.user_forms-login .forms_fieldset label {
+	font-size: 13px;
+	color: #2d2a2a;
+	margin-top: 10px;
+}
+.user_forms-login p{
+margin-top: 3px;
+}
+.social__button.social__button--Google {
+	padding: 0px 64px 16px 50px;
+}
+.appdownload {
+	left: 111px;
+	position: absolute;
+	bottom: 29px;
+
+}
+#find_doctor .card {
+	margin: 15px 16px!important;
+}
+#find_doctor input{
+height: 48px;
+}
+nav .input-field input[type="search"]:focus {
+	width: 320px;
+	height: 46px;
+	margin: 8px;
+}
+.user_options-forms .forms_buttons-action {
+	padding: 8px 22px;
+position: relative;
+bottom: 15px;
+height: 40px;
+float: right;
+}
+.user_options-forms .forms_buttons-forgot {
+	font-family: "Montserrat", sans-serif;
+	letter-spacing: 0.1rem;
+	color: #ccc;
+	text-decoration: underline;
+	transition: color 0.2s ease-in-out;
+	position: relative;
+	top: 18px;
+}
+.user_forms-login input[type="checkbox"] {
+	-ms-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	transform: scale(1.3);
+	outline: none;
+	color: #b3b3b3;
+	position: relative;
+	top: 6px;
+}
+.signup  .forms_field-input {
+	margin-bottom: 0px;
+}
+.signup .input-group {
+	position: relative;
+	display: flex;
+	border-collapse: separate;
+	position: relative;
+	top: 00px;
+	margin-top: 00px;
+}
+.signup .forms_field:not(:last-of-type) {
+	margin-bottom: 5px;
+}
+@media only screen and (min-width: 1200px)
+#qus {
+	margin: 24px auto;
+	margin-top: 27px;
+	width: 25%;
+}
+user_options-forms .forms_field:not(:last-of-type) {
+    margin-bottom: 0px!important;
+}
+.user_options-forms {
+    min-height: 790px;
+    overflow:scroll;
+}
+.loginform{
+min-height: 570px;
+}
+
+#innertabs .wizard h3 {
+	margin-top: 0;
+	text-align: center;
+	color:#333;
+	padding:10px 00px;
+}
+#step5 .list-inline{
+text-align:center;
+}
+}
+@media screen and (min-width: 768px) and (max-width:1199px) {
+.brand-logo img{
+width: 150px;
+	margin: 6px 0 0;
+}
+nav ul a {
+	padding: 0 10px !important;
+}
+.top-nav-btn {
+	margin-top:6px !important;
+}
+header {
+	padding: 10px;
+}
+
+}
+
+@media screen and (max-width:365px){
+.top-nav-links ul li {
+	width: 138px;
+}
+}
+@media only screen and (min-width : 360px)  and (max-width:390px){
+.phonebtn {
+	left: 20px !important;
+}
+}
+@media only screen and (min-width : 390px)  and (max-width:480px){
+.phonebtn {
+	left: 32px !important;
+}
+}
+@media only screen and (min-width : 993px)  and (max-width:1023px){
+
+#contact_us .other{
+  height:721px;
+}
+
+
+}

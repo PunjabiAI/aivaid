@@ -1,0 +1,138 @@
+{% include 'patient/header.html' %}
+{% load static %}
+<section class="setting">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                </div>
+                <h1>Settings</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 list-top-head">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8 setting-border">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="change_password">
+                                    <h4><b>Change passowrd :</b></h4>
+                                    <hr/>
+                                    <form class="step2" action="">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 hs_title hs-form-field">
+                                                <label>Current Password *</label>
+                                                <input name="current_pass" type="password" required>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <label>New Password *</label>
+                                                <input type="password" name="new_pass" required>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <label>Confirm Password*</label>
+                                                <input name="conf_pass" type="password" required>
+                                            </div>
+                                        </div>
+                                        <input type="submit" value="Submit">
+                                    </form>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="noti_set"><h4><b>Notification Settings
+                                    :</b></h4>
+                                    <hr/>
+                                    <p>You are currently receiving all communications on <b>webtunix@gmail.com</b> <a
+                                            href="#" data-toggle="collapse" data-target="#demo">(Change)</a></p>
+                                    <form class="step2 collapse" action="" id="demo">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <label>Current Email *</label>
+                                                <input type="email" required>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <label>New Email *</label>
+                                                <input type="password" class="hs-input" required>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 hs-start_date">
+                                                <label>Confirm Email*</label>
+                                                <input name="conf_email" required>
+                                            </div>
+                                        </div>
+                                        <input type="submit" value="Submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 left-bar">
+                            <ul id="tabs" class="nav flex-column" role="tablist">
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#change_password" role="tab" data-toggle="tab">
+                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                        Change Password</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#noti_set" role="tab" data-toggle="tab">
+                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                        Notification Settings</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-power-off fa"></i> Log out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+			$(function() {
+		  var step = 0;
+		  var stepItem = $('.step-progress .step-slider .step-slider-item');
+
+		  // Step Next
+		  $('.step-content .step-content-foot button[name="next"]').on('click', function() {
+			var instance = $(this);
+			if (stepItem.length - 1 < step) {
+			  return;
+			}
+			if (step == (stepItem.length - 2)) {
+			  instance.addClass('out');
+			  instance.siblings('button[name="finish"]').removeClass('out');
+			}
+			$(stepItem[step]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step + 1].dataset.id).removeClass('out');
+			step++;
+		  });
+
+		  // Step Last
+		  $('.step-content .step-content-foot button[name="finish"]').on('click', function() {
+			if (step == stepItem.length) {
+			  return;
+			}
+			$(stepItem[stepItem.length - 1]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#stepLast').removeClass('out');
+		  });
+
+		  // Step Previous
+		  $('.step-content .step-content-foot button[name="prev"]').on('click', function() {
+			var instance = $(this);
+			$(stepItem[step]).removeClass('active');
+			if (step == (stepItem.length - 1)) {
+			  instance.siblings('button[name="next"]').removeClass('out');
+			  instance.siblings('button[name="finish"]').addClass('out');
+			}
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step].dataset.id).removeClass('out');
+			if (step <= 0) {
+			  return;
+			}
+			step--;
+		  });
+		});
+
+
+</script>
+{% include 'patient/footer.html' %}

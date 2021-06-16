@@ -1,0 +1,159 @@
+{% include 'super-admin/header.html' %}
+	<section id="Addblog">
+		<form action="{% url 'superuser:saveeditblog' %}" method="post" enctype="multipart/form-data">
+			{% for blog_list in blog_list %}
+	    <div class="container-fluid">
+			<div class="row list_header">
+				<div class="col-md-12 header-title">
+					<div class="header-icon">
+						<i class="fa fa-rss"></i> 
+					</div>
+					<h1>Edit Blog</h1>
+				</div>
+			</div>
+			<div class="addbox">
+				<div class="row">
+					<div class="col-md-12">
+						<label>Title</label>
+						{% csrf_token %}
+						<input type="hidden" value="{{blog_list.id}}" name="id" />
+						<input type="text" value="{{blog_list.title}}" name="title" placeholder="Title"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Image</label>
+						<input type="file" name="image"   value="{{blog_list.image}}"/>
+					</div>
+					<div class="col-md-6">
+						<label>Categories</label>
+							<div class="input-group input-group-icon" required >
+								<select name="categories" >
+									<option disabled>Categories</option>
+									{% for categorieslisting in categorieslisting %}
+									<option value="{{categorieslisting.id}}" {% if categorieslisting.id == blog_list.categories %} selected {% endif %}>{{categorieslisting.name}}</option>
+									{% endfor %}
+								</select>
+								<i class="fa fa-angle-down"></i>
+							</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Meta Title</label>
+						<input type="text" name="meta_title"  value="{{blog_list.meta_title}}" placeholder="Meta Title"/>
+					</div>
+					<div class="col-md-6">
+						<label>Meta keyword</label>
+						<input type="text" name="meta_keyword"  value="{{blog_list.meta_keyword}}" placeholder="Meta Keyword"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<label>Description</label>
+						<textarea name="description">{{blog_list.description}}</textarea>
+					</div>
+					<div class="col-md-6">
+						<label>Meta Description </label>
+						<textarea name="meta_description">{{blog_list.meta_description}}</textarea>
+					</div>
+					<div class="col-md-6">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<button type="submit" class="btn btn-success">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+			{% endfor %}
+			</form>
+	</section>
+</div>
+	<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+</script>
+
+<script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+
+		});
+	});
+</script>
+</body>
+</html>

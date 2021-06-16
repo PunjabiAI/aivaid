@@ -1,0 +1,159 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="transaction_detail">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-exchange"></i>
+                </div>
+                <h1>Transaction Detail</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="panel-header">
+                            <div class="col-sm-4">
+                                <div class="dataTables_length">
+                                <button id="csvdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                    CSV
+                                </button>
+                                <button id="pdfdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                    PDF
+                                </button>
+                                <button id="btnexcel" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                    Excel
+                                </button>
+                                <button id="btnprint" class="btn btn-default buttons-excel buttons-html5 btn-sm">Print
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="getData">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Order ID</th>
+                                <th>Doctor Name</th>
+                                <th>Problem</th>
+                                <th>Doctor Email</th>
+                                <th>Phone Number</th>
+                                <th>Transaction ID</th>
+                                <th>Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            <tr>
+                                <td>1-07-1993</td>
+                                <td>1</td>
+                                <td>Rakesh</td>
+                                <td>Diabaties</td>
+                                <td>rakesh@gmail.com</td>
+                                <td>+919876543210</td>
+                                <td>Trans00123</td>
+                                <td>3028</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static '' %}js/get-data.js"></script>
+{% include 'patient-admin/footer.html' %}

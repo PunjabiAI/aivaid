@@ -1,0 +1,2585 @@
+{% include 'header.html' %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static '' %}css/calendar.css">
+
+<section id="confirmappointment" class="appointmentbook">
+
+    <div class="container doctor_profile">
+
+        <h1>Doctor <b>Profile</b></h1>
+
+        <div class="innerwrap">
+
+            {% for doctor_list in doctor_list %}
+
+            <div class="row">
+
+                <div class="col-md-2 col-sm-2 col-xs-12">
+
+                    {% if doctor_list.pic %}
+
+                    <img src="../uploads/{{doctor_list.pic}}" class="img-responsive doctordp" alt="">
+
+                    {% else %}
+
+                    <img src="{% static '' %}images/doctor-profile.jpg" class="img-responsive doctordp" alt="">
+
+                    {% endif %}
+
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                    <h1>Dr. {{doctor_list.doctor_profile_id.first_name}}
+
+                        {{doctor_list.doctor_profile_id.last_name}}</h1>
+
+                    <p>{{doctor_list.uexperience02}} <br/> MBBS
+
+                        {{doctor_list.uexperience01}}, {{doctor_list.selectcity}}</p>
+
+                    <p>{{doctor_list.uexperience03}}</p>
+
+                    <div class="btn-group">
+
+                        <button type="button" class="custombtn">Chat Online</button>
+
+                        <button type="button" class="custombtn">Consult Online</button>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                    <p><b></b></p>
+
+                    <div class="clinic">
+
+                        <p>
+
+                        <div class="img-gallery-magnific">
+
+                            {% for pic_list in pic_list %}
+
+                            <div class="magnific-img">
+
+                                <a class="image-popup-vertical-fit" href="../uploads/{{pic_list.Cphotos1}}"
+
+                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                    <img src="../uploads/{{pic_list.Cphotos1}}" alt="9.jpg"/>
+
+                                </a>
+
+                            </div>
+
+                            <div class="magnific-img">
+
+                                <a class="image-popup-vertical-fit" href="../uploads/{{pic_list.Cphotos2}}"
+
+                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                    <img src="../uploads/{{pic_list.Cphotos2}}" alt="9.jpg"/>
+
+                                </a>
+
+                            </div>
+
+                            <div class="magnific-img">
+
+                                <a class="image-popup-vertical-fit" href="../uploads/{{pic_list.Cphotos3}}"
+
+                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                    <img src="../uploads/{{pic_list.Cphotos3}}" alt="9.jpg"/>
+
+                                </a>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="clear"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                    <div class="statement">
+
+                        <h4>Personal Statement</h4>
+
+                        <div class="personalheading">
+
+                            <span class="inline"><p
+
+                                    id="hidefirstpara">{{doctor_list.Description|safe|slice:":25"}}</p><a
+
+                                    id="morestatement">more...</a></span>
+
+                            <p id="hidestatement"> {{doctor_list.Description|safe}}</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="statement">
+
+                        <h4>Info</h4>
+
+                        <div class="personalheading">
+
+                            <h6>
+
+                                <ly-svg-icon p="account" class="ng-isolate-scope">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"
+
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+
+                                        <path ng-attr-d=""
+
+                                              d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path>
+
+                                    </svg>
+
+                                </ly-svg-icon>
+
+                                Specilist
+
+                            </h6>
+
+                            <p> {{doctor_list.uexperience02}}
+
+                            <p>
+
+                            <p> {{doctor_list.uexperience03}}
+
+                            <p>
+
+                            <hr/>
+
+                            <h6>
+
+                                <ly-svg-icon p="school" class="ng-isolate-scope">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"
+
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+
+                                        <path ng-attr-d=""
+
+                                              d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"></path>
+
+                                    </svg>
+
+                                </ly-svg-icon>
+
+                                Education
+
+                            </h6>
+
+                            <p><b>Degree:-</b>{{doctor_list.selectdegree}}
+
+                            <p>
+
+                            <p><b>College/Institute:-</b> {{doctor_list.uinstitute}}</p>
+
+                            <hr/>
+
+                            <h6>
+
+                                <ly-svg-icon p="briefcase" class="ng-isolate-scope">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"
+
+                                         preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+
+                                        <path ng-attr-d=""
+
+                                              d="M14,6H10V4H14M20,6H16V4L14,2H10L8,4V6H4C2.89,6 2,6.89 2,8V19A2,2 0 0,0 4,21H20A2,2 0 0,0 22,19V8C22,6.89 21.1,6 20,6Z"></path>
+
+                                    </svg>
+
+                                </ly-svg-icon>
+
+                                EXPERIENCE
+
+                            </h6>
+
+                            <p><b>In years:-</b>{{doctor_list.uexperience01}}
+
+                            <p>
+
+                            <p><b>In Months:-</b> {{doctor_list.uexperience_month}}</p>
+
+
+
+                            <hr/>
+
+                            <table class="table table-striped table-hover">
+
+                                <tbody>
+
+                                <tr>
+
+                                    <td style="width:60%;"><b>Status:</b></td>
+
+                                    <td><span class="label label-success">Active</span></td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>User Rating:</b></td>
+
+                                    <td>
+
+                                       <span class="ratingbox">{{review_list_avrage|floatformat}} <i
+
+                                               class="fa fa-star vd_yellow fa-fw"></i>
+
+                                       </span>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><b>Feedback:</b></td>
+
+                                    <td> {{ review_list_count }} Feedback</td>
+
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-8 col-sm-8 col-xs-12">
+
+                    <ul class="nav nav-tabs">
+
+                        <li class="active"><a data-toggle="tab" href="#home">Get Help</a></li>
+
+                        <li><a data-toggle="tab" href="#menu1">Review</a></li>
+
+                        <li><a data-toggle="tab" href="#menu2">Service</a></li>
+
+                        <li><a data-toggle="tab" href="#menu3">Feed</a></li>
+
+                    </ul>
+
+
+
+                    <div class="tab-content">
+
+                        <div id="home" class="tab-pane fade in active">
+
+                            <div class="row nopadd2">
+
+                                <div class="col-md-12">
+
+                                    <p class="clinichead">Book Clinic Appointment with Dr.
+
+                                        {{doctor_list.doctor_profile_id.first_name}}
+
+                                        {{doctor_list.doctor_profile_id.last_name}}</p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            {% for clinic_list in clinic_list %}
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="cliniclist">
+
+                                        <div class="innerwrap">
+
+                                            <div class="row">
+
+                                                <div class="col-md-2">
+
+                                                    {% if doctor_list.pic %}
+
+                                                    <img src="../uploads/{{doctor_list.pic}}"
+
+                                                         class="img-responsive" alt="">
+
+                                                    {% else %}
+
+
+
+                                                    <img src="{% static '' %}images/doctor-profile.jpg"
+
+                                                         class="img-responsive" alt="">
+
+                                                    {% endif %}
+
+                                                </div>
+
+                                                <div class="col-md-5">
+
+                                                    <h1>{{clinic_list.Cname}}</h1>
+
+                                                    <p class="clinicaddress">{{clinic_list.Caddress}}<br/>
+
+                                                        <b>{{clinic_list.Ccity}} {{clinic_list.Cstate}} </b></p>
+
+                                                    <div class="clinic smallclinicimg">
+
+                                                        <div class="img-gallery-magnific">
+
+                                                            {% for pic_list in pic_list %}
+
+                                                            {% if pic_list.clinic_id.id == clinic_list.id %}
+
+                                                            <div class="magnific-img">
+
+                                                                <a class="image-popup-vertical-fit"
+
+                                                                   href="../uploads/{{pic_list.Cphotos1}}"
+
+                                                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                                                    <img src="../uploads/{{pic_list.Cphotos1}}"
+
+                                                                         alt="9.jpg"/>
+
+                                                                </a>
+
+                                                            </div>
+
+                                                            <div class="magnific-img">
+
+                                                                <a class="image-popup-vertical-fit"
+
+                                                                   href="../uploads/{{pic_list.Cphotos2}}"
+
+                                                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                                                    <img src="../uploads/{{pic_list.Cphotos2}}"
+
+                                                                         alt="9.jpg"/>
+
+                                                                </a>
+
+                                                            </div>
+
+                                                            <div class="magnific-img">
+
+                                                                <a class="image-popup-vertical-fit"
+
+                                                                   href="../uploads/{{pic_list.Cphotos3}}"
+
+                                                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                                                    <img src="../uploads/{{pic_list.Cphotos3}}"
+
+                                                                         alt="9.jpg"/>
+
+                                                                </a>
+
+                                                            </div>
+
+                                                            <br/>
+
+                                                            <div class="magnific-img">
+
+                                                                <a class="image-popup-vertical-fit"
+
+                                                                   href="../uploads/{{pic_list.Cphotos4}}"
+
+                                                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                                                    <img src="../uploads/{{pic_list.Cphotos4}}"
+
+                                                                         alt="9.jpg"/>
+
+                                                                </a>
+
+                                                            </div>
+
+                                                            <div class="magnific-img">
+
+                                                                <a class="image-popup-vertical-fit"
+
+                                                                   href="../uploads/{{pic_list.Cphotos5}}"
+
+                                                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                                                    <img src="../uploads/{{pic_list.Cphotos5}}"
+
+                                                                         alt="9.jpg"/>
+
+                                                                </a>
+
+                                                            </div>
+
+                                                            <div class="magnific-img">
+
+                                                                <a class="image-popup-vertical-fit"
+
+                                                                   href="../uploads/{{pic_list.Cphotos6}}"
+
+                                                                   title="{{pic_list.clinic_id.Cname}}">
+
+                                                                    <img src="../uploads/{{pic_list.Cphotos6}}"
+
+                                                                         alt="9.jpg"/>
+
+                                                                </a>
+
+                                                            </div>
+
+                                                            {% endif %}
+
+                                                            {% endfor %}
+
+                                                        </div>
+
+                                                        <div class="clear"></div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-5">
+
+                                                    <div class="doctor_detail">
+
+                                                        <table class="table table-primary">
+
+                                                            <tbody>
+
+                                                            <tr>
+
+                                                                <td><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+
+                                                                </td>
+
+                                                                <td> 100% (300 votes)</td>
+
+                                                            </tr>
+
+                                                            <tr>
+
+                                                                <td><i class="fa fa-commenting-o"
+
+                                                                       aria-hidden="true"></i></td>
+
+                                                                <td>35 Feedback</td>
+
+                                                            </tr>
+
+                                                            <tr>
+
+                                                                <td><i class="fa fa-inr" aria-hidden="true"></i></td>
+
+                                                                <td>{{clinic_list.Cfee}} At clinic</td>
+
+                                                            </tr>
+
+                                                            <tr>
+
+                                                                <td><i class="fa fa-inr" aria-hidden="true"></i></td>
+
+                                                                <td>{{clinic_list.Online_Cfee}} Online</td>
+
+                                                            </tr>
+
+                                                            <tr>
+
+                                                                <td><i class="fa fa-clock" aria-hidden="true"></i></td>
+
+                                                                <td>Mon-Fri</td>
+
+                                                            </tr>
+
+                                                            <tr>
+
+                                                                <td><i class="fa fa-clock" aria-hidden="true"></i></td>
+
+                                                                <td>5PM - 6PM</td>
+
+                                                            </tr>
+
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-12 nopadd2 ">
+
+                                                        <div class="btn-group text-right">
+
+                                                            <button class="custombtn">
+
+                                                                <ly-svg-icon p="call"
+
+                                                                             class="ly-svg--xs ng-isolate-scope"
+
+                                                                             hide-lt-md="">
+
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+
+                                                                         height="100%" width="100%"
+
+                                                                         preserveAspectRatio="xMidYMid meet"
+
+                                                                         viewBox="0 0 24 24">
+
+                                                                        <path ng-attr-d=""
+
+                                                                              d="M5.544,10.548a18.178,18.178,0,0,0,7.908,7.908l2.64-2.64a1.193,1.193,0,0,1,1.224-.288,13.688,13.688,0,0,0,4.284.684,1.2,1.2,0,0,1,1.2,1.2V21.6a1.2,1.2,0,0,1-1.2,1.2A20.4,20.4,0,0,1,1.2,2.4,1.2,1.2,0,0,1,2.4,1.2H6.6A1.2,1.2,0,0,1,7.8,2.4a13.632,13.632,0,0,0,.684,4.284,1.2,1.2,0,0,1-.3,1.224Z"></path>
+
+                                                                    </svg>
+
+                                                                </ly-svg-icon>
+
+                                                                Call Clinic
+
+                                                            </button>
+
+
+
+
+
+                                                            {% if user.is_authenticated %}
+
+                                                            <button id="clinic1{{clinic_list.id}}" class="custombtn">
+
+                                                                <ly-svg-icon p="calendar"
+
+                                                                             class="ly-svg--xs ng-isolate-scope"
+
+                                                                             hide-lt-md="">
+
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+
+                                                                         height="100%" width="100%"
+
+                                                                         preserveAspectRatio="xMidYMid meet"
+
+                                                                         viewBox="0 0 24 24">
+
+                                                                        <path ng-attr-d=""
+
+                                                                              d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"></path>
+
+                                                                    </svg>
+
+                                                                </ly-svg-icon>
+
+                                                                Book Appointment
+
+                                                            </button>
+
+                                                            {% else %}
+
+                                                            <a href="../login?next=/doctordetail/{{doctor_list.doctor_profile_id.username}}">
+
+                                                                <button id="displaybookchart" class="custombtn">
+
+                                                                    <ly-svg-icon p="calendar"
+
+                                                                                 class="ly-svg--xs ng-isolate-scope"
+
+                                                                                 hide-lt-md="">
+
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+
+                                                                             height="100%" width="100%"
+
+                                                                             preserveAspectRatio="xMidYMid meet"
+
+                                                                             viewBox="0 0 24 24">
+
+                                                                            <path ng-attr-d=""
+
+                                                                                  d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"></path>
+
+                                                                        </svg>
+
+                                                                    </ly-svg-icon>
+
+                                                                    Book Appointment
+
+                                                                </button>
+
+                                                            </a>
+
+                                                            {% endif %}
+
+
+
+                                                        </div>
+
+                                                        <div id="bookchart{{clinic_list.id}}">
+
+                                                            <div class="row">
+
+                                                                <div class="col-md-12">
+
+                                                                    <form action="{% url 'book_appointment_pat'%}"
+
+                                                                          method="post" id="appointmentform"  name="myForm" onsubmit="return validateForm()" method="post">
+
+                                                                        {% csrf_token %}
+
+                                                                        <div class="Appointment_wrap">
+
+                                                                            <div class="row">
+
+                                                                                <div class="col-md-6">
+
+                                                                                    <label>Name
+
+                                                                                        *</label>
+
+                                                                                    <input type="hidden" name="clinic"
+
+                                                                                           value="{{clinic_list.id}}"/>
+
+                                                                                    <input type="hidden" name="doctor"
+
+                                                                                           value=" {{doctor_list.id}}"/>
+
+                                                                                    <input type="text" name="first_name"
+
+                                                                                           value="{{request.user.first_name}} {{request.user.last_name}}"
+
+                                                                                           placeholder="Enter your name"/>
+
+
+
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+
+                                                                                    <label>Email
+
+                                                                                        *</label>
+
+                                                                                    <input type="email" name="email"
+
+                                                                                           value="{{request.user.email}} "
+
+                                                                                           placeholder="Enter your emailid"/>
+
+
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="row rowpadd">
+
+                                                                                <div class="col-md-6">
+
+                                                                                    <label>Mobile
+
+                                                                                        *</label>
+
+                                                                                    <input type="text" name="mobile"
+
+                                                                                           placeholder="Enter your Mobile Number"/>
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="row">
+
+                                                                                <div class="col-md-12">
+
+                                                                                    <div class="col-xs-12"
+
+                                                                                         id="booking_schdule">
+
+                                                                                        <div id="dsel1{{clinic_list.id}}"></div>
+
+                                                                                        <p class="timemsg">Click on
+
+                                                                                            active day to see Timing</p>
+
+                                                                                        <div class="col-md-6 col-sm-5 col-xs-12">
+
+                                                                                            <div class="timelist{{clinic_list.id}}">
+
+                                                                                                <label>Date:</label>
+
+                                                                                                <input type="text"
+
+                                                                                                       name="date_of_appointment"
+
+                                                                                                       id="selecteddate{{clinic_list.id}}"
+
+                                                                                                       readonly/>
+
+
+
+                                                                                                <p></p>
+
+                                                                                                <div class="day1time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+
+
+                                                                                                    <ul class="sunday_appt_time1{{clinic_list.id}}">
+
+                                                                                                    </ul>
+
+
+
+                                                                                                    <script>
+
+                                                                                         var sunday_appt_time1 = {{ clinic_list.sunday_appt_time1|safe}};
+
+                                                                                         console.log("sunday time is : " + sunday_appt_time1);
+
+                                                                                        if(sunday_appt_time1[0] != ''){
+
+                                                                                         for (var x = 0; x < sunday_appt_time1.length; ++x) {
+
+                                                                                          if(sunday_appt_time1[x] != ''){
+
+                                                                                                $(".sunday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"> <span id="sunday_appt_time1{{clinic_list.id}}' + x + '" >'+ sunday_appt_time1[x]  +'</span> to <span id="sunday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + sunday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+                                                                                       }
+
+                                                                                       }
+
+                                                                                        else{
+
+                                                                                           $(".sunday_appt_time1{{clinic_list.id}}").append('<li> <span id="sunday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="sunday_appt_time1{{clinic_list.id}}' + x +'" ></span>  </li>');
+
+
+
+                                                                                            }
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var sunday_appt_time2 = {{ clinic_list.sunday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < sunday_appt_time2.length; ++x) {
+
+                                                                                          if(sunday_appt_time2[x] != ''){
+
+                                                                                                $("#sunday_appt_time2{{clinic_list.id}}" + x).append(sunday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + sunday_appt_time2[x] + ']');
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+
+
+
+
+                                                                                                </div>
+
+                                                                                                <div class="day2time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+                                                                                                    <ul class="monday_appt_time1{{clinic_list.id}}">
+
+
+
+                                                                                                    </ul>
+
+                                                                                                    <script>
+
+                                                                                         var monday_appt_time1 = {{ clinic_list.monday_appt_time1|safe}};
+
+                                                                                         if(monday_appt_time1[0] != ''){
+
+                                                                                         for (var x = 0; x < monday_appt_time1.length; ++x) {
+
+                                                                                          if(monday_appt_time1[x] != ''){
+
+                                                                                                $(".monday_appt_time1{{clinic_list.id}}").append('<li> <p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"><span id="monday_appt_time1{{clinic_list.id}}' + x + '" >'+ monday_appt_time1[x]  +'</span> to <span id="monday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + monday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+                                                                                       }
+
+                                                                                       }
+
+                                                                                         else{
+
+                                                                                           $(".monday_appt_time1{{clinic_list.id}}").append('<li> <p><span id="monday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="monday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+
+
+                                                                                            }
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var monday_appt_time2 = {{ clinic_list.monday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < monday_appt_time2.length; ++x) {
+
+
+
+
+
+                                                                                          if(monday_appt_time2[x] != ''){
+
+                                                                                                $("#monday_appt_time2{{clinic_list.id}}" + x).append(monday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + monday_appt_time2[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+
+
+
+
+                                                                                                </div>
+
+                                                                                                <div class="day3time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+                                                                                                    <ul class="tuesday_appt_time1{{clinic_list.id}}">
+
+
+
+                                                                                                    </ul>
+
+                                                                                                    <script>
+
+                                                                                         var tuesday_appt_time1 = {{ clinic_list.tuesday_appt_time1|safe}};
+
+                                                                                         if(tuesday_appt_time1[0] != ''){
+
+
+
+                                                                                         for (var x = 0; x < tuesday_appt_time1.length; ++x) {
+
+                                                                                          if(tuesday_appt_time1[x] != ''){
+
+                                                                                                $(".tuesday_appt_time1{{clinic_list.id}}").append('<li> <p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"><span id="tuesday_appt_time1{{clinic_list.id}}' + x + '" >'+ tuesday_appt_time1[x]  +'</span> to <span id="tuesday_appt_time2{{clinic_list.id}}' + x +'" ></span></p>  </li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + tuesday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+
+
+                                                                                       }
+
+                                                                                       }
+
+                                                                                        else{
+
+                                                                                           $(".tuesday_appt_time1{{clinic_list.id}}").append('<li> <p><span id="tuesday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="tuesday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+
+
+                                                                                            }
+
+
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var tuesday_appt_time2 = {{ clinic_list.tuesday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < tuesday_appt_time2.length; ++x) {
+
+
+
+
+
+                                                                                          if(tuesday_appt_time2[x] != ''){
+
+                                                                                                $("#tuesday_appt_time2{{clinic_list.id}}" + x).append(tuesday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + tuesday_appt_time2[x] + ']');
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                </div>
+
+                                                                                                <div class="day4time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+                                                                                                    <ul class="wednesday_appt_time1{{clinic_list.id}}">
+
+
+
+                                                                                                    </ul>
+
+                                                                                                    <script>
+
+                                                                                         var wednesday_appt_time1 = {{ clinic_list.wednesday_appt_time1|safe}};
+
+                                                                                         if(wednesday_appt_time1[0] != ''){
+
+                                                                                         for (var x = 0; x < wednesday_appt_time1.length; ++x) {
+
+                                                                                          if(wednesday_appt_time1[x] != ''){
+
+                                                                                                $(".wednesday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"><span id="wednesday_appt_time1{{clinic_list.id}}' + x + '" >'+ wednesday_appt_time1[x]  +'</span> to <span id="wednesday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + wednesday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+                                                                                       }
+
+                                                                                       }
+
+                                                                                        else{
+
+                                                                                           $(".wednesday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"> <span id="wednesday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="wednesday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+
+
+                                                                                            }
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var wednesday_appt_time2 = {{ clinic_list.wednesday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < wednesday_appt_time2.length; ++x) {
+
+
+
+
+
+                                                                                          if(wednesday_appt_time2[x] != ''){
+
+                                                                                                $("#wednesday_appt_time2{{clinic_list.id}}" + x).append(wednesday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + wednesday_appt_time2[x] + ']');
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                </div>
+
+                                                                                                <div class="day5time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+                                                                                                    <ul class="thursday_appt_time1{{clinic_list.id}}">
+
+
+
+                                                                                                    </ul>
+
+                                                                                                    <script>
+
+                                                                                         var thursday_appt_time1 = {{ clinic_list.thursday_appt_time1|safe}};
+
+
+
+                                                                                        if(thursday_appt_time1[0] != '')
+
+                                                                                         for (var x = 0; x < thursday_appt_time1.length; ++x) {
+
+                                                                                          if(thursday_appt_time1[x] != ''){
+
+                                                                                                $(".thursday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"> <span id="thursday_appt_time1{{clinic_list.id}}' + x + '" >'+ thursday_appt_time1[x]  +'</span> to <span id="thursday_appt_time2{{clinic_list.id}}' + x +'" ></span> </p> </li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + thursday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+                                                                                        else{
+
+                                                                                           $(".thursday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"> <span id="thursday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="thursday_appt_time2{{clinic_list.id}}' + x +'" ></span>  </p></li>');
+
+
+
+                                                                                            }
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var thursday_appt_time2 = {{ clinic_list.thursday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < thursday_appt_time2.length; ++x) {
+
+
+
+
+
+                                                                                          if(thursday_appt_time2[x] != ''){
+
+                                                                                                $("#thursday_appt_time2{{clinic_list.id}}" + x).append(thursday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + thursday_appt_time2[x] + ']');
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                </div>
+
+                                                                                                <div class="day6time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+                                                                                                    <ul class="friday_appt_time1{{clinic_list.id}}">
+
+
+
+                                                                                                    </ul>
+
+                                                                                                    <script>
+
+                                                                                         var friday_appt_time1 = {{ clinic_list.friday_appt_time1|safe}};
+
+                                                                                        if(friday_appt_time1[0] != '') {                                                                                        for (var x = 0; x < friday_appt_time1.length; ++x) {
+
+                                                                                          if(friday_appt_time1[x] != ''){
+
+                                                                                                $(".friday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"> <span id="friday_appt_time1{{clinic_list.id}}' + x + '" >'+ friday_appt_time1[x]  +'</span> to <span id="friday_appt_time2{{clinic_list.id}}' + x +'" ></span></p>  </li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + friday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+                                                                                       }
+
+                                                                                       }
+
+                                                                                         else{
+
+                                                                                           $(".friday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"><span id="friday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="friday_appt_time2{{clinic_list.id}}' + x +'" ></span></p>  </li>');
+
+                                                                                           }
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var friday_appt_time2 = {{ clinic_list.friday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < friday_appt_time2.length; ++x) {
+
+
+
+
+
+                                                                                          if(friday_appt_time2[x] != ''){
+
+                                                                                                $("#friday_appt_time2{{clinic_list.id}}" + x).append(friday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + friday_appt_time2[x] + ']');
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                </div>
+
+                                                                                                <div class="day7time{{clinic_list.id}}">
+
+
+
+                                                                                                    <p class="timemsg2"
+
+                                                                                                       style="text-align:left!important;">
+
+                                                                                                        Click on button
+
+                                                                                                        to select
+
+                                                                                                        Time.</p>
+
+                                                                                                    <ul class="saturday_appt_time1{{clinic_list.id}}">
+
+
+
+                                                                                                    </ul>
+
+                                                                                                    <script>
+
+                                                                                         var saturday_appt_time1 = {{ clinic_list.saturday_appt_time1|safe}};
+
+                                                                                         if(saturday_appt_time1[0] != ''){
+
+
+
+                                                                                         for (var x = 0; x < saturday_appt_time1.length; ++x) {
+
+                                                                                          if(saturday_appt_time1[x] != ''){
+
+                                                                                                $(".saturday_appt_time1{{clinic_list.id}}").append('<li><p style="background:#26a69a; color:#fff; cursor: pointer; padding:10px;"> <span id="saturday_appt_time1{{clinic_list.id}}' + x + '" >'+ saturday_appt_time1[x]  +'</span> to <span id="saturday_appt_time2{{clinic_list.id}}' + x +'" ></span>  </p></li>');
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + saturday_appt_time1[x] + ']');
+
+                                                                                            }
+
+
+
+
+
+                                                                                       }
+
+                                                                                       }
+
+                                                                                        else{
+
+                                                                                        $(".saturday_appt_time1{{clinic_list.id}}").append('<li> <span id="saturday_appt_time1{{clinic_list.id}}' + x + '" >closed</span> <span id="saturday_appt_time2{{clinic_list.id}}' + x +'" ></span>  </li>');
+
+                                                                                       }
+
+
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                    <script>
+
+                                                                                         var saturday_appt_time2 = {{ clinic_list.saturday_appt_time2|safe}};
+
+                                                                                         for (var x = 0; x < saturday_appt_time2.length; ++x) {
+
+
+
+
+
+                                                                                          if(saturday_appt_time2[x] != ''){
+
+                                                                                                $("#saturday_appt_time2{{clinic_list.id}}" + x).append(saturday_appt_time2[x]);
+
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + saturday_appt_time2[x] + ']');
+
+                                                                                            }
+
+                                                                                              else{
+
+                                                                                              console.log("Hello world!");
+
+
+
+
+
+                                                                                            }
+
+
+
+                                                                                       }
+
+
+
+
+
+                                                                                                    </script>
+
+                                                                                                </div>
+
+                                                                                            </div>
+
+                                                                                        </div>
+
+                                                                                        <div class="col-md-6 col-sm-7 col-xs-12">
+
+                                                                                            <label>Time:</label>
+
+                                                                                            <input type="text"
+
+                                                                                                   name="start_time"
+
+                                                                                                   id="selectedtime{{clinic_list.id}}"
+
+                                                                                                   readonly/>
+
+                                                                                            <button class="custombtn book"
+
+                                                                                                    type="submit">
+
+                                                                                                <ly-svg-icon p="calendar"
+
+                                                                             class="ly-svg--xs ng-isolate-scope"
+
+                                                                             hide-lt-md="">
+
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+
+                                                                         height="100%" width="100%"
+
+                                                                         preserveAspectRatio="xMidYMid meet"
+
+                                                                         viewBox="0 0 24 24">
+
+                                                                        <path ng-attr-d=""
+
+                                                                              d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"></path>
+
+                                                                    </svg>
+
+                                                                </ly-svg-icon>
+
+
+
+
+
+                                                                                                Book
+
+                                                                                            </button>
+
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                    </form>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <script>
+
+jQuery.fn.calendarPicker = function(options , cal) {
+
+  // --------------------------  default option values --------------------------
+
+  if (!options.date) {
+
+    options.date = new Date();
+
+  }
+
+  if (typeof(options.years) == "undefined")
+
+    options.years=1;
+
+  if (typeof(options.months) == "undefined")
+
+    options.months=3;
+
+  if (typeof(options.days) == "undefined")
+
+    options.days=4;
+
+  if (typeof(options.showDayArrows) == "undefined")
+
+    options.showDayArrows=true;
+
+  if (typeof(options.useWheel) == "undefined")
+
+    options.useWheel=true;
+
+  if (typeof(options.callbackDelay) == "undefined")
+
+    options.callbackDelay=500;
+
+  if (typeof(options.monthNames) == "undefined")
+
+    options.monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  if (typeof(options.dayNames) == "undefined")
+
+    options.dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  // --------------------------  default option values --------------------------
+
+  var calendar = {currentDate: options.date};
+
+  calendar.options = options;
+
+  //build the calendar on the first element in the set of matched elements.
+
+  var theDiv = this.eq(0);//$(this);
+
+  theDiv.addClass("calBox{{clinic_list.id}}");
+
+  //empty the div
+
+  theDiv.empty();
+
+  var divYears = $("<div>").addClass("calYear{{clinic_list.id}}");
+
+  var divMonths = $("<div>").addClass("calMonth{{clinic_list.id}}");
+
+  var divDays = $("<div>").addClass("calDay{{clinic_list.id}}");
+
+  theDiv.append(divYears).append(divMonths).append(divDays);
+
+  var dateString = calendar.currentDate;
+
+  dateString = new Date(dateString).toUTCString();
+
+  dateString = dateString.split(' ').slice(0, 4).join(' ');
+
+    var d = new Date(dateString);
+
+    var dayName = d.toString().split(' ')[0];
+
+    var day1 = dayNames[0];var day2 = dayNames[1];var day3 = dayNames[2];
+
+    var day4 = dayNames[3];var day5 = dayNames[4];
+
+    var day6 = dayNames[5];var day7 = dayNames[6];
+
+     $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").hide();
+
+     $(".day3time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();
+
+     $(".day4time{{clinic_list.id}}").hide();$(".day5time{{clinic_list.id}}").hide();
+
+     $(".day6time{{clinic_list.id}}").hide();$(".day7time{{clinic_list.id}}").hide();
+
+     $(".calBox{{clinic_list.id}}").click(function()
+
+     {
+
+     var activeitem = $('.calDay{{clinic_list.id}}').find('span.selected{{clinic_list.id}}').text();
+
+     var activeitem2 = activeitem.replace(/[0-9]/g, '');
+
+     if(day1 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").show();$(".day2time{{clinic_list.id}}").hide();$(".day3time{{clinic_list.id}}").hide();
+
+        $(".day7time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();$(".day5time{{clinic_list.id}}").hide();$(".day6time{{clinic_list.id}}").hide();
+
+     }
+
+     if(day2 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").show();$(".day3time{{clinic_list.id}}").hide();
+
+        $(".day7time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();$(".day5time{{clinic_list.id}}").hide();$(".day6time{{clinic_list.id}}").hide();
+
+     }
+
+     if(day3 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").hide();$(".day3time{{clinic_list.id}}").show();
+
+        $(".day7time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();$(".day5time{{clinic_list.id}}").hide();$(".day6time{{clinic_list.id}}").hide();
+
+     }
+
+     if(day4 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").hide();$(".day3time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").show();
+
+        $(".day5time{{clinic_list.id}}").hide();$(".day6time{{clinic_list.id}}").hide();$(".day7time{{clinic_list.id}}").hide();
+
+     }
+
+     if(day5 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").hide();$(".day3time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();
+
+        $(".day5time{{clinic_list.id}}").show();$(".day6time{{clinic_list.id}}").hide();$(".day7time{{clinic_list.id}}").hide();
+
+     }
+
+     if(day6 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").hide();$(".day3time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();
+
+        $(".day5time{{clinic_list.id}}").hide();$(".day6time{{clinic_list.id}}").show();$(".day7time{{clinic_list.id}}").hide();
+
+     }
+
+     if(day7 == activeitem2)
+
+     {
+
+        $(".day1time{{clinic_list.id}}").hide();$(".day2time{{clinic_list.id}}").hide();$(".day3time{{clinic_list.id}}").hide();$(".day4time{{clinic_list.id}}").hide();
+
+        $(".day5time{{clinic_list.id}}").hide();$(".day6time{{clinic_list.id}}").hide();$(".day7time{{clinic_list.id}}").show();
+
+     }
+
+    })
+
+
+
+  calendar.changeDate = function(date) {
+
+  calendar.currentDate = date;
+
+
+
+    var fillYears = function(date) {
+
+      var year = date.getFullYear();
+
+      var t = new Date();
+
+      divYears.empty();
+
+      var nc = options.years*2+1;
+
+      var w = parseInt((theDiv.width()-4-(nc)*4)/nc)+"px";
+
+      for (var i = year - options.years; i <= year + options.years; i++) {
+
+        var d = new Date(date);
+
+        d.setFullYear(i);
+
+        var span = $("<span>").addClass("calElement{{clinic_list.id}}").attr("millis", d.getTime()).html(i).css("width",w);
+
+        if (d.getYear() == t.getYear())
+
+          span.addClass("today{{clinic_list.id}}");
+
+        if (d.getYear() == calendar.currentDate.getYear())
+
+          span.addClass("selected{{clinic_list.id}}");
+
+        divYears.append(span);
+
+      }
+
+    }
+
+
+
+    var fillMonths = function(date) {
+
+      var month = date.getMonth();
+
+      var t = new Date();
+
+      divMonths.empty();
+
+      var oldday = date.getDay();
+
+      var nc = options.months*2+1;
+
+      var w = parseInt((theDiv.width()-4-(nc)*4)/nc)+"px";
+
+      for (var i = -options.months; i <= options.months; i++) {
+
+        var d = new Date(date);
+
+        var oldday = d.getDate();
+
+        d.setMonth(month + i);
+
+
+
+        if (d.getDate() != oldday) {
+
+          d.setMonth(d.getMonth() - 1);
+
+          d.setDate(28);
+
+        }
+
+        var span = $("<span>").addClass("calElement{{clinic_list.id}}").attr("millis", d.getTime()).html(options.monthNames[d.getMonth()]).css("width",w);
+
+        if (d.getYear() == t.getYear() && d.getMonth() == t.getMonth())
+
+          span.addClass("today{{clinic_list.id}}");
+
+        if (d.getYear() == calendar.currentDate.getYear() && d.getMonth() == calendar.currentDate.getMonth())
+
+          span.addClass("selected{{clinic_list.id}}");
+
+        divMonths.append(span);
+
+      }
+
+    }
+
+
+
+    var fillDays = function(date) {
+
+      var day = date.getDate();
+
+      var t = new Date();
+
+      divDays.empty();
+
+      var nc = options.days*2+1;
+
+      var w = parseInt((theDiv.width()-4-(options.showDayArrows?12:0)-(nc)*4)/(nc-(options.showDayArrows?2:0)))+"px";
+
+      for (var i = -options.days; i <= options.days; i++) {
+
+        var d = new Date(date);
+
+        d.setDate(day + i)
+
+        var span = $("<span>").addClass("calElement{{clinic_list.id}}").attr("millis", d.getTime())
+
+        if (i == -options.days && options.showDayArrows) {
+
+          span.addClass("prev{{clinic_list.id}}");
+
+        } else if (i == options.days && options.showDayArrows) {
+
+          span.addClass("next{{clinic_list.id}}");
+
+        } else {
+
+          span.html("<span class=dayNumber{{clinic_list.id}}>" + d.getDate() + "</span><br>" + options.dayNames[d.getDay()]).css("width",w);
+
+          if (d.getYear() == t.getYear() && d.getMonth() == t.getMonth() && d.getDate() == t.getDate())
+
+            span.addClass("today{{clinic_list.id}}");
+
+          if (d.getYear() == calendar.currentDate.getYear() && d.getMonth() == calendar.currentDate.getMonth() && d.getDate() == calendar.currentDate.getDate())
+
+            span.addClass("selected{{clinic_list.id}}");
+
+        }
+
+        divDays.append(span);
+
+      }
+
+    }
+
+    var deferredCallBack = function() {
+
+      if (typeof(options.callback) == "function") {
+
+        if (calendar.timer)
+
+          clearTimeout(calendar.timer);
+
+
+
+        calendar.timer = setTimeout(function() {
+
+          options.callback(calendar);
+
+        }, options.callbackDelay);
+
+      }
+
+    }
+
+    fillYears(date);
+
+    fillMonths(date);
+
+    fillDays(date);
+
+    deferredCallBack();
+
+  }
+
+  theDiv.click(function(ev) {
+
+    var el = $(ev.target).closest(".calElement{{clinic_list.id}}");
+
+    if (el.hasClass("calElement{{clinic_list.id}}")) {
+
+      calendar.changeDate(new Date(parseInt(el.attr("millis"))));
+
+    }
+
+  });
+
+  calendar.changeDate(options.date);
+
+  return calendar;
+
+};
+
+$(".timelist{{clinic_list.id}} ul li p").click(function() {
+
+var tt = $(this).text();
+
+$("#selectedtime{{clinic_list.id}}").val(tt);
+
+});
+
+var dateString , dayString;
+
+var todaydate = new Date();
+
+var monthNames=["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+var dayNames= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+var calendarPicker1 = $("#dsel1{{clinic_list.id}}").calendarPicker({ minDate: '0',
+
+    maxDate: '+1y',
+
+callback:function(cal) {
+
+var getyear = cal.currentDate.getFullYear();
+
+var getmonth = cal.currentDate.getMonth();
+
+var getdate = cal.currentDate.getDate();
+
+var dateString = cal.currentDate;
+
+dateString = new Date(dateString).toUTCString();
+
+dateString = dateString.split(' ').slice(0, 4).join(' ');
+
+$("#selecteddate{{clinic_list.id}}").val(dateString);
+
+var date1,date2;date1 = new Date();
+
+date1 = new Date(date1).toUTCString();
+
+date1 = date1.split(' ').slice(0, 4).join(' ');
+
+if((Date.parse(dateString) >= Date.parse(date1))){
+
+$("#selecteddate{{clinic_list.id}}").val(dateString);}
+
+else{ $("#selecteddate{{clinic_list.id}}").val("Please select a valid date");}
+
+}
+
+});
+
+// =========================================================== //
+
+
+
+                    </script>
+
+                    <style>
+
+  .calBox{{clinic_list.id}} {
+
+  background-color: #32b299;
+
+  padding: 2px;
+
+  -moz-border-radius: 4px;
+
+  text-align: center;
+
+  color: white;
+
+}
+
+.calElement{{clinic_list.id}} {
+
+  margin: 1px;
+
+  display: inline-block;
+
+  overflow:hidden;
+
+}
+
+.calYear{{clinic_list.id}} {
+
+  font-size: 20px;
+
+  border-bottom: 1px dashed #666;
+
+  padding-bottom: 5px;
+
+  margin-bottom: 5px
+
+}
+
+.calMonth{{clinic_list.id}} {
+
+  border-bottom: 1px dashed #666;
+
+  padding-bottom: 5px;
+
+  margin-bottom: 5px;
+
+}
+
+.calMonth{{clinic_list.id}} .calElement{{clinic_list.id}} {
+
+  font-size: 14px;
+
+}
+
+.calDay{{clinic_list.id}} .calElement{{clinic_list.id}} {
+
+  font-size: 12px;
+
+}
+
+.calDay{{clinic_list.id}} .calElement{{clinic_list.id}}.prev {
+
+  background: transparent url(../images/prev.png) no-repeat 0 18px;
+
+  width: 6px;
+
+  height: 35px;display:none;
+
+}
+
+.calDay{{clinic_list.id}} .calElement{{clinic_list.id}}.next {
+
+  background: transparent url(../images/next.png) no-repeat 0 18px;
+
+  width: 6px;
+
+  height: 35px;display:none;
+
+}
+
+span.calElement{{clinic_list.id}}.next:hover, span.calElement{{clinic_list.id}}.prev:hover {
+
+  cursor: pointer;
+
+}
+
+.calDay{{clinic_list.id}} .calElement{{clinic_list.id}} .dayNumber{{clinic_list.id}} {
+
+  font-size: 20px;
+
+}
+
+.calElement{{clinic_list.id}}.selected{{clinic_list.id}} {
+
+  background-color: #404040;
+
+  border: 1px solid #404040;
+
+  -moz-border-radius: 3px
+
+}
+
+span.calElement{{clinic_list.id}}:hover {
+
+  background-color: #404040;
+
+  -moz-border-radius: 3px;
+
+  cursor: pointer;
+
+}
+
+.calElement{{clinic_list.id}}.today{{clinic_list.id}} {
+
+  -moz-border-radius: 3px
+
+}
+
+                    </style>
+
+
+
+                    <script>
+
+
+
+                               $(document).ready(function() {
+
+                                    $("#bookchart{{clinic_list.id}}").hide();
+
+                                  });
+
+
+
+                                 $("#clinic1{{clinic_list.id}}").click(function(){
+
+                                 $("#bookchart{{clinic_list.id}}").toggle();
+
+                                 });
+
+
+
+                    </script>
+
+
+
+                    {% endfor %}
+
+                </div>
+
+                <div id="menu1" class="tab-pane fade">
+
+                    <div class="row nopadd2">
+
+                        <div class="col-md-12">
+
+                            <p class="clinichead">Submit Feedback</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="feedbackbox">
+
+                            <p><b>Submit a review for Dr. {{doctor_list.doctor_profile_id.first_name}}</b></p>
+
+                            <p>Your feedback matters!</p>
+
+                            <button class="custombtn" type="btn" data-toggle="modal" data-target="#reviewbox">Write a
+
+                                revew
+
+                            </button>
+
+                            <div id="reviewbox" class="modal fade" role="dialog">
+
+                                <div class="modal-dialog">
+
+                                    <div class="modal-content">
+
+                                        <div class="modal-body">
+
+                                            <form action="{% url 'Review_feedback' %}" class='form-group' method="post">
+
+                                                <button type="button" class="close" data-dismiss="modal">&times;
+
+                                                </button>
+
+                                                <div class='fb-form'>
+
+                                                    <h2>Tell us what you think</h2>
+
+                                                    <input class='form-control' name="doctor_id" type='hidden'
+
+                                                           value="{{doctor_list.doctor_profile_id.id}}">
+
+                                                    <input class='form-control' placeholder='Name' name="name"
+
+                                                           type='text'>
+
+                                                    <input class='form-control' placeholder='Email' name="email"
+
+                                                           type='text'>
+
+                                                    {% csrf_token %}
+
+                                                    <textarea class='form-control' id='fb-comment' name='description'
+
+                                                              placeholder='Tell us what you think'></textarea>
+
+
+
+                                                    <fieldset class="rating">
+
+                                                        <span class="ratintxt">User Rating</span>
+
+                                                        <input type="radio" id="field1_star5" name="rating1" value="5"/><label
+
+                                                            class="full" for="field1_star5"></label>
+
+
+
+                                                        <input type="radio" id="field1_star4" name="rating1" value="4"/><label
+
+                                                            class="full" for="field1_star4"></label>
+
+
+
+                                                        <input type="radio" id="field1_star3" name="rating1" value="3"/><label
+
+                                                            class="full" for="field1_star3"></label>
+
+
+
+                                                        <input type="radio" id="field1_star2" name="rating1" value="2"/><label
+
+                                                            class="full" for="field1_star2"></label>
+
+
+
+                                                        <input type="radio" id="field1_star1" name="rating1" value="1"/><label
+
+                                                            class="full" for="field1_star1"></label>
+
+                                                    </fieldset>
+
+                                                    <span></span>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+
+                                                    <button type="submit" class="custombtn">Submit</button>
+
+                                                    <button type="button" class="custombtn" data-dismiss="modal">Close
+
+                                                    </button>
+
+
+
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row nopadd2">
+
+                            <div class="col-md-12">
+
+                                <p class="clinichead">All Review</p>
+
+                            </div>
+
+                        </div>
+
+
+
+                        {% for review_list in review_list %}
+
+                        <div class="row">
+
+                            <div class="feedbackfullbox">
+
+                                <p><b>{{review_list.name}} </b></p>
+
+                                <p class="reviewdate">{{review_list.date}}</p>
+
+                                <p class="reviewstar">
+
+
+
+                                    {% if review_list.rating1 == '5'%}
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    {% endif %}
+
+                                    {% if review_list.rating1 == '4'%}
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    {% endif %}
+
+                                    {% if review_list.rating1 == '3'%}
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    {% endif %}
+
+                                    {% if review_list.rating1 == '2'%}
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    {% endif %}
+
+                                    {% if review_list.rating1 == '1'%}
+
+                                    <i class="fa fa-star vd_yellow fa-fw"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    <i class="fa fa-star nocolor"></i>
+
+                                    {% endif %}
+
+                                </p>
+
+
+
+                                <p class="fullreview">{{review_list.description|safe}}</p>
+
+                            </div>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <div id="menu2" class="tab-pane fade">
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+
+                            <b> Service Name</b>
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            <b>Price</b>
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            <b>Discount</b>
+
+                        </div>
+
+                    </div>
+
+                    {% if doctor_Services_List %}
+
+                    {% for doctor_Services_List in doctor_Services_List %}
+
+                    <div class="row servicerow">
+
+
+
+                        <div class="col-md-8">
+
+                            {{doctor_Services_List.service}}
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            <del>{{doctor_Services_List.price}}</del>
+
+                        </div>
+
+                        <div class="col-md-2">{{doctor_Services_List.discount}}
+
+                        </div>
+
+
+
+                        <!--<div class="col-md-4">-->
+
+                        <!--&lt;!&ndash;<h5>Service</h5>&ndash;&gt;-->
+
+                        <!--</div>-->
+
+                        <!--<div class="col-md-8">-->
+
+                        <!--<ul class="discount">-->
+
+                        <!--<li>Price</li>-->
+
+                        <!--<li>Discount</li>-->
+
+                        <!--</ul>-->
+
+                        <!--</div>-->
+
+
+
+                        <!--<div class="services1">-->
+
+                        <!--<h5>{{doctor_Services_List.service}}</h5>-->
+
+                        <!--<a href=""><h6><del>{{doctor_Services_List.price}}</del></h6>-->
+
+                        <!--&lt;!&ndash;<h5>{{doctor_Services_List.price}}</h5>&ndash;&gt;-->
+
+                        <!--<h5>{{doctor_Services_List.discount}}</h5></a>-->
+
+                        <!--</div>-->
+
+                    </div>
+
+                    {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <div id="menu3" class="tab-pane fade">
+
+                    {% for blog_List in blog_List %}
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+
+                            <img src="../uploads/{{blog_List.image}}" class="img-responsive"/>
+
+                        </div>
+
+                        <div class="col-md-9">
+
+                            <div class="blogpadd">
+
+                                <h5>{{blog_List.title}}</h5>
+
+                                <p class="reviewdate"> by {{blog_List.user.first_name}} {{blog_List.user.last_name}} on
+
+                                    {{blog_List.date}}</p>
+
+                                <p>{{blog_List.description|safe|slice:":100"}}</p>
+
+                                <a href="../blog/{{blog_List.slug}}">
+
+                                    <button class="custombtn" type="btn">Read More</button>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+
+</section>
+
+
+
+<!--<script>-->
+
+<!--$('.datepicker').datepicker({-->
+
+<!--minDate: 0-->
+
+<!--});-->
+
+<!--</script>-->
+
+<script>
+
+// JavaScript Document
+
+$(".full").click(function(){
+
+	"use strict";
+
+  $(this).parent().find("label").css({"background-color": "#D8D8D8"});
+
+  $(this).css({"background-color": "#26a69a"});
+
+  $(this).nextAll().css({"background-color": "#26a69a"});
+
+});
+
+
+
+</script>
+
+<script>
+
+      $(document).ready(function() {
+
+      $(".errormsg").hide();
+
+   });
+
+ </script>
+
+ <script>
+
+function validateForm() {
+
+    var x = document.forms["myForm"]["first_name"].value;
+
+    if (x == "") {
+
+         alert("All fields must be filled out");
+
+         return false;
+
+    }
+
+}
+
+
+
+
+
+function validateForm() {
+
+    var x = document.forms["myForm"]["email"].value;
+
+    if (x == "") {
+
+         alert("All fields must be filled out");
+
+         return false;
+
+    }
+
+}
+
+
+
+
+
+function validateForm() {
+
+    var x = document.forms["myForm"]["mobile"].value;
+
+    if (x == "") {
+
+         alert("All fields must be filled out");
+
+      return false;
+
+    }
+
+}
+
+
+
+
+
+function validateForm() {
+
+    var x = document.forms["myForm"]["date_of_appointment"].value;
+
+    if (x == "") {
+
+         alert("All fields must be filled out");
+
+      return false;
+
+    }
+
+}
+
+
+
+
+
+function validateForm() {
+
+    var x = document.forms["myForm"]["start_time"].value;
+
+    if (x == "") {
+
+         alert("All fields must be filled out");
+
+      return false;
+
+    }
+
+}
+
+
+
+
+
+</script>
+
+{% include "footer.html" %}
+
+

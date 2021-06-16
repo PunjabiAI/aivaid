@@ -1,0 +1,74 @@
+{% include 'doctor-panel/header.html' %}
+{% load static %}
+<section id="notice-list">
+    <div class="container-fluid">
+        <div class="row list_header">
+
+            <div class="col-md-12 header-title">
+
+                <div class="header-icon">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                </div>
+                <h1>Notification List</h1>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                <div class="panel-body">
+                    <div class="panel-header">
+                        <div class="col-sm-4 no-padd">
+                            <div class="dataTables_length">
+                                <button id="csvdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                    CSV
+                                </button>
+                                <button id="pdfdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                    PDF
+                                </button>
+                                <button id="btnexcel" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                    Excel
+                                </button>
+                                <button id="btnprint" class="btn btn-default buttons-excel buttons-html5 btn-sm">Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="getData">
+                            <thead>
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Action</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                {% if notification_List_Doctor %}
+                                {% for notification_List_Doctor in notification_List_Doctor %}
+                                <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{notification_List_Doctor.date}}</td>
+                                <td>{{notification_List_Doctor.time}}</td>
+                                <td>{{notification_List_Doctor.patient.first_name}} {{notification_List_Doctor.patient.last_name}}</td>
+                                <td>{{notification_List_Doctor.notification}}</td>
+                                <td><a href="../appointment-list">View</a></td>
+                                 </tr>
+                                {% endfor %}
+                                {% endif %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static '' %}js/get-data.js"></script>
+{% include 'doctor-panel/footer.html' %}

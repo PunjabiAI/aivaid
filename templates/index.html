@@ -1,0 +1,853 @@
+{% load static %}
+{% include "header.html" %}
+<section id="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padd">
+                <div class="bannertxtwrap">
+                    <h1>Your personal <span class="highlight">health guide</span></h1>
+                    <p>Created by doctors, scientists, and engineers to put free, <br>AI-powered healthcare in
+                        everyone’s hands.</p>
+                    <a href="https://play.google.com/store/apps/details?id=io.ionic.webtunixsol" target="#blank"
+                       class="appdownload">Download app now</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  no-padd">
+                <img src="{% static '' %}images/app.gif" class="img-responsive phone" alt="Download App"/>
+                <a href="../start-checkup" class="phonebtn">Start symptom assessment</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="Aihelp">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd"><h1>Let us help <b>you</b></h1>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="box first">
+                        <span class="icon-cont"><i class="fa fa-user"></i></span>
+                        <h3>For Patients / Visitors</h3>
+                        <a class="expand"><span class="plus">+</span><span class="minus">-</span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="box second">
+                        <span class="icon-cont"><i class="fa fa-stethoscope"></i></span>
+                        <h3>For Health Professionals</h3>
+                        <a class="expand"><span class="plus">+</span><span class="minus">-</span></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4">
+                    <div class="box third">
+                        <span class="icon-cont"><i class="fa fa-calendar"></i></span>
+                        <h3>Schedule an Appointment</h3>
+                        <a class="expand"><span class="plus">+</span><span class="minus">-</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="help-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padd">
+                    <div class="doctorsPanel userPanel" data-aos="fade-right" data-aos-duration="3000">
+                        <h3>I'm a Health Care Provider</h3>
+                        <div class="userPanelInner">
+                            <p>If you're a doctor or other health care professional, start here.</p>
+                            <!--<p><strong>We bring patients to your practice and Encourage existing clients into wellness-->
+                                <!--care.</strong></p>-->
+                            <!--<p><strong>AI Vaid welcomes the opportunity to partner with you in caring for your-->
+                                <!--patients.</strong></p>-->
+                            <ul>
+                                <li><i class="fa fa-hand-o-right"></i> Create your FREE account with us.</li>
+                                <li><i class="fa fa-hand-o-right"></i> You will get a Panel where you can handle all
+                                    your patient interactions.
+                                </li>
+                                <li><i class="fa fa-hand-o-right"></i> You need to fill your Educational Details and
+                                    Personal Details while creating your account.
+                                </li>
+                                <li><i class="fa fa-hand-o-right"></i> Increase your online reputation, brand and
+                                    referrals.
+                                </li>
+                                <li><i class="fa fa-hand-o-right"></i> Doctors need to be where their patients are!</li>
+                            </ul>
+                            <a href="../signup">Sign up for FREE</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padd">
+                    <div class="patientPanel userPanel" data-aos="fade-left" data-aos-duration="3000">
+                        <h3>I'm a Patient</h3>
+                        <div class="userPanelInner">
+                            <p>Some great features you can access:</p>
+                            <ul>
+                                <li><i class="fa fa-hand-o-right"></i> Find a doctor</li>
+                                <li><i class="fa fa-hand-o-right"></i> Registering gives you 24/7 access to your
+                                    account, along with tools that can help you save time, money, and manage your
+                                    health.
+                                </li>
+                                <li><i class="fa fa-hand-o-right"></i> Manage your account</li>
+                                <li><i class="fa fa-hand-o-right"></i> You will find Health Specialist according to your
+                                    health conditions.
+                                </li>
+                            </ul>
+                            <a href="../signup">Sign up for FREE</a>
+                            <!--<a href="#">Learn more</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="technology">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <h1>The complete <b>technology</b></h1>
+                <p>Infermedica collects, analyzes and uses medical knowledge to ask diagnostic questions to unmask your
+                    patients' conditions.</p>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="techbox">
+                        <img src="{% static '' %}images/knowledge.png" alt="Medical Knowledge"/>
+                        <h5 class="heading">Knowledge</h5>
+                        <p class="more_txt">We collect and organize medical knowledge.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="techbox">
+                        <img src="{% static '' %}images/machine.png" alt="Machine Learning"/>
+                        <h5 class="heading">Machine Learning</h5>
+                        <p class="more_txt">We analyze literature and patient records.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="techbox">
+                        <img src="{% static '' %}images/network.png" alt="Inference engine"/>
+                        <h5 class="heading">Inference engine</h5>
+                        <p class="more_txt">We draw conclusions from patient data.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="techbox">
+                        <img src="{% static '' %}images/api.png" alt="API"/>
+                        <h5 class="heading">API</h5>
+                        <p class="more_txt">We integrate with your product smoothly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 no-padd">
+                <div class="ai-pointer">
+                    <svg class="ai-pointer__left" viewBox="0 0 46 67">
+                        <use xlink:href="#ai-pointer-left">
+                            <svg id="ai-pointer-left" viewBox="0 0 46 67" width="100%" height="100%">
+                                <g fill="none" fill-rule="evenodd" stroke="#DBE1E6" stroke-width="2"
+                                   transform="translate(1 1)">
+                                    <path d="M45 65H24S4 65 4 45V4"></path>
+                                    <circle cx="4" cy="4" r="4" fill="#FFF"></circle>
+                                </g>
+                            </svg>
+                        </use>
+                    </svg>
+                    <h4 class="heading ai-pointer__title">Artificial Intelligence</h4>
+                    <svg class="ai-pointer__right" viewBox="0 0 46 67">
+                        <use xlink:href="#ai-pointer-right"></use>
+                        <svg id="ai-pointer-right" viewBox="0 0 46 67" width="100%" height="100%">
+                            <g fill="none" fill-rule="evenodd" stroke="#DBE1E6" stroke-width="2"
+                               transform="translate(0 1)">
+                                <path d="M0 65h21s20 0 20-20V4"></path>
+                                <circle cx="41" cy="4" r="4" fill="#FFF"></circle>
+                            </g>
+                        </svg>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="chatbot">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="con">
+                    <div id="output"></div>
+                    <div class="avatar">
+                        <img src="{% static '' %}images/robot.jpg" class="img-responsive img-circle" alt="Chat Robot">
+                    </div>
+                </div>
+                <input type="text" id="input" placeholder="Lets get to know each other...">
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="Textwrap">
+                    <h1>Don't Skip Taking Medicine,<b> Our Chatbot</b> Will Remind You</h1>
+                    <ul>
+                        <li> 100,000 Verified doctors</li>
+                        <li> 3M+ Patient recommendations</li>
+                        <li> 25M Patients/year</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="fancyTabWidget" class="tabs t-tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                 <h1>AI Vaid <b>Features</b></h1>
+                    <p class="featurepara">Easy and Handy. No need to stand in long queues, just answer questions few and get a
+                        clear view. Let your fingers do the walking.</p>
+                    <ul class="nav nav-tabs fancyTabs" role="tablist">
+                        <li class="tab fancyTab active">
+                            <div class="arrow-down">
+                                <div class="arrow-down-inner"></div>
+                            </div>
+                            <a id="tab0" href="#tabBody0" role="tab" aria-controls="tabBody0" aria-selected="true" data-toggle="tab"
+                               tabindex="0"><span class="fa fa-desktop"></span><span class="hidden-xs">Absolutely Free</span></a>
+                            <div class="whiteBlock"></div>
+                        </li>
+                        <li class="tab fancyTab">
+                            <div class="arrow-down">
+                                <div class="arrow-down-inner"></div>
+                            </div>
+                            <a id="tab1" href="#tabBody1" role="tab" aria-controls="tabBody1" aria-selected="true" data-toggle="tab"
+                               tabindex="0"><span class="fas fa-paper-plane"></span><span
+                                    class="hidden-xs">Get instant Report</span></a>
+                            <div class="whiteBlock"></div>
+                        </li>
+                        <li class="tab fancyTab">
+                            <div class="arrow-down">
+                                <div class="arrow-down-inner"></div>
+                            </div>
+                            <a id="tab2" href="#tabBody2" role="tab" aria-controls="tabBody2" aria-selected="true" data-toggle="tab"
+                               tabindex="0"><span class="fa fa-clock"></span><span class="hidden-xs">Time Saving</span></a>
+                            <div class="whiteBlock"></div>
+                        </li>
+                        <li class="tab fancyTab">
+                            <div class="arrow-down">
+                                <div class="arrow-down-inner"></div>
+                            </div>
+                            <a id="tab3" href="#tabBody3" role="tab" aria-controls="tabBody3" aria-selected="true" data-toggle="tab"
+                               tabindex="0"><span class="fa fa-thumbs-up"></span><span class="hidden-xs">Quality & Trust</span></a>
+                            <div class="whiteBlock"></div>
+                        </li>
+                        <li class="tab fancyTab">
+                            <div class="arrow-down">
+                                <div class="arrow-down-inner"></div>
+                            </div>
+                            <a id="tab4" href="#tabBody4" role="tab" aria-controls="tabBody4" aria-selected="true" data-toggle="tab"
+                               tabindex="0"><span class="fa fa-lock"></span><span class="hidden-xs">Private & Secure</span></a>
+                            <div class="whiteBlock"></div>
+                        </li>
+                        <li class="tab fancyTab">
+                            <div class="arrow-down">
+                                <div class="arrow-down-inner"></div>
+                            </div>
+                            <a id="tab5" href="#tabBody5" role="tab" aria-controls="tabBody5" aria-selected="true" data-toggle="tab"
+                               tabindex="0"><span class="far fa-clock"></span><span class="hidden-xs">24x7 Service</span></a>
+                            <div class="whiteBlock"></div>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content fancyTabContent" aria-live="polite">
+                        <div class="tab-pane  fade active in" id="tabBody0" role="tabpanel" aria-labelledby="tab0"
+                             aria-hidden="false" tabindex="0">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>Absolutely Free</h2>
+                                        <p>AI Vaid provides free of cost services. Suppose you are narrow pocket and you need
+                                            medical treatment immediately. AI Vaid is always available for you without any service
+                                            charges. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane  fade" id="tabBody1" role="tabpanel" aria-labelledby="tab1" aria-hidden="true"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Get instant Report</h2>
+                                    <p>After your Diagnosis, you will get complete instant report of your checkup on your email. It
+                                        is optional; you will get report on your demand only.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane  fade" id="tabBody2" role="tabpanel" aria-labelledby="tab2" aria-hidden="true"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Time Saving</h2>
+                                    <p>As we know, we all have hectic schedule and we don’t have time for the regular diagnosis.
+                                        Thus by using AI Vaid application, you can save your time and get your medical diagnosis at
+                                        home without any cost. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane  fade" id="tabBody3" role="tabpanel" aria-labelledby="tab3" aria-hidden="true"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Quality & Trust</h2>
+                                    <p>AI Vaid provides you facilities anywhere at any time. It will give accurate results of
+                                        diagnosis with in few minutes. Further you can use these results for treatment. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane  fade" id="tabBody4" role="tabpanel" aria-labelledby="tab4" aria-hidden="true"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Private & Secure</h2>
+                                    <p>AI Vaid is Safe and Secure application. Your information will be secured and you will get
+                                        diagnosis report on demand only. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane  fade" id="tabBody5" role="tabpanel" aria-labelledby="tab5" aria-hidden="true"
+                             tabindex="0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>24x7 Service</h2>
+                                    <p>AI Vaid’s doctors are available at any time. Easy access to the best doctors anytime and
+                                        anywhere.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="specialist">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <h1>Looking for a <b>specialist?</b></h1>
+                <p>Find the right care for your needs.</p>
+                <div class="col-lg-4 col-sm-6">
+                    <figure class="snip1445"><img src="{% static '' %}images/Dietitian.png" class="img-responsive"
+                                                  alt="AI Vaid Specialist"/>
+                        <figcaption>
+                            <div>
+                                <h4>Dietitian</h4>
+                            </div>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <figure class="snip1445"><img src="{% static '' %}images/Gynaecologist.png" class="img-responsive"
+                                                  alt="AI Vaid Specialist"/>
+                        <figcaption>
+                            <div>
+                                <h4>Gynaecologist</h4>
+                            </div>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <figure class="snip1445"><img src="{% static '' %}images/Oncologist.png" class="img-responsive"
+                                                  alt="AI Vaid Specialist"/>
+                        <figcaption>
+                            <div>
+                                <h4>Oncologist</h4>
+                            </div>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <figure class="snip1445"><img src="{% static '' %}images/Psychiatrists.png" class="img-responsive"
+                                                  alt="AI Vaid Specialist"/>
+                        <figcaption>
+                            <div>
+                                <h4>Psychiatrists</h4>
+                            </div>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <figure class="snip1445"><img src="{% static '' %}images/Cardiologist.png" class="img-responsive"
+                                                  alt="AI Vaid Specialist"/>
+                        <figcaption>
+                            <div>
+                                <h4>Cardiologist</h4>
+                            </div>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <figure class="snip1445"><img src="{% static '' %}images/Dentist.png" class="img-responsive"
+                                                  alt="AI Vaid Specialist"/>
+                        <figcaption>
+                            <div>
+                                <h4>Dentist</h4>
+                            </div>
+                        </figcaption>
+                        <a href="#"></a>
+                    </figure>
+                </div>
+        </div>
+        </div></div>
+</section>
+<section id="work">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <h1>How it <b>works?</b></h1>
+                <p>Connecting Patients to Doctors</p>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <img src="{% static '' %}images/doctor.png" class="img-responsive img_people"/>
+                    <p class="img_heading">Doctor</p>
+                    <span class="detail">3500+ Doctors in <strong>19 Specialities</strong></span>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <!--<img src="{% static '' %}images/chat.gif" class="img-responsive" alt="Chat"/>-->
+                    <div class="chat home-chat">
+                    <div class="chat-container">
+                      <div class="chat-listcontainer">
+                        <ul class="chat-message-list">
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <img src="{% static '' %}images/patient.png" class="img-responsive img_people"
+                         alt="Doctor Patient Interactions"/>
+                    <p class="img_heading">Patient</p>
+                    <span class="detail">3,000,000+ <strong>Patients helped</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="diseases">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <h1>Diseases and <b>Causes</b></h1>
+                <p class="diseasepara">A disease is an abnormal condition of an organism that impairs bodily functions,
+                    associated with specific symptoms and signs. </p>
+                <div class="owl-carousel owl-theme" id="diseases_causes">
+                    <div class="bg-color item">
+                            <div class="col-lg-9 no-padd">
+                        <div class="diseasesbox">
+                                    <h4>Breast Cancer</h4>
+                                    <p>Breast cancer is one of the leading cause of cancer deaths among women. Breast cancer is a disease that occurs when the cell in the breast tissue change and keep on reproducing. These abnormal cells create a cluster together and form a tumor.</p>
+                                    <button type="button" class="btn btn-default">Read More</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 no-padd">
+                                <div class="box">
+                                    <img src="{% static '' %}images/aids.png" alt="Diseases and Causes"/>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="bg-color item">
+                            <div class="col-lg-9 no-padd">
+                               <div class="diseasesbox">
+                                    <h4>Cardiac arrest</h4>
+                                    <p>Cardiac arrest is an unexpected and sudden loss of heart function, consciousness and breathing. Cardiac arrest is a caused due to the sudden electric disturbance in the heart that can disrupt the pumping action of the heart.
+                                    </p>
+                                    <button type="button" class="btn btn-default">Read More</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 no-padd">
+                                <div class="box">
+                                    <img src="{% static '' %}images/Cardiac-arrest.png" alt="Diseases and Causes"/>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="bg-color item">
+                        <div class="col-lg-9 no-padd">
+                            <div class="diseasesbox">
+                                <h4>Headache</h4>
+                                <p>Headache is common and not considered as a serious illness. Even if a headache does not have any serious cause, they can disrupt the daily routine. A headache is a common condition which causes pain and discomfort in the head.
+                                </p>
+                                <button type="button" class="btn btn-default">Read More</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 no-padd">
+                            <div class="box">
+                                <img src="{% static '' %}images/headache.png" alt="Diseases and Causes"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-color item">
+                        <div class="col-lg-9 no-padd">
+                            <div class="diseasesbox">
+                                <h4>Hepatitis</h4>
+                                <p>THepatitis refers to the inflammatory condition of the liver. It is commonly caused due to a viral infection. But there are several other causes of hepatitis that includes autoimmune hepatitis and hepatitis that occurs as a result of the medications.
+                                </p>
+                                <button type="button" class="btn btn-default">Read More</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 no-padd">
+                            <div class="box">
+                                <img src="{% static '' %}images/Hepatitis.png" alt="Diseases and Causes"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-color item">
+                        <div class="col-lg-9 no-padd">
+                            <div class="diseasesbox">
+                                <h4>High Fever</h4>
+                                    <p>Fever is when a human’s body temperature climbs above the normal range of 36-37 degree Centigrade or 98-100 degree in Fahrenheit. Other terms for fever include pyrexia and controlled hyperthermia. </p>
+                                <button type="button" class="btn btn-default">Read More</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 no-padd">
+                            <div class="box">
+                                <img src="{% static '' %}images/fever.png" alt="Diseases and Causes"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-color item">
+                        <div class="col-lg-9 no-padd">
+                            <div class="diseasesbox">
+                                <h4>Jaundice</h4>
+                                <p>  Jaundice is a disease which causes yellow discoloration of the skin and whites of the eyes. This is caused due to the increased amount of bilirubin in the blood. Bilirubin is a by-product of destruction of white blood cells in the body.</p>
+                                <button type="button" class="btn btn-default">Read More</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 no-padd">
+                            <div class="box">
+                                <img src="{% static '' %}images/Jaundice.png" alt="Diseases and Causes"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="appointment">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="Textwrap">
+                    <h1>Instant appointment with doctors<b> Guaranteed.</b></h1>
+                    <ul>
+                        <li> 100,000 Verified doctors</li>
+                        <li> 3M+ Patient recommendations</li>
+                        <li> 25M Patients/year</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static '' %}images/hospitallist.png" class="img-responsive" alt="Instant appointment"/>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="app">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <h1 class="appheading">Take control of your <b>health today</b></h1>
+                <div class="appbox">
+                    <div class="col-md-6">
+                        <div class="textwrap2">
+                            <h3>Not feeling well<br><strong>#Aivaid</strong></h3>
+                            <p>Download the app to join millions of people around the world managing their health with
+                                Aivaid.</p>
+                            <a href="https://play.google.com/store/apps/details?id=io.ionic.webtunixsol"
+                               target="#blank"><img src="{% static '' %}images/playstore.png"
+                                                    class="img-responsive playstore" alt="Download the app"/></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{% static '' %}images/unwellpatient.jpg" class="img-responsive" alt="Patient"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "footer.html" %}
+<script>
+  $(document).ready(function () {
+   $("#diseases_causes").owlCarousel({
+    autoPlay: 3000,
+    dots: true,
+    nav: true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:2,
+            nav:true
+        }
+    }
+  });
+});
+</script>
+
+<section>
+
+<script>
+var chatMessages = [{
+  name: "ms1",
+  msg: "Hello, Dr. Evan Shilling this side. How can I help you?",
+  delay: 800,
+  align: "right",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms2",
+  msg: "Hello doctor. I am Kevin. I am having a severe back pain from the past three days.",
+  delay: 5000,
+  align: "left",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms3",
+  msg: "Ok. Can you elaborate?",
+  delay: 3000,
+  align: "right",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms4",
+  msg: "I had an injury in my back last year while I slipped from the stairs. Now I am having pain in the same spot.",
+  delay: 7000,
+  align: "left",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms5",
+  msg: "What is your age?",
+  delay: 3000,
+  align: "right",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms6",
+  msg: "47",
+  delay: 500,
+  align: "left",
+  showTime: false,
+  time: "19:58"
+},
+{
+  name: "ms7",
+  msg: "Is the pain constant or it grows when you walk or move?",
+  delay: 10000,
+  align: "right",
+  showTime: false,
+  time: "19:58"
+},
+{
+  name: "ms8",
+  msg: "The pain is constant but increases when I walk.",
+  delay: 8000,
+  align: "left",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms9",
+  msg: "Are you taking any mediactions?",
+  delay: 4000,
+  align: "right",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms10",
+  msg: "No, Doctor. Just the painkillers.",
+  delay: 8000,
+  align: "left",
+  showTime: false,
+  time: "19:58"
+},
+{
+  name: "ms11",
+  msg: "Ok. You can visit me tomorrow at 11 AM. Get an X-ray report of your spine and we will discuss more over the meeting.",
+  delay: 4000,
+  align: "left",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms12",
+  msg: "One more thing I forgot to tell. The pain when on its peak, goes down to my left leg also and is very painful.",
+  delay: 4000,
+  align: "left",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms14",
+  msg: "Yes, the spine is connected with other parts of the body so there might be a chance of getting pain in other body parts also.",
+  delay: 9000,
+  align: "right",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms15",
+  msg: "Any advice for me till tomorow?",
+  delay: 3000,
+  align: "left",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms16",
+  msg: "Take bed rest. Do not lift heavy weights. You can also try icing on the back.",
+  delay: 9000,
+  align: "right",
+  showTime: true,
+  time: "19:58"
+},
+{
+  name: "ms17",
+  msg: "Thanks, doctor. That would be helpul. See you tomorrow.",
+  delay: 9000,
+  align: "left",
+  showTime: true,
+  time: "19:59"
+},
+{
+name:"ms18",
+msg: "Sure. Thanks.",
+delay: 1000,
+align: "right",
+showTime: true,
+time: ""
+}
+];
+var chatDelay = 0;
+
+function onRowAdded() {
+  $('.chat-container').animate({
+    scrollTop: $('.chat-container').prop('scrollHeight')
+  });
+};
+$.each(chatMessages, function(index, obj) {
+  chatDelay = chatDelay + 4000;
+  chatDelay2 = chatDelay + obj.delay;
+  chatDelay3 = chatDelay2 + 10;
+  scrollDelay = chatDelay;
+  chatTimeString = " ";
+  msgname = "." + obj.name;
+  msginner = ".messageinner-" + obj.name;
+  spinner = ".sp-" + obj.name;
+  if (obj.showTime == true) {
+    chatTimeString = "<span class='message-time'>" + obj.time + "</span>";
+  }
+  $(".chat-message-list").append("<li class='message-" + obj.align + " " + obj.name + "' hidden><div class='sp-" + obj.name + "'><span class='spinme-" + obj.align + "'><div class='spinner'><div class='bounce1'></div><div class='bounce2'></div><div class='bounce3'></div></div></span></div><div class='messageinner-" + obj.name + "' hidden><span class='message-text'>" + obj.msg + "</span>" + chatTimeString + "</div></li>");
+  $(msgname).delay(chatDelay).fadeIn();
+  $(spinner).delay(chatDelay2).hide(1);
+  $(msginner).delay(chatDelay3).fadeIn();
+  setTimeout(onRowAdded, chatDelay);
+  setTimeout(onRowAdded, chatDelay3);
+  chatDelay = chatDelay3;
+});
+</script>
+    <script>
+
+var qNumb = 0;
+var question = '<h1>Hello Dear ! How can i help you?</h1>';
+var output = document.getElementById('output');
+output.innerHTML = question;
+
+function chatBot() {
+  var input = document.getElementById('input').value;
+  console.log(input);
+
+  if (qNumb == 0) {
+    output.innerHTML = '<h1>Awesome! Great to meet you, ' + input + '.</h1>';
+    document.getElementById('input').value = "";
+    question = '<h1>Where are you from?</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+
+  else if (qNumb == 1) {
+    output.innerHTML = '<h1>Cool. Welcome to you in Aivaid World.</h1>';
+    document.getElementById('input').value = "";
+    question = '<h1>What do you like to do for fun there?</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+
+  else if (qNumb == 2) {
+    output.innerHTML = '<h1>All right dear.</h1>';
+    document.getElementById('input').value = "";
+    question = '<h1>What kind of animal is your favorite?</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+
+  else if (qNumb == 3) {
+    output.innerHTML = '<h1>I like ' + input + ' too.</h1>';
+    document.getElementById('input').value = "";
+    question = '<h1>What else is fun in your city?</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+
+  else if (qNumb == 4) {
+    output.innerHTML = '<h1>Sweet! That is great.</h1>';
+    document.getElementById('input').value = "";
+    question = '<h1>What kind of work do you do?</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+
+  else if (qNumb == 5) {
+    output.innerHTML = '<h1>That sounds interesting. I do web design.</h1>';
+    document.getElementById('input').value = "";
+    question = '<h1>Do you like your work?</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+  else if (qNumb == 6) {
+    switch(input) {
+      case "yes":
+      output.innerHTML = '<h1>Awesome!</h1>';
+      break;
+      case "no":
+      output.innerHTML = '<h1>Bummer! Sorry to hear that.</h1>';
+    }
+    document.getElementById('input').value = "";
+    question = '<h1>Well, I have to go. Hope to talk again!</h1>';
+    setTimeout(timedQuestion, 3000);
+  }
+}
+
+function timedQuestion() {
+  output.innerHTML = question;
+}
+
+// $(document).keypress(function(e) {
+//  if (e.which == 13) {
+//   chatBot();
+//   qNumb++
+// }
+// });
+
+document.getElementById('input').addEventListener('keypress', pressKey);
+
+function pressKey(event) {
+  if (event.which == 13) {
+    chatBot();
+    qNumb++
+  }
+}
+<!-- ============  -->
+    </script>
+</section>

@@ -1,0 +1,72 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="faq">
+    <div class="list_header">
+        <div class="header-title">
+            <h1>FAQ'S</h1>
+        </div>
+    </div>
+    <div id="accordion-container">
+        <h2 class="accordion-header">Section 1</h2>
+        <div class="accordion-content">
+            <p>Section 1 Content</p>
+        </div>
+        <h2 class="accordion-header">Section 2</h2>
+        <div class="accordion-content">
+            <p>Section 2 Content</p>
+        </div>
+        <h2 class="accordion-header">Section 3</h2>
+        <div class="accordion-content">
+            <p>Section 3 Content</p>
+        </div>
+        <h2 class="accordion-header">Section 4</h2>
+        <div class="accordion-content">
+            <p>Section 4 Content</p>
+        </div>
+        <h2 class="accordion-header">Section 5</h2>
+        <div class="accordion-content">
+            <p>Section 5 Content</p>
+        </div>
+        <h2 class="accordion-header">Section 6</h2>
+        <div class="accordion-content">
+            <p>Section 6 Content</p>
+        </div>
+        <h2 class="accordion-header">Section 7</h2>
+        <div class="accordion-content">
+            <p>Section 7 Content</p>
+        </div>
+    </div>
+</section>
+<script>
+$(document).ready(function()
+{
+	//Add Inactive Class To All Accordion Headers
+	$('.accordion-header').toggleClass('inactive-header');
+
+	//Set The Accordion Content Width
+	var contentwidth = $('.accordion-header').width();
+	$('.accordion-content').css({'width' : contentwidth });
+
+	//Open The First Accordion Section When Page Loads
+	$('.accordion-header').first().toggleClass('active-header').toggleClass('inactive-header');
+	$('.accordion-content').first().slideDown().toggleClass('open-content');
+
+	// The Accordion Effect
+	$('.accordion-header').click(function () {
+		if($(this).is('.inactive-header')) {
+			$('.active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle().toggleClass('open-content');
+			$(this).toggleClass('active-header').toggleClass('inactive-header');
+			$(this).next().slideToggle().toggleClass('open-content');
+		}
+
+		else {
+			$(this).toggleClass('active-header').toggleClass('inactive-header');
+			$(this).next().slideToggle().toggleClass('open-content');
+		}
+	});
+
+	return false;
+});
+
+</script>
+{% include 'patient-admin/footer.html' %}

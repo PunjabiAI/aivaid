@@ -1,0 +1,54 @@
+{% load static %}
+{% include 'header.html' %}
+<section id="appointmentdone">
+    <div class="container">
+        <h1>Appointment <b>Done</b></h1>
+        <div class="innerwrap">
+            {% for appointment_list in appointment_list %}
+            <div class="row">
+                <div class="col-md-6 borderright">
+                    <img src="{% static ''%}images/doctor-profile.jpg" class="img-responsive doctorimg" alt="">
+                    <span class="datetitle">
+							<i class="fas fa-calendar-alt"></i> On <b>{{appointment_list.date_of_appointment}}</b>
+							<span class="text-right"><i
+                                    class="fa fa-clock-o"></i> At <b>{{appointment_list.start_time}}</b></span>
+						</span>
+                    <h1 class="dr_name">Dr. {{appointment_list.doctor.doctor_profile_id.first_name}}
+                        {{appointment_list.doctor.doctor_profile_id.last_name}}</h1>
+                    <p id="doctor_detail">{{appointment_list.doctor.selectdegree}}<br>{{appointment_list.doctor.uexperience02}}<br>{{appointment_list.doctor.uexperience01}}
+                    </p>
+                    <div class="clinicwrap">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{% static ''%}images/clinic1.png" class="img-responsive"/>
+                            </div>
+                            <div class="col-md-8">
+                                <p> {{appointment_list.clinic.Cname}}</p>
+                                <p>{{appointment_list.clinic.Caddress}}</p>
+                                <a href="#">Get Direction</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 confirmtxt">
+                    <h2>Congratulation..</h2>
+                    <p>Your appointment is confirmed guaranted by aivaid</p>
+                    <p>Your appointment ID is <b>{{appointment_list.id}}</b>
+                        <br/>We have sent you an email and sms with the details
+                    </p>
+                    <p><b>Patient Name</b><br>{{appointment_list.first_name}}</p>
+                    <p><b>Email</b><br>{{appointment_list.email}}</p>
+                    <p><b>Mobile Number</b><br>{{appointment_list.mobile}}</p>
+                    <a href="../appointments-list">
+                        <button class="btn btn-default" type="submit">Manage my Appointment</button>
+                    </a>
+                    <a href="../">
+                        <button class="btn btn-default" type="submit">Back to Home</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% include 'footer.html' %}

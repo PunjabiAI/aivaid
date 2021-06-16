@@ -1,0 +1,23 @@
+{% load static %}
+<script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+		});
+	});
+<!-- =========================== -->
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+</script>
+<script src="{% static '' %}admin-panel/js/error.js"></script>
+<script src="{% static '' %}admin-panel/js/jquery-ui.js"></script>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'></script>
+
+</body>
+</html>

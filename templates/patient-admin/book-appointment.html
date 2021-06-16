@@ -1,0 +1,313 @@
+{% include 'patient/header.html' %}
+{% load static %}
+<section id="book-appointment">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </div>
+                <h1>Schedule Your Appointment</h1>
+            </div>
+        </div>
+        <div class="row">
+            <form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
+                <fieldset>
+                    <h3 class="fs-title">Personal Detail :</h3>
+                    <div class="row">
+                        <div class="col-md-6 hs_firstname field hs-form-field">
+                            <label for="firstname">Select Title *</label>
+                            <select id="firstname" required="required" data-rule-required="true"
+                                    data-msg-required="Please select your title">
+                                <option value="">Select Value</option>
+                                <option>Mr.</option>
+                                <option>Mrs.</option>
+                                <option>Miss
+                                <option>
+                            </select>
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                        <div class="col-md-6 hs_fname field hs-form-field">
+                            <label for="fname">Enter Your First Name *</label>
+                            <input id="fname" name="first-name" required="required" type="text"
+                                   data-rule-required="true" data-msg-required="Please include your first name">
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 hs_lastname field hs-form-field">
+                            <label for="lastname">Enter Your Last Name *</label>
+                            <input id="lastname" name="last-name" required="required" type="text" value=""
+                                   placeholder="" data-rule-required="true"
+                                   data-msg-required="Please include your last name">
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                        <div class="col-md-6 hs_email field hs-form-field">
+                            <label for="email">Enter Your Email Address *</label>
+                            <input id="email" name="email" required="required" type="email" value="" placeholder=""
+                                   data-rule-required="true" data-msg-required="Please enter a valid email address.">
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 hs_Mobile field hs-form-field">
+                            <label for="Mobile">Enter Your Mobile No. *</label>
+                            <input id="Mobile" name="Mobile" required="required" type="text" value="" placeholder=""
+                                   data-rule-required="true" data-msg-required="Please enter your mobile no.">
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                        <div class="col-md-6 hs_age field hs-form-field">
+                            <label for="age">Age *</label>
+                            <select id="age" name="age" required="required" data-rule-required="true"
+                                    data-msg-required="Please select your age">
+                                <option value="">Select your age ..</option>
+                                <option>Below 18</option>
+                                <option>18-30 yr</option>
+                                <option>30-50 yr</option>
+                                <option>Above 50</option>
+                            </select>
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 hs_gender">
+                            <label for="gender">Gender *</label>
+                            <select id="gender" class="form-text hs-input" name="gender" data-rule-required="true"
+                                    data-msg-required="Please enter your gender">
+                                <option value="">Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <input type="button" data-page="1" name="next" class="next action-button" value="Next"/>
+                </fieldset>
+
+                <!---------------/* End Personal Detail*/----------------------->
+
+                <!---------------/* Symptom Detail*/----------------------->
+
+                <fieldset>
+                    <h3 class="fs-title">Symptom Details :</h3>
+                    <div class="row">
+                        <div class="col-md-6 hs-department">
+                            <label for="department">Select Department *</label>
+                            <select id="department" class="hs-input" name="department" data-rule-required="true"
+                                    data-msg-required="Please select department">
+                                <option value="">Select department ..</option>
+                                <option>Anaesthesia</option>
+                                <option>Cardiology</option>
+                                <option>Dietitics</option>
+                            </select>
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                        <div class="col-md-6 hs-doctor">
+                            <label for="doctor">Select Doctor *</label>
+                            <select id="doctor" class="hs-input" name="doctor" required="required"
+                                    data-rule-required="true" data-msg-required="Please select Doctor">
+                                <option value=""> Select doctor ..</option>
+                                <option>Dr. Mehta</option>
+                                <option>Dr. Neha</option>
+                                <option>Dr. David</option>
+                            </select>
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 hs_problem">
+                            <label for="problem">Enter Your Problem</label>
+                            <input id="problem" class="hs-input" name="problem" type="text" required="required"
+                                   data-rule-required="true" data-msg-required="Please enter your problem">
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                        <div class="col-md-6 hs_problem_time">
+                            <label for="problem_time">Enter Your Problem Time</label>
+                            <input id="problem_time" class="hs-input" name="problem_time" type="text" value=""
+                                   required="required" data-rule-required="true"
+                                   data-msg-required="Please enter your problem time">
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                    </div>
+                    <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous"/>
+                    <input type="button" data-page="2" name="next" class="next action-button" value="Next"/>
+                </fieldset>
+                <!---------------/* End Symptom Detail*/----------------------->
+                <!-- Cultivation FIELD SET -->
+                <fieldset>
+                    <h3 class="fs-title">Book Appointment :</h3>
+                    <div class="row">
+                        <div class="col-md-6 hs-appoint_date">
+                            <label for="appoint_date">Select Appointment Date *</label>
+                            <input id="appoint_date" class="datepicker hs-input" name="appoint_date" required="required"
+                                   data-rule-required="true" data-msg-required="Please select appointment date">
+                            <span class="error1" style="display: none;">
+					  <i class="error-log fa fa-exclamation-triangle"></i>
+				  </span>
+                        </div>
+                        <div class="col-md-6 hs-time" id="webform-component-cultivation--amount-2">
+                            <label for="time">Select Appointment Time *</label>
+                            <select id="time" class="hs-input" name="time" required="required" data-rule-required="true"
+                                    data-msg-required="Please select appointment time">
+                                <option value="">Select Time</option>
+                                <option value="09:00 am to 09:30 am">09:00 am to 09:30 am</option>
+                                <option value="09:30 am to 10:00 am">09:30 am to 10:00 am</option>
+                                <option value="10:00 am to 10:30 am">10:00 am to 10:30 am</option>
+                                <option value="10:30 am to 11:00 am">10:30 am to 11:00 am</option>
+                                <option value="11:00 am to 11:30 am">11:00 am to 11:30 am</option>
+                                <option value="11:30 am to 12:00 pm">11:30 am to 12:00 pm</option>
+                                <option value="12:00 pm to 12:30 pm">12:00 pm to 12:30 pm</option>
+                                <option value="12:30 pm to 01:00 pm">12:30 pm to 01:00 pm</option>
+                                <option value="01:00 pm to 01:30 pm">01:00 pm to 01:30 pm</option>
+                                <option value="01:30 pm to 02:00 pm">01:30 pm to 02:00 pm</option>
+                                <option value="02:00 pm to 02:30 pm">02:00 pm to 02:30 pm</option>
+                                <option value="02:30 pm to 03:00 pm">02:30 pm to 03:00 pm</option>
+                                <option value="03:00 pm to 03:30 pm">03:00 pm to 03:30 pm</option>
+                                <option value="03:30 pm to 04:00 pm">03:30 pm to 04:00 pm</option>
+                                <option value="04:00 pm to 04:30 pm">04:00 pm to 04:30 pm</option>
+                                <option value="04:30 pm to 05:00 pm">04:30 pm to 05:00 pm</option>
+                                <option value="05:00 pm to 05:30 pm">05:00 pm to 05:30 pm</option>
+                                <option value="05:30 pm to 06:00 pm">05:30 pm to 06:00 pm</option>
+                                <option value="06:00 pm to 06:30 pm">06:00 pm to 06:30 pm</option>
+                                <option value="06:30 pm to 07:00 pm">06:30 pm to 07:00 pm</option>
+                            </select>
+                            <span class="error1" style="display: none;">
+						  <i class="error-log fa fa-exclamation-triangle"></i>
+					  </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th rowspan="3"><img src="{% static '' %}images/patient/doctor-profile.jpg"
+                                                             class="img-responsive"/></th>
+                                        <th rowspan="3"><h3>Dr. Mehta (M.B.B.S)</h3>
+                                            <p>Cardiology</p></th>
+                                        <th colspan="9"><h4>Doctor Availability :</h4></th>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Days</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thurs</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
+                                        <th>Sun</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Availability</td>
+                                        <td>1:00PM-2:00PM</td>
+                                        <td>4:00PM-6:00PM</td>
+                                        <td>12:00PM-2:00PM</td>
+                                        <td>4:00PM-7:00PM</td>
+                                        <td>6:00PM-8:00PM</td>
+                                        <td>9:00AM-10:00AM</td>
+                                        <td>8:00AM-11:00AM</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" data-page="5" name="previous" class="previous action-button" value="Previous"/>
+                    <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+</div>
+<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+			if (file && file[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+
+
+</script>
+{% include 'patient/footer.html' %}

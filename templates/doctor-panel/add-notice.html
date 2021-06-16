@@ -1,0 +1,72 @@
+{% include 'doctor-panel/header.html' %}
+{% load static %}
+<section id="add-notice">
+	<div class="container-fluid">
+		<div class="row list_header">
+			<div class="col-md-12 header-title">
+                        <div class="header-icon">
+                        <i class="fa fa-file-text" aria-hidden="true"></i> 
+                    </div>
+					<h1>Add Notice</h1>
+                        
+                    </div>
+		  </div>
+		<div class="row">
+			<form class="steps">
+			    <fieldset>
+					<div class="row">
+					    <div class="col-xs-12 col-sm-6 col-md-6 hs_title hs-form-field">
+							<label for="title">Title *</label>
+							<input id="title" name="title" type="text" data-rule-required="true" data-msg-required="Please enter title" >
+							<span class="error1" style="display: none;">
+							    <i class="error-log fa fa-exclamation-triangle"></i>
+							</span>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+						  <label for="description">Description *</label>
+							  <textarea id="description" class="hs-input" name="description" data-rule-required="true" data-msg-required="Please fill description">
+								
+							  </textarea>
+							  <span class="error1" style="display: none;">
+								  <i class="error-log fa fa-exclamation-triangle"></i>
+							  </span>
+						</div>
+					</div>
+	                <div class="row">
+					    <div class="col-xs-12 col-sm-6 col-md-6 hs-start_date">
+						  <label for="start_date">Start Date*</label>
+						  <input id="start_date" class="datepicker hs-input" name="start_date" type="text" data-rule-required="true" data-msg-required="Please enter start date">
+						    <span class="error1" style="display: none;">
+							  <i class="error-log fa fa-exclamation-triangle"></i>
+							</span>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 hs-end_date"> 
+						  <label for="end_date">End Date *</label>
+						  <input id="end_date" class="datepicker hs-input" type="text" name="end_date" data-rule-required="true" data-msg-required="Please enter end date">
+						  <span class="error1" style="display: none;">
+							  <i class="error-log fa fa-exclamation-triangle"></i>
+						  </span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-6 hs-time">
+						  <label for="status">Status *</label>
+						  <select id="status" class="hs-input" name="status" data-rule-required="true" data-msg-required="Please select status">
+						   <option value="">Select</option>
+								<option value="Active">Active</option>
+								<option value="Inactive">Inactive</option>
+								</select>
+							  <span class="error1" style="display: none;">
+								  <i class="error-log fa fa-exclamation-triangle"></i>
+							  </span>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6">
+						</div>
+					</div>
+                <input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
+				</fieldset>
+            </form>
+	    </div>
+	</div>
+ </section>
+{% include 'doctor-panel/footer.html' %}

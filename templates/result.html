@@ -1,0 +1,344 @@
+{% load static %}
+{% include 'header.html' %}
+<link rel="stylesheet" href="{% static '' %}css/jquery-ui.min.css"/>
+<div class="container" id="innertabs">
+    <div class="row">
+        <section>
+            <div class="wizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="disabled">
+                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Introduction">
+                            <span class="round-tab">
+                               <i class="fa fa-info"></i>
+                            </span>
+                            </a>
+                            <div class="text-center"><span class="tabheading">Introduction</span></div>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Patient">
+                            <span class="round-tab">
+                               <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                            </a>
+                            <div class="text-center"><span class="tabheading">Patient</span></div>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Location">
+                            <span class="round-tab">
+                               <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </span>
+                            </a>
+                            <div class="text-center"><span class="tabheading">Location</span></div>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Symptom">
+                            <span class="round-tab">
+                                <i class="fa fa-stethoscope"></i>
+                            </span>
+                            </a>
+                            <div class="text-center"><span class="tabheading">Symptom</span></div>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Questions">
+                            <span class="round-tab">
+								<i class="fa fa-question"></i>
+                            </span>
+                            </a>
+                            <div class="text-center"><span class="tabheading">Questions</span></div>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="far fa-list-alt"></i>
+                            </span>
+                            </a>
+                            <div class="text-center"><span class="tabheading">Result</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="complete">
+                        <div class="col-xs-12 no-padd">
+                            <br/><br/>
+
+                            <div class="col-xs-12 shadow2">
+                                {% if pred|length == 0 %}
+                                <p>You are fit,if you are still concerned about your health then contact a
+                                    Doctor</p>
+                                {% elif pred|length > 0 %}
+                                {% for item in pred %}
+                                <div class="barWrapper">
+                                    <span class="progressText">{{item.0}}</span>
+                                    <div class="progress">
+                                    <div class="progress-bar
+                                    {% if item.1 <= '30' and item.1 > '0' and item.1 != '100'  %}
+                                    progress-bar-success
+                                    {%  elif item.1 > '30' and item.1 <= '70' %}
+                                    progress-bar-warning
+                                    {% else %}
+                                    progress-bar-danger
+                                    {% endif %}
+                                    " role="progressbar"
+                                    aria-valuenow="{{item.1}}" aria-valuemin="0" aria-valuemax="100">
+                                    <span  class="popOver" data-toggle="tooltip" data-placement="top" title="{{item.1}}%"> </span>
+
+
+                                    </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 no-padd disease-evidence">
+                            <ol>
+                                <li><span>Strong evidence</span></li>
+                                <li><span>Moderate evidence</span></li>
+                                <li><span>Weak evidence</span></li>
+                            </ol>
+                            <p><strong>This list may not be
+                                complete. Only a licensed medical provider can diagnose and treat
+                                illnesses.</strong>
+                            </p></div>
+                        <div class="btn-group">
+                            <button class="btn btn-info" type="button" data-toggle="modal"
+                                    data-target="#get_report">Get full Report
+                            </button>
+                            <a href="../start-checkup/">
+                                <button class="btn btn-info" type="button">Start Over</button>
+                            </a>
+                        </div>
+                            <section>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 colxs-12">
+                                            <h1>Recommend <b>Test</b></h1>
+                                            <div class="test_dv">
+                                                <p><b>Total Test for Diabetes:8</b></p>
+                                                <ul>
+                                                    <li>A1C test</li>
+                                                    <li>Blood pressure checks</li>
+                                                    <li>Cholesterol test</li>
+                                                    <li>Foot exam</li>
+                                                    <li>Eye exam</li>
+                                                    <li>Kidney test</li>
+                                                    <li>Dental exam</li>
+                                                    <li>Electrocardiogram</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                          <div class="col-md-6 col-sm-6 colxs-12">
+
+                                                 <h1>Recommend <b>Medicine</b></h1>
+                                            <div class="medicine_dv">
+
+                                                <p><b>Recommend Medicine for Diabetes: 8</b></p>
+                                                <ul>
+                                                    <li>Biguanides</li>
+                                                    <li>Sulfonylureas</li>
+                                                    <li>Dpp-4 Inhibitors</li>
+                                                    <li>Thiazolidinediones</li>
+
+                                                </ul>
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                        <section id="confirmappointment" class="appointmentbook">
+                            <div class="container">
+                                <h1>Recommend <b>Doctor</b></h1>
+
+                                {% for doctor_list in doctor_list %}
+                                <div class="innerwrap">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="{% static '' %}images/doctor-profile.jpg" class="img-responsive"
+                                                 alt="">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h1>Dr. {{doctor_list.doctor_profile_id.first_name}}
+                                                {{doctor_list.doctor_profile_id.last_name}}</h1>
+                                            <p> {{doctor_list.selectdegree}} {{doctor_list.uexperience02}} <br>{{doctor_list.uexperience01}}
+                                                Year experience<br></p>
+
+
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="clinic">
+                                                <section class="img-gallery-magnific">
+                                                    {% for clinic_pic in pic_list %}
+                                                    {% if clinic_pic.doctor_profile_id.id == doctor_list.doctor_profile_id.id %}
+                                                    <div class="magnific-img">
+                                                        <a class="image-popup-vertical-fit"
+                                                           href="../uploads/{{clinic_pic.Cphotos1}}"
+                                                           title="{{clinic_pic.clinic_id.Cname}}">
+                                                            <img src="../uploads/{{clinic_pic.Cphotos1}}" alt="9.jpg"/>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="magnific-img">
+                                                        <a class="image-popup-vertical-fit"
+                                                           href="../uploads/{{clinic_pic.Cphotos2}}"
+                                                           title="{{clinic_pic.clinic_id.Cname}}">
+                                                            <img src="../uploads/{{clinic_pic.Cphotos2}}" alt="9.jpg"/>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="magnific-img">
+                                                        <a class="image-popup-vertical-fit"
+                                                           href="../uploads/{{clinic_pic.Cphotos3}}"
+                                                           title="{{clinic_pic.clinic_id.Cname}}">
+                                                            <img src="../uploads/{{clinic_pic.Cphotos3}}" alt="9.jpg"/>
+                                                        </a>
+                                                    </div>
+
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </section>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="doctor_detail">
+                                                <table class="table table-primary">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><i class="fa fa-commenting-o" aria-hidden="true"></i></td>
+                                                        <td id="feed{{doctor_list.id}}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa fa-user-md" aria-hidden="true"></i></td>
+                                                        <td>{{doctor_list.uexperience01}} Years experience</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa fa-graduation-cap" aria-hidden="true"></i></td>
+                                                        <td>{{doctor_list.selectdegree}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></td>
+                                                        <td id="apendrating{{doctor_list.id}}" class="ratingstar2"></td>
+                                           <script>
+                                            var rating5 =0;
+                                            var rating4 =0;
+                                            var rating3 =0;
+                                            var rating2 =0;
+                                            var rating1 =0;
+                                            var total =0;
+                                            var review_list_avrage =0;
+                                            {% for review_list in review_list  %}
+                                            {% if review_list.doctor_profile_id.id == doctor_list.doctor_profile_id.id %}
+                                                   total +=1;
+                                                  {% if review_list.rating1 == '5' %}
+                                                   rating5 += 1;
+                                                  {% endif %}
+                                                  {% if review_list.rating1 == '4' %}
+                                                     rating4 += 1;
+                                                  {% endif %}
+                                                  {% if review_list.rating1 == '3' %}
+                                                    rating3 += 1;
+                                                  {% endif %}
+                                                  {% if review_list.rating1 == '2' %}
+                                                    rating2 += 1;
+                                                  {% endif %}
+                                                  {% if review_list.rating1 == '1' %}
+                                                    rating1 += 1;
+                                                  {% endif %}
+                                            {% endif %}
+                                            {% endfor %}
+                                             review_list_avrage = (5 * rating5 + 4 * rating4 + 3 * rating3 + 2 * rating2 + 1 * rating1) / total;
+                                             total = total+ " Feedback";
+                                             $("#feed{{doctor_list.id}}").append(total);
+                                             var myTrunc = Math.trunc( review_list_avrage );
+                                            if(myTrunc == 5){
+                                            x= '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>';
+                                             $("#apendrating{{doctor_list.id}}").append(x);
+                                            }
+                                            else if (myTrunc == 4){
+                                             x= '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span>';
+                                             $("#apendrating{{doctor_list.id}}").append(x);
+                                            }
+                                            else if (myTrunc == 3){
+                                            x= '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span>';
+                                             $("#apendrating{{doctor_list.id}}").append(x);
+                                            }
+                                            else if (myTrunc == 2){
+                                             x= '<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span>';
+                                             $("#apendrating{{doctor_list.id}}").append(x);
+                                            }
+                                            else if (myTrunc == 1){
+                                            x= '<span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span>';
+                                             $("#apendrating{{doctor_list.id}}").append(x);
+                                            }
+                                            else{
+                                             x= '<span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span>';
+                                             $("#apendrating{{doctor_list.id}}").append(x);
+
+                                            }
+                                             </script>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td> <span class="ratingbox">
+                                                <i class="fa fa-check" aria-hidden="true" style="font-size:10px;"></i>
+                                                <span class="smalltxt">Verified</span></span></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="text-right">
+                                                <a href="#">
+                                                    <button class="btn custombtn">Chat Doctor</button>
+                                                </a>
+                                                <a href="#">
+                                                    <button class="btn custombtn">Consult Online</button>
+                                                </a>
+                                                <a href="../doctordetail/{{doctor_list.doctor_profile_id.username}}">
+                                                    <button class="btn custombtn">Book Appointment</button>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Get Report -->
+<div class="modal fade" id="get_report" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter Email to get report</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'send_mails' %}" method="post">
+                    {% csrf_token %}
+                    <input type="email" name="email_id" placeholder="Enter Email" class="getreport"/>
+                    <input type="submit" value="Submit" class="btn btn-default reportbtn"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

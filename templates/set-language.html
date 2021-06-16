@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/i18n/setlang/" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="/" />
+    <select name="language">
+        {% for lang in LANGUAGES %}
+                <option value="{{ lang.0 }}" {% if lang.0 == SELECTEDLANG %}selected{% endif %}>{% if lang.1 == 'Spanish' %}Español{% else %}{{ lang.1 }}{% endif %}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Go" />
+</form>
+</body>
+</html>

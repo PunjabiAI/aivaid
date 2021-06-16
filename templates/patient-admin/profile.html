@@ -1,0 +1,672 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="account_detail" class="patient_profile">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-user fw" aria-hidden="true"></i>
+                </div>
+                <h1>Accounts </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="innercontainer">
+                <div class="row">
+                    <button type="submit" class="btn btn-default save" value="Save" data-toggle="modal"
+                            data-target="#myModal">Edit Profile
+                    </button>
+                    <!-- Modal content-->
+                    {% if user_list %}
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="container">
+                                    <form action="{% url 'editpatient' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {% for user_list in user_list %}
+                                        <div class="row formrow">
+                                            <div class="col-md-6">
+                                                <label>First Name</label>
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" placeholder="Full Name" name="first_name"
+                                                           value="{{user_list.first_name}}"/>
+                                                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Last Name</label>
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" placeholder="Full Name" name="last_name"
+                                                           value="{{user_list.last_name}}"/>
+                                                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Mobile Number</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <input type="text" placeholder="Mobile Number" name="phone"
+                                                           value="{{user_list.phone}}"/>
+                                                    <div class="input-icon"><i class="fas fa-mobile-alt"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Blood Group</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <select type="text" name="blood_group">
+                                                        <option value="{{user_list.blood_group}}">
+                                                            {{user_list.blood_group}}
+                                                        </option>
+                                                        <option value="12">O+</option>
+                                                        <option value="12">A+</option>
+                                                        <option value="12">B+</option>
+                                                        <option value="12">O-</option>
+                                                        <option value="12">A-</option>
+                                                        <option value="12">B-</option>
+                                                        <option value="12">AB-</option>
+                                                        <option value="12">AB+</option>
+                                                    </select>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 uploadimg">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>Upload image</label>
+                                                    <input type="file" name="myfile" value="{{user_list.myfile}}"
+                                                           id="fileName" accept=".jpg,.jpeg,.png"
+                                                           onchange="validateFileType()"/>
+                                                    <img src="../uploads/{{user_list.myfile}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                                <div class="input-group">
+                                                    <input type="radio" name="gender"  value="male"  {% if user_list.gender == "male" %} checked="checked" {% endif %} id="gender-male"/>
+                                                    <label for="gender-male">Male</label>
+                                                    <input type="radio" name="gender" value="female"
+                                                           id="gender-female" {% if user_list.gender == "female" %} checked="checked" {% endif %} />
+                                                    <label for="gender-female">Female</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address Line1</label>
+                                                <div class="input-group input-group-icon" required>
+                                                <textarea type="textarea" name="address"
+                                                          placeholder="Street adress, P.O.box, Clinic name ,c/o">{{user_list.address}}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>State</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <select type="text" name="state">
+                                                        <option value="{{user_list.state}}" selected>
+                                                            {{user_list.state}}
+                                                        </option>
+                                                        <option value="Punjab">Punjab</option>
+                                                    </select>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>City</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <select type="text" name="city">
+                                                        <option value="{{user_list.city}}" selected>{{user_list.city}}
+                                                        </option>
+                                                        <option value="Hoshiarpur">Hoshiarpur</option>
+                                                    </select>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                              <div class="col-md-6">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>Height in Fit</label>
+                                                    <select type="text" name="height_cm">
+                                                        <option value="{{user_list.height_cm}}">{{user_list.height_cm}}</option>
+                                                        <option value="Less than 5'">Less than 5'</option>
+                                                        <option value="5'">5'</option>
+                                                        <option value="5' 1 inch">5' 1"</option>
+                                                        <option value="5' 2 inch">5' 2"</option>
+                                                        <option value="5' 3 inch">5' 3"</option>
+                                                        <option value="5' 4 inch">5' 4"</option>
+                                                        <option value="5' 5 inch">5' 5"</option>
+                                                        <option value="5' 6 inch">5' 6"</option>
+                                                        <option value="5' 7 inch">5' 7"</option>
+                                                        <option value="5' 8 inch">5' 8"</option>
+                                                        <option value="5' 9 inch">5' 9"</option>
+                                                        <option value="5' 10 inch">5' 10"</option>
+                                                        <option value="5' 11 inch">5' 11"</option>
+                                                        <option value="6'">6'</option>
+                                                        <option value="More than 6'">More than 6'</option>
+                                                    </select>
+                                                     <i class="fa fa-angle-down heightarrow"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>weight (in Kg's)</label>
+                                                    <input type="text" name="weight" value="{{user_list.weight}}"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>BMI</label>
+                                                    <input type="text" name="body_mass_index"
+                                                           value="{{user_list.body_mass_index}}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {% endfor %}
+
+                                        <div class="modal-footer">
+                                            <button type="submit" value="Submit" class="btn btn-default">Submit</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="container">
+                                    <form action="{% url 'editpatient' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row formrow">
+                                            <div class="col-md-6">
+                                                <label>First Name</label>
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" placeholder="Full Name"  value="{{user.first_name}}"  name="first_name"
+                                                    />
+                                                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Last Name</label>
+                                                <div class="input-group input-group-icon">
+                                                    <input type="text" placeholder="Full Name" value="{{user.last_name}}" name="last_name"
+                                                    />
+                                                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Mobile Number</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <input type="text" placeholder="Mobile Number" name="phone"
+                                                    />
+                                                    <div class="input-icon"><i class="fas fa-mobile-alt"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Blood Group</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <select type="text" name="blood_group">
+
+                                                        <option value="O+">O+</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="O-">O-</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="AB-">AB-</option>
+                                                        <option value="AB+">AB+</option>
+                                                    </select>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 uploadimg">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>Upload image</label>
+                                                    <input type="file" name="myfile" " id="fileName"
+                                                    accept=".jpg,.jpeg,.png" onchange="validateFileType()"/>
+                                                    <!--<img src="">-->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                                <div class="input-group">
+                                                    <input type="radio" name="gender" value="male" id="gender-male"/>
+                                                    <label for="gender-male">Male</label>
+                                                    <input type="radio" name="gender" value="female"
+                                                           id="gender-female"/>
+                                                    <label for="gender-female">Female</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address Line1</label>
+                                                <div class="input-group input-group-icon" required>
+                                                <textarea type="textarea" name="address"
+                                                          placeholder="Street adress, P.O.box, Clinic name ,c/o"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>State</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <select type="text" name="state">
+                                                        <option value="Punjab">Punjab</option>
+                                                    </select>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>City</label>
+                                                <div class="input-group input-group-icon" required>
+                                                    <select type="text" name="city">
+                                                        <option value="Hoshiarpur">Hoshiarpur</option>
+                                                    </select>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>Height in Fit</label>
+                                                    <select type="text" name="height_cm">
+                                                        <option value="Less than 5'">Less than 5'</option>
+                                                        <option value="5'">5'</option>
+                                                        <option value="5' 1 inch">5' 1"</option>
+                                                        <option value="5' 2 inch">5' 2"</option>
+                                                        <option value="5' 3 inch">5' 3"</option>
+                                                        <option value="5' 4 inch">5' 4"</option>
+                                                        <option value="5' 5 inch">5' 5"</option>
+                                                        <option value="5' 6 inch">5' 6"</option>
+                                                        <option value="5' 7 inch">5' 7"</option>
+                                                        <option value="5' 8 inch">5' 8"</option>
+                                                        <option value="5' 9 inch">5' 9"</option>
+                                                        <option value="5' 10 inch">5' 10"</option>
+                                                        <option value="5' 11 inch">5' 11"</option>
+                                                        <option value="6'">6'</option>
+                                                        <option value="More than 6'">More than 6'</option>
+                                                    </select>
+                                                     <i class="fa fa-angle-down heightarrow"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>weight</label>
+                                                    <input type="text" name="weight"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group input-group-icon" required="">
+                                                    <label>BMI</label>
+                                                    <input type="text" name="body_mass_index"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" value="Submit" class="btn btn-default">Submit</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Modal content-->
+                </div>
+                <div class="row">
+                    {% if user_list %}
+                    {% for user_list in user_list %}
+
+                    <div class="row">
+                        <form class="basic_detail">
+                            <div class="row">
+                                <div class="col-md-2">
+
+                                    <p class="profile_photo">Profile Photo</p>
+                                    {% if user_list.myfile %}
+                                    <img src="../uploads/{{user_list.myfile}}" id="uploaded_image"
+                                         class="profilepicsize" alt="Doctor Profile"/>
+                                    <h4><strong>Profile Complete :</strong></h4>
+                                    {% if colour == "green" %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:green;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% elif colour == "red" %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:#d9534f;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:orange;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% else %}
+                                    <img src="{% static '' %}admin-panel/images/patient-profile.jpg"
+                                         class="avatar img-responsive"/>
+                                    <h4><strong>Profile Complete :</strong></h4>
+                                    {% if colour == "green" %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:green;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% elif colour == "red" %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:#d9534f;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:orange;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>First Name</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.first_name}}" disabled/>
+                                                <div class="input-icon"><i class="fa fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Last Name</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.last_name}}" disabled/>
+                                                <div class="input-icon"><i class="fa fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="email" value="{{request.user.email}}" disabled/>
+                                                <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Mobile Number</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.phone}}" disabled/>
+                                                <div class="input-icon"><i class="fas fa-mobile-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Blood Group</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.phone}}" disabled/>
+                                                <div class="input-icon"><i class="fas fa-tint"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Gender</label>
+                                            <div class="input-group">
+                                                {% if user_list.gender == 'male' %}
+                                                <input type="radio" selected name="gender" value="male" id="gender-male"/>
+                                                <label for="gender-male">Male</label>
+                                                {% else %}
+                                                <input type="radio" selected name="gender" value="female" id="gender-female"/>
+                                                <label for="gender-female">Female</label>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>BMI</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.body_mass_index}}" disabled/>
+                                                <div class="input-icon"><i class="fa fa-child"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Address</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.address}}" disabled/>
+                                                <div class="input-icon"><i class="fa fa-address-card"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>City</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.city}}" disabled/>
+                                                <div class="input-icon"><i class="fas fa-building"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>State</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.state}}" disabled/>
+                                                <div class="input-icon"><i class="fas fa-building"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Height</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.height_cm}}" disabled/>
+                                                <div class="input-icon"><i class="fas fa-child"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Weight</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user_list.weight}}" disabled/>
+                                                <div class="input-icon"><i class="fas fa-weight"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+
+                    <div class="row">
+                        <form class="basic_detail">
+                            <div class="row">
+                                <div class="col-md-2">
+
+                                    <p class="profile_photo">Profile Photo</p>
+                                    <img src="{% static '' %}admin-panel/images/patient-profile.jpg"
+                                         class="avatar img-responsive"/>
+                                    <h4><strong>Profile Complete :</strong></h4>
+                                    {% if colour == "green" %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:green;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% elif colour == "red" %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:#d9534f;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width:{{total}}%; background-color:orange;">
+                                            {{total}}%
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>First Name</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user.first_name}}"  disabled/>
+                                                <div class="input-icon"><i class="fa fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Last Name</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" value="{{user.last_name}}" disabled/>
+                                                <div class="input-icon"><i class="fa fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="email"  value="{{user.email}}"  disabled/>
+                                                <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Mobile Number</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fas fa-mobile-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Blood Group</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fas fa-tint"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Gender</label>
+                                            <div class="input-group">
+                                                <input type="radio" name="gender" value="male" id="gender-male" disabled/>
+                                                <label for="gender-male">Male</label>
+                                                <input type="radio" name="gender" value="female" id="gender-female" disabled/>
+                                                <label for="gender-female">Female</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Age</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fa fa-child"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Address</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fa fa-address-card"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>City</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fas fa-building"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>State</label>
+
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fas fa-building"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Height</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fas fa-child"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Weight</label>
+                                            <div class="input-group input-group-icon">
+                                                <input type="text" disabled/>
+                                                <div class="input-icon"><i class="fas fa-weight"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+</section>
+<script type="text/javascript">
+    function validateFileType(){
+        var fileName = document.getElementById("fileName").value;
+        var idxDot = fileName.lastIndexOf(".") + 1;
+        var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+        if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            //TO DO
+        }else{
+            alert("Only jpg/jpeg and png files are allowed!");
+        }
+    }
+
+
+
+</script>
+{% include 'patient-admin/footer.html' %}

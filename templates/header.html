@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+{% load i18n %}
+
+<html lang="">
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AI Vaid - Welcome to the world of Artificial Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Online Health Checkup">
+    <meta name="author" content="Webtunix Solutions Private Limited">
+    <link rel="icon" type="image" href="{% static '' %}images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{% static '' %}css/style.css">
+    <link rel="stylesheet" href="{% static '' %}css/responsive.css">
+    <link rel="stylesheet" href="{% static '' %}css/style2.css ">
+    <link rel="stylesheet" href="{% static '' %}css/owl.carousel.css">
+    <script src="{% static '' %}js/jquery-1.11.0.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
+    <script src="{% static '' %}js/bootstrap.min.js"></script>
+
+
+    <script>
+$(document).ready(function(){
+	$("#morestatement").click(function(){
+
+        $(".inline").hide();
+        $("#hidestatement").show();
+
+
+    });
+});
+
+
+    </script>
+
+
+
+    <script>
+$(document).ready(function(){
+$('.image-popup-vertical-fit').magnificPopup({
+	type: 'image',
+  mainClass: 'mfp-with-zoom',
+  gallery:{
+			enabled:true
+		},
+
+  zoom: {
+    enabled: true,
+
+    duration: 300, // duration of the effect, in milliseconds
+    easing: 'ease-in-out', // CSS transition easing function
+
+    opener: function(openerElement) {
+
+      return openerElement.is('img') ? openerElement : openerElement.find('img');
+  }
+}
+
+});
+
+});
+
+    </script>
+
+
+    <style>
+input[type=radio] {
+    display: none;
+}
+
+    </style>
+
+
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 no-padd">
+                <nav>
+                    <div class="col-md-2 col-sm-2 col-xs-4 no-padd">
+                        <a href="../" class="brand-logo"><img src="{% static '' %}images/logo2.png" class="logo img-responsive"
+                                                              alt="AI Vaid - Online Health Checkup"/></a>
+                    </div>
+                    <div class="col-md-6 col-sm-10 col-xs-7 no-padd">
+                        <div class="top-nav">
+
+                            <div class="top-nav-links" id="myTopnav">
+                                <ul>
+                                    <li><a href="../find-doctor">Find a Doctor</a></li>
+                                    <li><a href="../for-doctor">For Doctors</a></li>
+                                    <li><a href="{% url 'visitor_guide' %}">Patients & Visitors</a></li>
+                                    <li><a href="{% url 'contact_us' %}" class="dropdown-button">Contact</a></li>
+                                    {% if user.is_authenticated %}<li><a href="../logout">Log out</a></li>{% else %}<li><a href="../login">Log in</a></li>{% endif %}
+                                </ul>
+                                <a href="javascript:void(0);" class="mobicon" onclick="myFunction()">
+                                    <i class="fa fa-bars"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+
+
+                        <div class="top-nav-links top-nav-btn">
+
+                                <ul>
+
+                                    <li><a class="waves-effect waves-light btn btn-large animated tada"
+                                           href="../start-checkup"><i class="fas fa-user-check left"></i>Start
+                                        Checkup</a>&nbsp;
+                                    </li>
+                                    <li><a class="waves-effect waves-light btn btn-large animated tada"
+                                           href="../Coronavirus">Corona virus</a>&nbsp;
+                                    </li>
+
+
+
+                                    {% if user.is_authenticated %}
+
+                                    {% if user.is_staff == 0 %}
+                                    <li><a class="waves-effect waves-light btn btn-large animated tada"
+                                           href="{% url 'dashboard_patient' %}"><i class="fas fa-user-plus left"></i>Dashboard</a>
+                                    </li>
+                                    {% else %}
+
+                                    <li><a class="waves-effect waves-light btn btn-large animated tada"
+                                           href="../doctor-panel"><i class="fas fa-user-plus left"></i>Dashboard</a>
+                                    </li>
+
+
+                                    {% endif %}
+
+                                    {% endif %}
+
+
+                                    <!--<li>-->
+                                        <!--<form>-->
+                                            <!--<div class="input-field ">-->
+                                                <!--<input id="search" type="search" required placeholder="Search">-->
+                                                <!--<label class="label-icon" for="search"><i class="this material-icons">search</i></label>-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</li>-->
+
+                                </ul>
+                            </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<script>
+function myFunction() {
+var x = document.getElementById("myTopnav");
+if (x.className === "top-nav-links"){x.className += " responsive";}
+else{x.className = "top-nav-links";}}
+</script>

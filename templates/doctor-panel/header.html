@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AI Vaid - Welcome to the world of Artificial Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Online Health Checkup">
+    <meta name="author" content="Webtunix Solutions Private Limited">
+    <link rel="icon" type="image" href="{% static '' %}admin-panel/images/favicon.png"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '' %}admin-panel/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '' %}admin-panel/css/dashboard.css">
+    <link rel="stylesheet" href="{% static '' %}admin-panel/css/responsive.css">
+    <link rel="stylesheet" href="{% static '' %}admin-panel/css/jquery-ui.css">
+    <script src="{% static '' %}admin-panel/js/jquery-1.11.0.js"></script>
+    <script src="{% static '' %}admin-panel/js/bootstrap.min.js"></script>
+    <script>
+$(document).ready(function(){
+$('.image-popup-vertical-fit').magnificPopup({
+	type: 'image',
+  mainClass: 'mfp-with-zoom',
+  gallery:{
+			enabled:true
+		},
+
+  zoom: {
+    enabled: true,
+
+    duration: 300, // duration of the effect, in milliseconds
+    easing: 'ease-in-out', // CSS transition easing function
+
+    opener: function(openerElement) {
+
+      return openerElement.is('img') ? openerElement : openerElement.find('img');
+  }
+}
+
+});
+
+});
+
+    </script>
+</head>
+<body>
+<aside class="side-nav">
+    <div class="cross-toggle" style="display:none;">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+    </div>
+    <div class="heading">
+        <a href="../"> <img src="{% static '' %}images/logo2.png" alt="Patient"
+             class="img-responsive profilelogo"></a>
+    </div>
+    <!--<div class="search">-->
+        <!--<input type="text" placeholder="Type here"><i class="fa fa-search"></i>-->
+    <!--</div>-->
+    <ul class="categories">
+        <li><i class="fa fa-home" aria-hidden="true"></i><a href="../doctor-panel" class="drop_hide"
+                                                            data-id="contents"> Dashboard</a>
+        </li>
+        <li><i class="fa fa-calendar"></i><a href="#"> Appointment</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="../appointments-today">Today List</a></li>
+                <li><a href="../appointment-list">Appointment List</a></li>
+                <!--<li><a href="../appointment-accept">Appointment Accept List</a></li>-->
+                <!--<li><a href="../appointment-decline">Appointment Decline List</a></li>-->
+            </ul>
+        </li>
+        <li><i class="fa fa-user"></i><a href="../doctor-patient-list" class="drop_hide"> Patient</a>
+
+        </li>
+        <li><i class="fa fa-comment"></i><a href="#"> Communication</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="../notice-list">Notification List</a></li>
+                <li><a href="../add-notice">Add Notice</a></li>
+            </ul>
+        </li>
+        <li><i class="fa fa-bolt"></i><a href="../report-list" class="drop_hide">Patient Report</a>
+        </li>
+        <li><i class="fa fa-user"></i><a data-id="profile"> Profile </a>
+            <ul class="side-nav-dropdown">
+                <li><a href="../doctor-profile">Personal Profile</a></li>
+                <li><a href="../clinic-details">Clinic Detail</a></li>
+            </ul>
+        </li>
+        <li><i class="fa fa-wrench"></i><a data-id="profile"> Services</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="../addservices">Add services</a></li>
+                <li><a href="../serviceslist">Services List</a></li>
+            </ul>
+        </li>
+
+           <li><i class="fa fa-list-alt" aria-hidden="true"></i> <a href=" "> Category</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="{% url 'category' %}">Add Category</a></li>
+                <li><a href="{% url 'categorylist' %}">Category list</a></li>
+            </ul>
+        </li>
+        <li><i class="fa fa-rss"></i> <a href=" "> Blogs</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="{% url 'addblog' %}">Add blog</a></li>
+                <li><a href="{% url 'bloglist' %}">Blog list</a></li>
+            </ul>
+        </li>
+        <li><i class="fa fa-exchange"></i><a href="../transactions" class="drop_hide"> Transactions <span
+                class="num prim">6</span></a></li>
+    </ul>
+</aside>
+<div id="contents">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="toggle-menu" style="display:none;">
+                <div class="toggle-icon"></div>
+                <div class="toggle-icon"></div>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <i class="fa fa-align-right"></i>
+                </button>
+                <a class="navbar-brand" href="../doctor-panel">My<span class="main-color"> Dashboard</span></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Dr.{{request.user.first_name}} {{request.user.last_name}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                {% if request.session.profile_pic %}
+                                <img src="../uploads/{{request.session.profile_pic}}" alt="Patient"
+                                     class="img-responsive img-circle profilepic">
+                                {% else %}
+                                <img src="{% static '' %}admin-panel/images/patient-profile.jpg" alt="Patient"
+                                     class="img-responsive img-circle patientprofilepic">
+                                {% endif %}
+                                <h4 class="text-center">Mr. {{user.first_name}} <br></h4>
+                                <!--<p>+91 9876754325</p></li>-->
+                            <li role="separator" class="divider"></li>
+                            <li><a href="../profile"><i class="fa fa-user fw"></i> View And Update</a></li>
+                            <li><a href="../change_password"><i class="fa fa-key fw" aria-hidden="true"></i> Change
+                            Password</a>
+                            </li>
+                            <!--<li><a href="#"><i class="fa fa-user-md fw" aria-hidden="true"></i> Switch To Doctor profile</a>-->
+                            <!--</li>-->
+                            <!--<li><a href="../settings"><i class="fa fa-user-md fw" aria-hidden="true"></i> Setting</a>-->
+                            <!--</li>-->
+                            <li role="separator" class="divider"></li>
+                            <li><a href="../logout"><i class="fa fa-power-off fw"></i> Log out</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-comments"></i><span>23</span></a>
+                        <ul class="dropdown-menu notification_list msges">
+                            <li><a href="#"><h3 class="notify_header" style="text-transform: capitalize;"> Messages</h3></a></li>
+                            <li role="separator" class="divider"></li>
+                            <div class="clearfix"></div>
+                            <li><a href="#"><img src="{% static '' %}admin-panel/images/doctor-profile.jpg"
+                                                 class="img-circle msg_prof" alt="AI Vaid Doctor"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">Just Now </p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="{% static '' %}admin-panel/images/doctor-profile.jpg"
+                                                 class="img-circle msg_prof" alt="AI Vaid Doctor"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">16 mins ago</p>
+                            </a></li>
+                            <li><a href="#"><img src="{% static '' %}admin-panel/images/doctor-profile.jpg"
+                                                 class="img-circle msg_prof" alt="AI Vaid Doctor"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">23 seconds ago</p>
+                            </a></li>
+                            <li><a href="#"><img src="{% static '' %}admin-panel/images/doctor-profile.jpg"
+                                                 class="img-circle msg_prof" alt="AI Vaid Doctor"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">20 mins ago</p>
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" class="text-left view-all">View All Messages</a></li>
+                        </ul>
+                    </li>
+                    {% if notification_Length %}
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-bell"></i><span>{{notification_Length}}</span></a>
+                        <ul class="dropdown-menu notification_list">
+                            {% if notification_List %}
+                            <li><a href="#"><h3 class="notify_header" style="text-transform: capitalize;"> Notifications</h3></a></li>
+                            <li role="separator" class="divider"></li>
+                            {% for notification_List in notification_List %}
+                            {% if notification_List.notification == 'You have new Appointment' %}
+                            <li><a href="../read-notification-doc/{{notification_List.id}}__new_appointment"><i
+                                    class="fa fa-user"></i>
+                                {{notification_List.notification}}<p class="notice_tm">{{notification_List.date}}
+                                    {{notification_List.time}}</p></a>
+                            </li>
+                            {% else %}
+                            <li><a href="../read-notification-doc/{{notification_List.id}}__nothing"><i
+                                    class="fa fa-user"></i>{{notification_List.notification}}
+                                <p class="notice_tm">{{notification_List.date}} {{notification_List.time}}</p></a>
+                            </li>
+                            {% endif %}
+
+                            {% endfor %}
+                            <li role="separator" class="divider"></li>
+                            <li><a href="../notice-list" class="text-left view-all">View All Notification<p
+                                    class="notice_tm">{{notification_List.date}} {{notification_List.time}}</p></a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script>
+
+$(function () {
+
+  'use strict';
+
+  (function () {
+
+    var aside = $('.side-nav'),
+
+        showAsideBtn = $('.show-side-btn'),
+
+        contents = $('#contents');
+
+    showAsideBtn.on("click", function () {
+
+      $("#" + $(this).data('show')).toggleClass('show-side-nav');
+
+      contents.toggleClass('margin');
+
+    });
+
+    if ($(window).width() <= 767) {
+
+      aside.addClass('show-side-nav');
+
+    }
+    $(window).on('resize', function () {
+
+      if ($(window).width() > 767) {
+
+        aside.removeClass('show-side-nav');
+
+      }
+
+    });
+
+    // dropdown menu in the side nav
+    var slideNavDropdown = $('.side-nav-dropdown');
+
+    $('.side-nav .categories li').on('click', function () {
+
+      $(this).toggleClass('opend').siblings().removeClass('opend');
+
+      if ($(this).hasClass('opend')) {
+
+        $(this).find('.side-nav-dropdown').slideToggle('fast');
+
+        $(this).siblings().find('.side-nav-dropdown').slideUp('fast');
+
+      } else {
+
+        $(this).find('.side-nav-dropdown').slideUp('fast');
+
+      }
+
+    });
+
+    $('.side-nav .close-aside').on('click', function () {
+
+      $('#' + $(this).data('close')).addClass('show-side-nav');
+
+      contents.removeClass('margin');
+
+    });
+
+  }());
+  });
+
+
+
+    </script>

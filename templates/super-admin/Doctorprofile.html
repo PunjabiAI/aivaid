@@ -1,0 +1,320 @@
+{% include 'super-admin/header.html' %}
+{% load static %}
+{% for i in doctor_profile%}
+	<section id="doctor-profile">
+	<div class="container">
+	     <div class="row list_header">
+			<div class="col-md-12 header-title">
+                        <div class="header-icon">
+                       <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+					<h1>Doctor Profile</h1>
+                    </div>
+		  </div>
+		<div class="row">
+		    <div class="col-md-3 col-sm-3 col-xs-12">
+			    <div class="sidebar">
+					{% if  i.pic %}
+					<img src="../../uploads/{{i.pic}}" class="img-responsive"/>
+
+					{% else %}
+					<img src="{% static '' %}super-admin/img/doctor-profile.jpg" class="img-responsive"/>
+					{% endif %}
+
+
+					<h4><strong>Profile Complete :</strong></h4>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:{{total}}%; background-color:{{colour}};">{{total}}%</div>
+                        </div>
+						{% if i.admin_verify == '0' %}
+						<a href="../../superuser/doctorprofile_approve/{{i.id}}"><button type="button" class="btn btn-default">Approve</button></a>
+						<a href="../../superuser/doctorprofile_not_approve/{{i.id}}"><button type="button" class="btn btn-default">Decline</button></a>
+						{% else %}
+
+					{% endif %}
+					<div class="profile-content">
+					    <h3>Dr. {{ i.doctor_profile_id.first_name }} {{ i.doctor_profile_id.last_name }}</h3>
+						<p>{{i.Description}}</p>
+						<table class="table table-striped table-hover">
+							<tbody>
+							  <tr>
+								<td style="width:60%;">Status</td>
+								<td><span class="label label-success">
+									{% if i.admin_verify == '1'%}
+									Active
+									{% else %}
+									Inactive
+									{% endif %}
+								</span></td>
+							  </tr>
+							  <tr>
+								<td>User Rating</td>
+								<td><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i></td>
+							  </tr>
+							  <tr>
+								<td>Feedback</td>
+								<td> 10 feedback </td>
+							  </tr>
+							</tbody>
+						</table>
+						<div class="text-center">
+						<button type="btn" class="btn btn-success">Contact Doctor</button>
+						</div>
+					</div>
+			    </div>
+			</div>
+			<div class="col-md-9 col-md-9 col-xs-12">
+				<div class="profile-tab">
+					<div class="row right">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+						<button type="button" class="btn btn-success">Login as</button>
+						<button type="button" class="btn btn-success">Edit Account</button>
+						<button type="button" class="btn btn-success">Delete Account</button>
+						</div>
+					</div>
+			        <h3 class=""><i class="fa fa-user"></i>&nbsp;&nbsp; ABOUT</h3>
+				    <div class="row">
+						<div class="col-md-6">
+							<table class="table abt-table">
+
+								<tr>
+									<td><b>First Name:</b></td>
+									<td>{{ i.doctor_profile_id.first_name }}</td>
+								</tr>
+								<tr>
+									<td><b>User Name:</b></td>
+									<td>{{ i.doctor_profile_id.username }}</td>
+								</tr>
+								<tr>
+									<td><b>City:</b></td>
+									<td>{{ i.selectcity }}</td>
+								</tr>
+								<tr>
+									<td><b>Date of Birth:</b></td>
+									<td>{{i.udob}}</td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-md-6">
+							<table class="table abt-table">
+								<tr>
+									<td><b>Last Name:</b></td>
+									<td>{{i.doctor_profile_id.last_name}}</td>
+								</tr>
+								<tr>
+									<td><b>Email:</b></td>
+									<td>{{i.doctor_profile_id.email }}<a href="#" class="btn btn-success verify-btn">Not Verified
+									</a></td>
+								</tr>
+								<tr>
+									<td><b>State:</b></td>
+									<td>{{i.state}}</td>
+								</tr>
+								<tr>
+									<td><b>Phone:</b></td>
+									<td>{{i.umobile}} <a href="#" class="btn btn-success verify-btn">Verified</a></td>
+								</tr>
+						    </table>
+						</div>
+			        </div>
+			        <hr/>
+				    <div class="row">
+						<div class="col-md-6">
+						   <div class="education">
+							<h3 class=""><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;&nbsp; EDUCATION</h3>
+							 
+							<table class="table abt-table">
+								<tr>
+									<td><b>Degree:</b></td>
+									<td>{{i.selectdegree}}</td>
+								</tr>
+								<tr>
+									<td><b>College/Institute:</b></td>
+									<td>{{i.uinstitute}}</td>
+								</tr>
+								<tr>
+									<td><b>Year of Completion:</b></td>
+									<td>{{i.degreecompletion}}</td>
+								</tr>
+						    </table>
+						   </div> 
+						</div>
+						<div class="col-md-6">
+						   <div class="experience">
+							<h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp; EXPERIENCE</h3>
+							 <!--<ul>-->
+								<!--<li><span class="li_padd"><b>In Years:</b>{{i.uexperience01}}</span></li>-->
+								<!--<li><span class="li_padd"><b>In months:</b>{{i.uexperience_month}}</span></li>-->
+							 <!--</ul>-->
+							  <table class="table abt-table">
+								<tr>
+									<td><b>In years:</b></td>
+									<td>{{i.uexperience01}} Year</td>
+								</tr>
+								<tr>
+									<td><b>In months:</b></td>
+									<td>{{i.uexperience_month}} Month</td>
+								</tr>
+
+						    </table>
+						   </div>
+						</div>
+				    </div>
+				    <hr/>
+					<div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="experience">
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp; MEDICAL
+                                    REGISTRATION</h3>
+                                <table class="table abt-table">
+                                    <tr>
+                                        <td><strong>Registration Number:</strong></td>
+                                        <td>{{i.uregNumber}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Registration Council:</strong></td>
+                                        <td>{{i.ucounsil}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Registration Year:</strong></td>
+                                        <td>{{i.regyear}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <div class="experience">
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>  Documents</h3>
+                                <table class="table abt-table">
+
+                                    <tr>
+                                        <td><strong>ID Proof:</strong></td>
+                                        <td>
+											<a href="#" data-toggle="modal" data-target="#popup-image-galleryd{{i.id}}"  class="viewproof">View</a>
+<div class="modal popup-image-gallery" id="popup-image-galleryd{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;</span></button>
+        <div class="popup-slider-for">
+          <div class="main-image">
+            <img src="../../uploads/{{i.doctor_idproof}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+										</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+					<hr/>
+	        </div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endfor %}
+	<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+</script>
+
+
+    <script src='js/jquery-latest.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/dashboard.js'></script>
+	 <script src='js/jquery.min.js'></script>
+<script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+		
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+			
+		});
+	});	 
+	</script>
+
+<script>
+
+$(document).ready(function(){
+$('input.upload002').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile02").val(fileName);
+})
+});
+</script>

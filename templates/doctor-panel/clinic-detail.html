@@ -1,0 +1,2102 @@
+{% include 'doctor-panel/header.html' %}
+{% load static %}
+
+<script src="{% static '' %}admin-panel/js/jquery.validate.js"></script>
+
+<section id="doctor-profile">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-xs-12 col-sm-12 col-md-12 header-title">
+                <div class="header-icon">
+                    <x class="fa fa-hospital-o color-cyan"></x>
+                </div>
+                <h1>Clinic Profile</h1>
+            </div>
+        </div>
+        <div class="row">
+          {% for doctor_profile_list in doctor_profile_list %}
+            <div class="col-md-3 col-sm-5 col-xs-12 no-padd">
+                <div class="sidebar">
+                    <div class="uploadpopup">
+                        <div id="views">
+
+                            {% if doctor_profile_list.pic  %}
+                             <img src="../uploads/{{doctor_profile_list.pic}}" id="uploaded_image"
+                                             alt="Profile"/>
+                            {% else %}
+                            <img src="{% static '' %}admin-panel/images/profile.jpg" id="uploaded_image"
+                                             alt="Profile"/>
+                            {% endif %}
+                        </div>
+                        <!--<div class="fileUpload">-->
+                            <!--<p class="custom-para">Upload Image</p>-->
+                            <!--<input id="uploadBtn" type="file" class="upload uploadimg" accept=".png,.jpg,.jpeg"-->
+                                   <!--onchange="displayme(this)"/>-->
+                        <!--</div>-->
+                        <!--<div class="camera"><a href="#" class="btn btn-warning">-->
+                            <!--<x class="fa fa-camera" aria-hidden="true"></x> Open Camera</a></div>-->
+                        <h4><strong>Profile Complete :</strong></h4>
+                        <div class="progress">
+                            <div class="progress-bar" style="width:{{total}}%; background-color:{{colour}};">{{total}}%</div>
+                        </div>
+                    </div>
+                    <div class="profile-content">
+                        <h3>Dr. {{doctor_profile_list.doctor_profile_id.first_name}} {{doctor_profile_list.doctor_profile_id.last_name}} </h3>
+                        <p>{{doctor_profile_list.Description}}</p>
+                        <table class="table table-striped table-hover">
+                             <tbody>
+                            <tr>
+                                <td>Status</td>
+                                <td><span class="label label-success">
+
+                                    {% if doctor_profile_list.admin_verify == '1' %}
+
+                                    Active
+                                    {% else %}
+                                    Inactive
+                                    {% endif %}
+                                </span></td>
+                            </tr>
+                            <tr>
+                                <td>User Rating</td>
+                                <td><span class="ratingbox">{{review_list_avrage|floatformat}}<i class="fa fa-star vd_yellow fa-fw"></i></span></td>
+                            </tr>
+                            <tr>
+                                <td>Feedback</td>
+                                <td> {{review_list_count}} feedback</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% for clinic_pic_list in clinic_pic_list %}
+
+                <div class="sidebar2">
+                        <h4>{{clinic_pic_list.clinic_id.Cname}}</h4>
+                    <div class="clinic smallclinicimg">
+                        <p>
+                            <section class="img-gallery-magnific">
+                                <div class="magnific-img">
+                                    <a class="image-popup-vertical-fit" href="../uploads/{{clinic_pic_list.Cphotos1}}" title="1.jpg">
+                                        <img src="../uploads/{{clinic_pic_list.Cphotos1}}" alt="9.jpg"/>
+                                    </a>
+                                </div>
+                                <div class="magnific-img">
+                                    <a class="image-popup-vertical-fit" href="../uploads/{{clinic_pic_list.Cphotos2}}" title="2.jpg">
+                                        <img src="../uploads/{{clinic_pic_list.Cphotos2}}" alt="9.jpg"/>
+                                    </a>
+                                </div>
+                                <div class="magnific-img">
+                                    <a class="image-popup-vertical-fit" href="../uploads/{{clinic_pic_list.Cphotos3}}" title="3.jpg">
+                                        <img src="../uploads/{{clinic_pic_list.Cphotos3}}" alt="9.jpg"/>
+                                    </a>
+                                </div>
+                                <div class="magnific-img">
+                                    <a class="image-popup-vertical-fit" href="../uploads/{{clinic_pic_list.Cphotos4}}" title="4.jpg">
+                                        <img src="../uploads/{{clinic_pic_list.Cphotos4}}" alt="9.jpg"/>
+                                    </a>
+                                </div>
+                                <div class="magnific-img">
+                                    <a class="image-popup-vertical-fit" href="../uploads/{{clinic_pic_list.Cphotos5}}" title="3.jpg">
+                                        <img src="../uploads/{{clinic_pic_list.Cphotos5}}" alt="9.jpg"/>
+                                    </a>
+                                </div>
+                                <div class="magnific-img">
+                                    <a class="image-popup-vertical-fit" href="../uploads/{{clinic_pic_list.Cphotos6}}" title="4.jpg">
+                                        <img src="../uploads/{{clinic_pic_list.Cphotos6}}" alt="9.jpg"/>
+                                    </a>
+                                </div>
+                            </section>
+                        <div class="clear"></div>
+                        </p>
+                    </div>
+                </div>
+
+{% endfor %}
+
+
+
+            </div>
+
+
+            <div class="col-md-9 col-sm-7 col-xs-12">
+                <div class="profile-tab">
+                    <a data-target="#addClinic" data-toggle="modal" class="btn btn-success pull-right">
+                        <x class="fa fa-pencil-square-o" aria-hidden="true"></x>Add New Clinic</a>
+                    <h3 class=""><x class="fa fa-user"></x> ABOUT</h3>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <table class="table abt-table">
+                                <tr>
+                                    <td><b>First Name:</b></td>
+                                    <td>{{doctor_profile_list.doctor_profile_id.first_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>User Name:</b></td>
+                                    <td>{{doctor_profile_list.doctor_profile_id.username}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>City:</b></td>
+                                    <td>{{doctor_profile_list.selectcity}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Birthday:</b></td>
+                                    <td>{{doctor_profile_list.udob}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <table class="table abt-table">
+                                <tr>
+                                    <td><b>Last Name:</b></td>
+                                    <td>{{doctor_profile_list.doctor_profile_id.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Email:</b></td>
+                                    <td>{{doctor_profile_list.doctor_profile_id.email}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>State:</b></td>
+                                    <td>{{doctor_profile_list.state}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Phone:</b></td>
+                                    <td>{{doctor_profile_list.umobile}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+
+                    {% for clinic_list in clinic_list %}
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="clinic_panel_top">
+
+                                        <a href="#" data-target="#deletepopup{{clinic_list.id}}" class="btn btn-primary"
+                                           data-toggle="modal">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+
+                                        <div id="deletepopup{{clinic_list.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">{{clinic_list.Cname}}</h4>
+      </div>
+      <div class="modal-body">
+        <p class="warning_msg">Are you sure you want to delete your Clinic?</p>
+          <div class="text-center">
+          <div class="btn-group text-center popupmargin">
+              <a href="../delete_clinic_details/{{clinic_list.id}}" class="deletevalue">Yes</a>
+              <a href="#" class="deletevalue" data-dismiss="modal">No</a>
+          </div>
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+   <a href="#" data-target="#post-popup{{clinic_list.id}}" class="btn btn-primary btnspace" data-toggle="modal">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+     <a href="#" data-target="#clinicphoto{{clinic_list.id}}" class="btn btn-primary btnspace" data-toggle="modal">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Add Clinic Photos</a>
+
+<!----------------Add clinic photo's popup ------------->
+    <div id="clinicphoto{{clinic_list.id}}" class="modal fade addclinic_photo" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center modal_head">Upload clinic photo's</h4>
+      </div>
+        <form action="{% url 'save_clinic_pic' %}" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+          <div class="row">
+              <div class="col-md-2">
+                  <div class="upload-wrap">
+                      <div class="uploadpreview 01"></div>
+                       {% csrf_token %}
+                      <input type="hidden" name="clinic_id" value="{{clinic_list.id}}">
+                      <input id="01" type="file" name="Cphotos1" accept="image/*">
+                  </div>
+              </div>
+                <div class="col-md-2">
+                  <div class="upload-wrap">
+                      <div class="uploadpreview 02"></div>
+                      <input id="02" type="file" name="Cphotos2"  accept="image/*">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="upload-wrap">
+                      <div class="uploadpreview 03"></div>
+                      <input id="03" type="file" name="Cphotos3" accept="image/*">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="upload-wrap">
+                      <div class="uploadpreview 04"></div>
+                      <input id="04" type="file" name="Cphotos4" accept="image/*">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="upload-wrap">
+                      <div class="uploadpreview 05"></div>
+                      <input id="05" type="file" name="Cphotos5" accept="image/*">
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="upload-wrap">
+                      <div class="uploadpreview 06"></div>
+                      <input id="06" type="file" name="Cphotos6" accept="image/*">
+                  </div>
+              </div>
+
+            </div>
+          </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
+    </form>
+    </div>
+
+  </div>
+</div>
+
+
+<!----------------End clinic photo's popup ------------->
+                                        <h3 class="clinic-head"><i class="far fa-hospital cyan-color"></i>
+                                            Clinic</h3>
+                                    </div>
+                                </div>
+
+                                <!-- Edit Clinic POPup-->
+                                <div id="post-popup{{clinic_list.id}}" class="modal fade clinicpopup" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h2 class="head">Edit Clinic in quick 5 steps!</h2>
+                                            <p class="marked-fields"><strong>Fields marked with star (*) are
+                                                required.</strong></p>
+                                            <div class="modal-body">
+                                                <div id="profile">
+                                                    <div class="panel">
+                                                        <div class="panel-body">
+                                                            <form name="clinicform" id="clinicform" class="basic_detail"
+                                                                  method="post" action="{% url 'edit_clinic_details' %}"
+                                                                  enctype="multipart/form-data">
+                                                                <!-- step 01 -->
+                                                                <div id="sf01" class="sf01{{clinic_list.id}} frm01{{clinic_list.id}}">
+                                                                    <fieldset>
+                                                                        <legend>Clinic detail - Step 1 of 5</legend>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Clinic Type *</label>
+                                                                                {% csrf_token %}
+                                                                                <input type="hidden" name="id"
+                                                                                       value="{{clinic_list.id}}">
+
+                                                                                <select name="Ctype">
+                                                                                    <option value="" disabled>Select
+                                                                                        Clinic Type
+                                                                                    </option>
+                                                                                    <option value="I own a clinic" {% if
+                                                                                            clinic_list.Ctype==
+                                                                                    "I own a clinic" %}selected {% endif
+                                                                                    %} >I own a clinic</option>
+                                                                                    <option value="I visit a clinic" {%
+                                                                                            if clinic_list.Ctype==
+                                                                                    "I visit a clinic" %}selected {%
+                                                                                    endif %}>I visit a clinic</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Clinic Name *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Clinic Name"
+                                                                                       name="Cname"
+                                                                                       value="{{clinic_list.Cname}}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Clinic Title *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Clinic Title"
+                                                                                       name="Ctitle"
+                                                                                       value="{{clinic_list.Ctitle}}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6 col-sm-6 no-padd"><label>Fee (At Clinic) *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Counsltation Fee"
+                                                                                       name="Cfee"
+                                                                                       value="{{clinic_list.Cfee}}"
+                                                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')"></div>
+                                                                            <div class="col-md-6 col-sm-6 no-padd">
+                                                                                <label>Fee (Online) *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Counsltation Fee"
+                                                                                       name="Online_Cfee"
+                                                                                       value="{{clinic_list.Online_Cfee}}"
+                                                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label>Landline Number *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Landline Number"
+                                                                                       name="Cphone01"
+                                                                                       value="{{clinic_list.Cphone01}}"
+                                                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Mobile Number *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Mobile Number"
+                                                                                       name="Cphone02"
+                                                                                       value="{{clinic_list.Cphone02}}"
+                                                                                       autocomplete="off"
+                                                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                                                            </div>
+                                                                            <div class="col-md-6 no-padd">
+                                                                                <div class="form-group">
+                                                                                    <label>State *</label>
+<select name="Cstate" class="statelist">
+<option value="">Please select state</option>
+<option value="AndamanNicobar" {% if clinic_list.Cstate == "AndamanNicobar" %} selected {% endif %}>Andaman Nicobar </option>
+<option value="AndhraPradesh" {% if clinic_list.Cstate == "AndhraPradesh" %} selected {% endif %}>Andhra Pradesh</option>
+<option value="ArunachalPradesh" {% if clinic_list.Cstate == "ArunachalPradesh" %} selected  {% endif %}>Arunachal Pradesh</option>
+<option value="Assam" {% if clinic_list.Cstate == "Assam" %} selected {% endif %}>Assam</option>
+<option value="Bihar" {% if clinic_list.Cstate == "Bihar" %} selected {% endif %}>Bihar</option>
+<option value="Chandigarh" {% if clinic_list.Cstate ==  "Chandigarh" %} selected {% endif %}>Chandigarh</option>
+<option value="Chhattisgarh" {% if clinic_list.Cstate == "Chhattisgarh" %} selected {% endif %}>Chhattisgarh</option>
+<option value="DadraNagarHaveli" {% if clinic_list.Cstate == "DadraNagarHaveli" %} selected  {% endif %}>Dadra Nagar Haveli</option>
+<option value="DamanDiu" {% if clinic_list.Cstate == "DamanDiu" %} selected {% endif %}>Daman Diu</option>
+<option value="Delhi" {% if clinic_list.Cstate == "Delhi" %} selected {% endif %}>Delhi</option>
+<option value="Goa" {% if clinic_list.Cstate == "Goa" %} selected {% endif %}>Goa</option>
+<option value="Gujarat" {% if clinic_list.Cstate == "Gujarat" %} selected {% endif %}>Gujarat</option>
+<option value="Haryana" {% if clinic_list.Cstate ==  "Haryana" %} selected {% endif %}>Haryana</option>
+<option value="HimachalPradesh"  {% if  clinic_list.Cstate == "HimachalPradesh" %} selected {% endif %}>Himachal Pradesh</option>
+<option value="JammuKashmir" {% if clinic_list.Cstate == "JammuKashmir" %} selected {% endif %}>Jammu Kashmir</option>
+<option value="Jharkhand" {% if clinic_list.Cstate == "Jharkhand" %} selected {% endif %}>Jharkhand</option>
+<option value="Karnataka" {% if clinic_list.Cstate == "Karnataka" %} selected {% endif %}>Karnataka</option>
+<option value="Kerala" {% if clinic_list.Cstate == "Kerala" %} selected {% endif %}>Kerala</option>
+<option value="Lakshadweep" {% if clinic_list.Cstate ==  "Lakshadweep" %} selected {% endif %}>Lakshadweep</option>
+<option value="MadhyaPradesh" {% if clinic_list.Cstate == "MadhyaPradesh" %} selected {% endif %}>Madhya Pradesh</option>
+<option value="Maharashtra" {% if clinic_list.Cstate == "Maharashtra" %} selected {% endif %}>Maharashtra</option>
+<option value="Manipur" {% if clinic_list.Cstate == "Manipur" %} selected {% endif %}>Manipur</option>
+<option value="Meghalaya" {% if clinic_list.Cstate == "Meghalaya" %} selected {% endif %}>Meghalaya</option>
+<option value="Mizoram" {% if clinic_list.Cstate == "Mizoram" %} selected {% endif %}>Mizoram</option>
+<option value="Nagaland" {% if clinic_list.Cstate == "Nagaland" %} selected {% endif %}>Nagaland</option>
+<option value="Orissa" {% if clinic_list.Cstate == "Orissa" %} selected {% endif %}>Orissa</option>
+<option value="Pondicherry" {% if clinic_list.Cstate == "Pondicherry" %} selected {% endif %}>Pondicherry</option>
+<option value="Punjab" {% if clinic_list.Cstate == "Punjab" %} selected {% endif %}>Punjab</option>
+<option value="Rajasthan" {% if clinic_list.Cstate == "Rajasthan" %} selected {% endif %}>Rajasthan</option>
+<option value="Sikkim" {% if clinic_list.Cstate == "Sikkim" %} selected {% endif %}>Sikkim</option>
+<option value="TamilNadu" {% if clinic_list.Cstate == "TamilNadu" %} selected {% endif %}>TamilNadu</option>
+<option value="Tripura" {% if clinic_list.Cstate == "Tripura" %} selected {% endif %}>Tripura</option>
+<option value="UttarPradesh" {% if clinic_list.Cstate == "UttarPradesh" %} selected {% endif %}>UttarPradesh</option>
+<option value="Uttaranchal" {% if clinic_list.Cstate == "Uttaranchal" %} selected {% endif %}>Uttaranchal</option>
+<option value="WestBengal" {% if  clinic_list.Cstate == "WestBengal" %} selected {% endif %}>WestBengal</option>
+</select>                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6 no-padd">
+                                                                                <div class="form-group">
+                                                                                    <label>City *</label>
+                                                                                    <select name="Ccity"
+                                                                                            class="citylist">
+                                                                                        <option name="city"
+                                                                                                value="{{clinic_list.Ccity}}">
+                                                                                            {{clinic_list.Ccity}}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Clinic Address *</label>
+                                                                                <textarea name="Caddress">{{clinic_list.Caddress}}</textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="profile-form-btn">
+                                                                            <button class="btn open01{{clinic_list.id}}" type="button">
+                                                                                Next <span
+                                                                                    class="fa fa-arrow-right"></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <!-- step 01 -->
+                                                                <!-- step 02 -->
+                                                                <div id="sf02" class="sf02{{clinic_list.id}} frm01{{clinic_list.id}}" style="display: none;">
+                                                                    <fieldset>
+                                                                        <legend>Appointment Schedule - Step 2 of 5
+                                                                        </legend>
+                                                                        <!-- Add Appointment time -->
+                                                                    <div class="col-xs-12 time-table">
+                                                                        <div>
+                                                                            <b>Sunday</b>
+                                                                            <span><label class="switch">
+                                                                                        <input type="checkbox" value="sunday" class="check_box1 chk1" data-ptag="sunday" checked="checked">
+                                                                                        <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer sunday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more1{{clinic_list.id}}">
+                                                                                    <li>
+                                                                                        <input class="time-dropdown alarm" id="sunday_appt_time1{{clinic_list.id}}" type="text"
+                                                                                               name="sunday_appt_time1">
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <input class="time-dropdown alarm" type="text" id="sunday_appt_time2{{clinic_list.id}}"
+                                                                                               name="sunday_appt_time2" value="">
+                                                                                    </li>
+                                                                                </div>
+
+                                                                                <li class="time-dropdown add-more-fields add-more1"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy1 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="sunday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="sunday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <script>
+                                                                                         var sunday_appt_time1 = {{ clinic_list.sunday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < sunday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("sunday_appt_time1{{clinic_list.id}}").value =sunday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + sunday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+                                                                                          if(sunday_appt_time1[x] != ''){
+                                                                                                $(".after-add-more1{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="sunday_appt_time1{{clinic_list.id}}'+ x + '" name="sunday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="sunday_appt_time2{{clinic_list.id}}'+ x + '" name="sunday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("sunday_appt_time1{{clinic_list.id}}"+x).value =sunday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + sunday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+
+                                                                        </script>
+                                                                        <script>
+                                                                                         var sunday_appt_time2 = {{ clinic_list.sunday_appt_time2|safe}};
+                                                                                         for (var x = 0; x < sunday_appt_time2.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                                document.getElementById("sunday_appt_time2{{clinic_list.id}}").value =sunday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + sunday_appt_time2[x] + ']');
+                                                                                         }
+                                                                                         else{
+                                                                                          if(sunday_appt_time2[x] != ''){
+                                                                                                document.getElementById("sunday_appt_time2{{clinic_list.id}}"+x).value =sunday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + sunday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                       $(".add-more1").click(function(){
+                                                                                        var html = $(".copy1").html();
+                                                                                        $(".after-add-more1{{clinic_list.id}}").append(html);
+                                                                                        });
+
+                                                                        </script>
+
+
+                                                                        <div><b>Monday</b> <span><label class="switch">
+                                                                                      <input type="checkbox" value="monday" class="check_box1 chk2" data-ptag="monday" checked="checked">
+                                                                                      <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer2 monday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more2{{clinic_list.id}}">
+                                                                                    <li>
+                                                                                        <input class="time-dropdown alarm" type="text" id="monday_appt_time1{{clinic_list.id}}"
+                                                                                               name="monday_appt_time1" value="">
+                                                                                    </li>
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="monday_appt_time2{{clinic_list.id}}"
+                                                                                               name="monday_appt_time2" value=""></li>
+                                                                                </div>
+                                                                                <li class="time-dropdown add-more-fields add-more2"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy2 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="monday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="monday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                                         var monday_appt_time1 = {{ clinic_list.monday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < monday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("monday_appt_time1{{clinic_list.id}}").value =monday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + monday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+                                                                                          if(monday_appt_time1[x] != ''){
+                                                                                                $(".after-add-more2{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="monday_appt_time1{{clinic_list.id}}'+ x + '" name="monday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="monday_appt_time2{{clinic_list.id}}'+ x + '" name="monday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("monday_appt_time1{{clinic_list.id}}"+x).value =monday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + monday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                         var monday_appt_time2 = {{ clinic_list.monday_appt_time2|safe}};
+                                                                                         for (var x = 0; x < monday_appt_time2.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                                document.getElementById("monday_appt_time2{{clinic_list.id}}").value =monday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + monday_appt_time2[x] + ']');
+                                                                                         }
+                                                                                         else{
+                                                                                          if(monday_appt_time2[x] != ''){
+                                                                                                document.getElementById("monday_appt_time2{{clinic_list.id}}"+x).value =monday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + monday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                           $(".add-more2").click(function(){
+                                                                                            var html = $(".copy2").html();
+                                                                                            $(".after-add-more2{{clinic_list.id}}").append(html);
+                                                                                            });
+
+                                                                        </script>
+
+                                                                        <div><b>Tuesday</b> <span><label class="switch">
+                                                                                      <input type="checkbox" value="tuesday" class="check_box1 chk2" data-ptag="tuesday" checked="checked">
+                                                                                      <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer3 tuesday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more3{{clinic_list.id}}">
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="tuesday_appt_time1{{clinic_list.id}}"
+                                                                                               name="tuesday_appt_time1" value=""></li>
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="tuesday_appt_time2{{clinic_list.id}}"
+                                                                                               name="tuesday_appt_time2" value=""></li>
+                                                                                </div>
+                                                                                <li class="time-dropdown add-more-fields add-more3"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy3 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                                         var tuesday_appt_time1 = {{ clinic_list.tuesday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < tuesday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("tuesday_appt_time1{{clinic_list.id}}").value =tuesday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + tuesday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+
+                                                                                          if(tuesday_appt_time1[x] != ''){
+
+                                                                                                $(".after-add-more3{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="tuesday_appt_time1{{clinic_list.id}}'+ x + '" name="tuesday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="tuesday_appt_time2{{clinic_list.id}}'+ x + '" name="tuesday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("tuesday_appt_time1{{clinic_list.id}}"+x).value =tuesday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + tuesday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+
+                                                                        </script>
+                                                                        <script>
+                                                                                       var tuesday_appt_time2 = {{ clinic_list.tuesday_appt_time2|safe}};
+                                                                                       for (var x = 0; x < tuesday_appt_time2.length; ++x) {
+                                                                                        if(x == 0){
+                                                                                                document.getElementById("tuesday_appt_time2{{clinic_list.id}}").value =tuesday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + tuesday_appt_time2[x] + ']');
+                                                                                        }
+                                                                                         else{
+                                                                                          if(tuesday_appt_time2[x] != ''){
+                                                                                                document.getElementById("tuesday_appt_time2{{clinic_list.id}}"+x).value =tuesday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + tuesday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                          $(".add-more3").click(function(){
+                                                                                            var html = $(".copy3").html();
+                                                                                            $(".after-add-more3{{clinic_list.id}}").append(html);
+                                                                                            });
+
+                                                                        </script>
+
+
+                                                                        <div><b>Wednesday</b> <span><label class="switch">
+                                                                                      <input type="checkbox" value="Wednesday" class="check_box1 chk2" data-ptag="Wednesday"
+                                                                                             checked="checked">
+                                                                                      <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer4 Wednesday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more4{{clinic_list.id}}">
+                                                                                    <li>
+                                                                                        <input class="time-dropdown alarm" type="text" id="wednesday_appt_time1{{clinic_list.id}}"
+                                                                                               name="wednesday_appt_time1" value=""></li>
+                                                                                    <li><input class="time-dropdown alarm" id="wednesday_appt_time2{{clinic_list.id}}" type="text"
+                                                                                               name="wednesday_appt_time2" value=""></li>
+                                                                                </div>
+                                                                                <li class="time-dropdown add-more-fields add-more4"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy4 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <script>
+                                                                                         var wednesday_appt_time1 = {{ clinic_list.wednesday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < wednesday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("wednesday_appt_time1{{clinic_list.id}}").value =wednesday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + wednesday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+
+                                                                                          if(wednesday_appt_time1[x] != ''){
+
+                                                                                                $(".after-add-more4{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="wednesday_appt_time1{{clinic_list.id}}'+ x + '" name="wednesday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="wednesday_appt_time2{{clinic_list.id}}'+ x + '" name="wednesday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("wednesday_appt_time1{{clinic_list.id}}"+x).value =wednesday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + wednesday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+
+                                                                        </script>
+                                                                        <script>
+                                                                                       var wednesday_appt_time2 = {{ clinic_list.wednesday_appt_time2|safe}};
+                                                                                       for (var x = 0; x < wednesday_appt_time2.length; ++x) {
+                                                                                        if(x == 0){
+                                                                                                document.getElementById("wednesday_appt_time2{{clinic_list.id}}").value =wednesday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + wednesday_appt_time2[x] + ']');
+                                                                                        }
+                                                                                         else{
+                                                                                          if(wednesday_appt_time2[x] != ''){
+                                                                                                document.getElementById("wednesday_appt_time2{{clinic_list.id}}"+x).value =wednesday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + wednesday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                          $(".add-more4").click(function(){
+                                                                                            var html = $(".copy4").html();
+                                                                                            $(".after-add-more4{{clinic_list.id}}").append(html);
+                                                                                            });
+
+                                                                        </script>
+
+
+                                                                        <div><b>Thursday</b> <span><label class="switch">
+                                                                                      <input type="checkbox" value="Thursday" class="check_box1 chk2" data-ptag="Thursday"
+                                                                                             checked="checked">
+                                                                                      <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer5 Thursday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more5{{clinic_list.id}}">
+                                                                                    <li>
+                                                                                        <input class="time-dropdown alarm" type="text" id="thursday_appt_time1{{clinic_list.id}}"
+                                                                                               name="thursday_appt_time1" value=""></li>
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="thursday_appt_time2{{clinic_list.id}}"
+                                                                                               name="thursday_appt_time2" value=""></li>
+                                                                                </div>
+                                                                                <li class="time-dropdown add-more-fields add-more5"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy5 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <script>
+                                                                                         var thursday_appt_time1 = {{ clinic_list.thursday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < thursday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("thursday_appt_time1{{clinic_list.id}}").value =thursday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + thursday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+
+                                                                                          if(thursday_appt_time1[x] != ''){
+
+                                                                                                $(".after-add-more5{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="thursday_appt_time1{{clinic_list.id}}'+ x + '" name="thursday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="thursday_appt_time2{{clinic_list.id}}'+ x + '" name="thursday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("thursday_appt_time1{{clinic_list.id}}"+x).value =thursday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + thursday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+
+                                                                        </script>
+                                                                        <script>
+                                                                                       var thursday_appt_time2 = {{ clinic_list.thursday_appt_time2|safe}};
+                                                                                       for (var x = 0; x < thursday_appt_time2.length; ++x) {
+                                                                                        if(x == 0){
+                                                                                                document.getElementById("thursday_appt_time2{{clinic_list.id}}").value =thursday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + thursday_appt_time2[x] + ']');
+                                                                                        }
+                                                                                         else{
+                                                                                          if(thursday_appt_time2[x] != ''){
+                                                                                                document.getElementById("thursday_appt_time2{{clinic_list.id}}"+x).value =thursday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + thursday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                          $(".add-more5").click(function(){
+                                                                                            var html = $(".copy5").html();
+                                                                                            $(".after-add-more5{{clinic_list.id}}").append(html);
+                                                                                            });
+
+                                                                        </script>
+
+
+                                                                        <div><b>Friday</b> <span><label class="switch">
+                                                                                      <input type="checkbox" value="Friday" class="check_box1 chk2" data-ptag="Friday" checked="checked">
+                                                                                      <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer6 Friday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more6{{clinic_list.id}}">
+                                                                                    <li>
+                                                                                        <input class="time-dropdown alarm" type="text" id="friday_appt_time1{{clinic_list.id}}"
+                                                                                               name="friday_appt_time1" value=""></li>
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="friday_appt_time2{{clinic_list.id}}"
+                                                                                               name="friday_appt_time2" value=""></li>
+                                                                                </div>
+                                                                                <li class="time-dropdown add-more-fields add-more6"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy6 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="friday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="friday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <script>
+                                                                                         var friday_appt_time1 = {{ clinic_list.friday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < friday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("friday_appt_time1{{clinic_list.id}}").value =friday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + friday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+
+                                                                                          if(friday_appt_time1[x] != ''){
+
+                                                                                                $(".after-add-more6{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="friday_appt_time1{{clinic_list.id}}'+ x + '" name="friday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="friday_appt_time2{{clinic_list.id}}'+ x + '" name="friday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("friday_appt_time1{{clinic_list.id}}"+x).value =friday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + friday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+
+                                                                        </script>
+                                                                        <script>
+                                                                                       var friday_appt_time2 = {{ clinic_list.friday_appt_time2|safe}};
+                                                                                       for (var x = 0; x < friday_appt_time2.length; ++x) {
+                                                                                        if(x == 0){
+                                                                                                document.getElementById("friday_appt_time2{{clinic_list.id}}").value =friday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + friday_appt_time2[x] + ']');
+                                                                                        }
+                                                                                         else{
+                                                                                          if(friday_appt_time2[x] != ''){
+                                                                                                document.getElementById("friday_appt_time2{{clinic_list.id}}"+x).value =friday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + friday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                          $(".add-more6").click(function(){
+                                                                                            var html = $(".copy6").html();
+                                                                                            $(".after-add-more6{{clinic_list.id}}").append(html);
+                                                                                            });
+
+                                                                        </script>
+
+
+                                                                        <div><b>Saturday</b> <span><label class="switch">
+                                                                        <input type="checkbox" value="Saturday" class="check_box chk2" data-ptag="Saturday" checked>
+                                                                        <span class="slider round"></span></label></span>
+                                                                            <ul class="hide_show1 TextBoxContainer7 Saturday">
+                                                                                <li><span class="time-dropdown">Open</span></li>
+                                                                                <div class="control-group after-add-more7{{clinic_list.id}}">
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="saturday_appt_time1{{clinic_list.id}}"
+                                                                                               name="saturday_appt_time1" value=""></li>
+                                                                                    <li><input class="time-dropdown alarm" type="text" id="saturday_appt_time2{{clinic_list.id}}"
+                                                                                               name="saturday_appt_time2" value=""></li>
+                                                                                </div>
+                                                                                <li class="time-dropdown add-more-fields add-more7"><a>Add Hours</a></li>
+                                                                            </ul>
+                                                                            <div class="copy7 hide">
+                                                                                <div class="control-group input-group">
+                                                                                    <ul>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time1" value=""></li>
+                                                                                        <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time2" value=""></li>
+                                                                                    </ul>
+                                                                                    <button class="btn btn-primary remove" type="button">X</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <script>
+                                                                                         var saturday_appt_time1 = {{ clinic_list.saturday_appt_time1|safe}};
+                                                                                         for (var x = 0; x < saturday_appt_time1.length; ++x) {
+                                                                                         if(x == 0){
+                                                                                              document.getElementById("saturday_appt_time1{{clinic_list.id}}").value =saturday_appt_time1[x];
+                                                                                              //alert('IF value at index [' + x + '] is: [' + saturday_appt_time1[x] + ']');
+                                                                                         }
+                                                                                         else{
+
+                                                                                          if(saturday_appt_time1[x] != ''){
+
+                                                                                                $(".after-add-more7{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="saturday_appt_time1{{clinic_list.id}}'+ x + '" name="saturday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="saturday_appt_time2{{clinic_list.id}}'+ x + '" name="saturday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                                                                                                document.getElementById("saturday_appt_time1{{clinic_list.id}}"+x).value =saturday_appt_time1[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + saturday_appt_time1[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+
+                                                                        </script>
+                                                                        <script>
+                                                                                       var saturday_appt_time2 = {{ clinic_list.saturday_appt_time2|safe}};
+                                                                                       for (var x = 0; x < saturday_appt_time2.length; ++x) {
+                                                                                        if(x == 0){
+                                                                                                document.getElementById("saturday_appt_time2{{clinic_list.id}}").value =saturday_appt_time2[x];
+                                                                                                //alert('IF value at index [' + x + '] is: [' + saturday_appt_time2[x] + ']');
+                                                                                        }
+                                                                                         else{
+                                                                                          if(saturday_appt_time2[x] != ''){
+                                                                                                document.getElementById("saturday_appt_time2{{clinic_list.id}}"+x).value =saturday_appt_time2[x];
+                                                                                                //alert(' ELSE IF value at index [' + x + '] is: [' + saturday_appt_time2[x] + ']');
+                                                                                            }
+                                                                                         }
+                                                                                       }
+
+                                                                        </script>
+                                                                        <script>
+                                                                                          $(".add-more7").click(function(){
+                                                                                            var html = $(".copy7").html();
+                                                                                            $(".after-add-more7{{clinic_list.id}}").append(html);
+                                                                                            });
+
+                                                                        </script>
+
+
+                                                                    </div>
+
+
+
+
+                                                                          <!-- Add Appointment time -->
+                                                                        <div class="profile-form-btn">
+                                                                            <button class="btn btn-warning back02{{clinic_list.id}}"
+                                                                                    type="button"><span
+                                                                                    class="fa fa-arrow-left"></span>
+                                                                                Back
+                                                                            </button>
+                                                                            <button class="btn open02{{clinic_list.id}}" type="button">
+                                                                                Next <span
+                                                                                    class="fa fa-arrow-right"></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <!-- step 02 -->
+                                                                <!-- step 03 -->
+
+                                                                <div id="sf03" class="sf03{{clinic_list.id}} frm01{{clinic_list.id}}" style="display: none;">
+                                                                    <fieldset>
+                                                                        <legend>Upload Clinic Photos - Step 3 of 5
+                                                                        </legend>
+                                                                        <div class="form-group clinic-photos">
+                                                                            <div class="fileUpload">
+                                                                                <div class="image-upload-btn"><p
+                                                                                        class="custom-plus">+</p>
+                                                                                    <p class="custom-para">Upload</p>
+                                                                                </div>
+                                                                                <input type="file"
+                                                                                       value="{{clinic_list.Cphotos}}"
+                                                                                       class="upload files"
+                                                                                       name="Cphotos">
+                                                                                <div class="clinic-image-list"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="profile-form-btn">
+                                                                            <button class="btn btn-warning back03{{clinic_list.id}}"
+                                                                                    type="button"><span
+                                                                                    class="fa fa-arrow-left"></span>
+                                                                                Back
+                                                                            </button>
+                                                                            <button class="btn open03{{clinic_list.id}}" type="button">
+                                                                                Next <span
+                                                                                    class="fa fa-arrow-right"></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <!-- step 03 -->
+                                                                <!-- step 04 -->
+                                                                <div id="sf04" class="sf04{{clinic_list.id}} frm01{{clinic_list.id}}" style="display: none;">
+                                                                    <fieldset>
+                                                                        <legend>Upload Clinic Proof - Step 4 of 5
+                                                                        </legend>
+                                                                        <div class="form-group">
+                                                                            <div class="fileUpload01">
+                                                                                <div class="image-upload-btn"><p
+                                                                                        class="custom-plus">+</p>
+                                                                                    <p class="custom-para">Upload</p>
+                                                                                </div>
+                                                                                <input type="file"
+                                                                                       class="upload upload001"
+                                                                                       value="{{clinic_list.Cproof}}"
+                                                                                       name="Cproof"></div>
+                                                                            <input class="uploadFile001"
+                                                                                   placeholder="0 files selected"
+                                                                                   readonly=""/>
+                                                                        </div>
+                                                                        <div class="profile-form-btn">
+                                                                            <button class="btn btn-warning back04{{clinic_list.id}}"
+                                                                                    type="button"><span
+                                                                                    class="fa fa-arrow-left"></span>
+                                                                                Back
+                                                                            </button>
+                                                                            <button class="btn open04{{clinic_list.id}}" type="button">
+                                                                                Next <span
+                                                                                    class="fa fa-arrow-right"></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <!-- step 04 -->
+                                                                <!-- step 05 -->
+                                                                <div id="sf05" class="sf05{{clinic_list.id}} frm01{{clinic_list.id}}" style="display: none;">
+                                                                    <fieldset>
+                                                                        <legend>Upload Medical Registration Proof - Step
+                                                                            5 of 5
+                                                                        </legend>
+                                                                        <div class="form-group">
+                                                                            <div class="fileUpload01 ">
+                                                                                <div class="image-upload-btn"><p
+                                                                                        class="custom-plus">+</p>
+                                                                                    <p class="custom-para">Upload</p>
+                                                                                </div>
+                                                                                <input type="file"
+                                                                                       class="upload upload03"
+                                                                                       value="{{clinic_list.Cmedproof}}"
+                                                                                       name="Cmedproof"></div>
+                                                                            <input class="uploadFile03"
+                                                                                   placeholder="0 files selected"
+                                                                                   readonly=""/>
+
+                                                                        </div>
+                                                                        <div class="profile-form-btn">
+                                                                            <button class="btn btn-warning back05{{clinic_list.id}}"
+                                                                                    type="button"><span
+                                                                                    class="fa fa-arrow-left"></span>
+                                                                                Back
+                                                                            </button>
+                                                                            <input class="btn" type="submit"
+                                                                                   value="Submit">
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <!-- step 05 -->
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                var v = jQuery("#clinicform").validate({
+      rules: {
+        Ctype: {
+          required: true,
+        },
+        Cname: {
+          required: true,
+        },
+        Ctitle:
+        {
+          required: true
+        },
+        Cfee:
+        {
+          required: true,
+          minlength:1,
+          maxlength:4,
+        },
+        Cphone01: {
+          required: true,
+          minlength: 5,
+          maxlength: 100,
+        },
+        Cphone02: {
+          required: true,
+          minlength: 10,
+          maxlength: 10,
+        },
+        Cstate:
+        {
+          required: true,
+        },
+        Ccity:
+        {
+          required: true,
+        },
+        Caddress:
+        {
+          required: true,
+        },
+        CSchedule:
+        {
+          required: true,
+        },
+      },
+      errorElement: "span",
+      errorClass: "help-inline-error",
+    });
+
+    $(".open01{{clinic_list.id}}").click(function() {
+      if (v.form()) {
+        $(".frm01{{clinic_list.id}}").hide("fast");
+        $(".sf02{{clinic_list.id}}").show("slow");
+      }
+    });
+
+    $(".open02{{clinic_list.id}}").click(function() {
+      if (v.form()) {
+        $(".frm01{{clinic_list.id}}").hide("fast");
+        $(".sf03{{clinic_list.id}}").show("slow");
+      }
+    });
+
+    $(".open03{{clinic_list.id}}").click(function() {
+      if (v.form()) {
+        $(".frm01{{clinic_list.id}}").hide("fast");
+        $(".sf04{{clinic_list.id}}").show("slow");
+      }
+    });
+
+    $(".open04{{clinic_list.id}}").click(function() {
+      if (v.form()) {
+        $(".frm01{{clinic_list.id}}").hide("fast");
+        $(".sf05{{clinic_list.id}}").show("slow");
+      }
+    });
+    $(".open05{{clinic_list.id}}").click(function() {
+      if (v.form()) {
+        $("#loader").show();
+         setTimeout(function(){
+           $("#clinicform").html('<h2 class="text-center">Thanks for your time.</h2>');
+         }, 1000);
+        return false;
+      }
+    });
+
+    $(".back02{{clinic_list.id}}").click(function() {
+      $(".frm01{{clinic_list.id}}").hide("fast");
+      $(".sf01{{clinic_list.id}}").show("slow");
+    });
+
+    $(".back03{{clinic_list.id}}").click(function() {
+      $(".frm01{{clinic_list.id}}").hide("fast");
+      $(".sf02{{clinic_list.id}}").show("slow");
+    });
+
+    $(".back04{{clinic_list.id}}").click(function() {
+      $(".frm01{{clinic_list.id}}").hide("fast");
+      $(".sf03{{clinic_list.id}}").show("slow");
+    });
+
+    $(".back05{{clinic_list.id}}").click(function() {
+      $(".frm01{{clinic_list.id}}").hide("fast");
+      $(".sf04{{clinic_list.id}}").show("slow");
+    });
+                                </script>
+                                <!-- Edit Clinic POPup-->
+
+
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="panel-body profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="table-responsive">
+                                                    <table class="table abt-table">
+                                                        <tr>
+                                                            <td><b>Clinic Type:</b></td>
+                                                            <td>{{clinic_list.Ctype}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Clinic Title:</b></td>
+                                                            <td>{{clinic_list.Ctitle}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Consultant Fee:</b></td>
+                                                            <td>{{clinic_list.Cfee}}rs</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Online Consultant Fee:</b></td>
+                                                            <td>{{clinic_list.Online_Cfee}}rs</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>State:</b></td>
+                                                            <td>{{clinic_list.Cstate}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>City:</b></td>
+                                                            <td>{{clinic_list.Ccity}}</td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                                <div class="table-responsive">
+                                                    <table class="table abt-table">
+                                                        <tr>
+                                                            <td><b>Clinic Name:</b></td>
+                                                            <td>{{clinic_list.Cname}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Landline Number:</b></td>
+                                                            <td>{{clinic_list.Cphone01}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Mobile Number:</b></td>
+                                                            <td>{{clinic_list.Cphone02}}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><b>Clinic Proof:</b></td>
+                                                            <td> <a href="#" data-toggle="modal" data-target="#popup-image-gallery1{{clinic_list.id}}" tabindex="0">
+                                                                view
+                                                                </a>
+
+                                                                <div class="modal popup-image-gallery" id="popup-image-gallery1{{clinic_list.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                  <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                      <div class="modal-body">
+                                                                        <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;</span></button>
+                                                                        <div class="popup-slider-for">
+                                                                          <div class="main-image">
+                                                                            <img src="../uploads/{{clinic_list.Cproof}}" alt="">
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+
+
+                                                            </td>
+                                                        </tr>
+                                                         <tr>
+                                                            <td><b>Medical Registration Proof:</b></td>
+                                                            <td>
+  <a href="#" data-toggle="modal" data-target="#popup-image-galleryd{{clinic_list.id}}" tabindex="0">
+view
+</a>
+
+<div class="modal popup-image-gallery" id="popup-image-galleryd{{clinic_list.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;</span></button>
+        <div class="popup-slider-for">
+          <div class="main-image">
+            <img src="../uploads/{{clinic_list.Cmedproof}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</td>
+                                                        </tr>
+                                                         <tr>
+                                                            <td><b>Address:</b></td>
+                                                            <td>{{clinic_list.Caddress}}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+            {% endfor %}
+
+        </div></div>
+</section>
+
+
+<!-- Add Clinic POPup-->
+<div id="addClinic" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="head">Add new Clinic in quick 5 steps!</h2>
+            <p class="marked-fields"><strong>Fields marked with star (*) are required.</strong></p>
+            <div class="modal-body">
+                <div id="addprofile">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <form name="clinicform" id="addclinicform" class="basic_detail" method="post"
+                                  action="{% url 'add_clinic_details' %}" enctype="multipart/form-data">
+                                <!-- step 01 -->
+                                <div id="sf001" class="frm001">
+                                    <fieldset>
+                                        <legend>Clinic detail - Step 1 of 5</legend>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Clinic Type *</label>
+                                                {% csrf_token %}
+                                                <select name="Ctype">
+                                                    <option value="">Select Clinic Type</option>
+                                                    <option value="I own a clinic">I own a clinic</option>
+                                                    <option value="I visit a clinic">I visit a clinic</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Clinic Name *</label>
+                                                <input type="text" placeholder="Clinic Name" name="Cname"
+                                                       autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Clinic Title *</label>
+                                                <input type="text" placeholder="Clinic Title" name="Ctitle"
+                                                       autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 no-padd"><label>Fee (At Clinic) *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Counsltation Fee"
+                                                                                       name="Cfee"
+
+                                                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')"></div>
+                                                                            <div class="col-md-6 col-sm-6 no-padd">
+                                                                                <label>Fee (Online) *</label>
+                                                                                <input type="text"
+                                                                                       placeholder="Counsltation Fee"
+                                                                                       name="Online_Cfee"
+
+                                                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Landline Number *</label>
+                                                <input type="text" placeholder="Landline Number" name="Cphone01"
+                                                       autocomplete="off"
+                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mobile Number *</label>
+                                                <input type="text" placeholder="Mobile Number" name="Cphone02"
+                                                       autocomplete="off"
+                                                       onkeyup="this.value=this.value.replace(/[^\d]/,'')">
+                                            </div>
+                                            <div class="col-md-6 no-padd">
+                                                <div class="form-group">
+                                                    <label>State *</label>
+                                                    <select name="Cstate" class="statelist">
+                                                        <option value="">Please select state</option>
+                                                        <option value="AndamanNicobar">Andaman Nicobar</option>
+                                                        <option value="AndhraPradesh">Andhra Pradesh</option>
+                                                        <option value="ArunachalPradesh">Arunachal Pradesh</option>
+                                                        <option value="Assam">Assam</option>
+                                                        <option value="Bihar">Bihar</option>
+                                                        <option value="Chandigarh">Chandigarh</option>
+                                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                                        <option value="DadraNagarHaveli">Dadra Nagar Haveli</option>
+                                                        <option value="DamanDiu">Daman Diu</option>
+                                                        <option value="Delhi">Delhi</option>
+                                                        <option value="Goa">Goa</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="HimachalPradesh">Himachal Pradesh</option>
+                                                        <option value="JammuKashmir">Jammu Kashmir</option>
+                                                        <option value="Jharkhand">Jharkhand</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Kerala">Kerala</option>
+                                                        <option value="Lakshadweep">Lakshadweep</option>
+                                                        <option value="MadhyaPradesh">Madhya Pradesh</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Manipur">Manipur</option>
+                                                        <option value="Meghalaya">Meghalaya</option>
+                                                        <option value="Mizoram">Mizoram</option>
+                                                        <option value="Nagaland">Nagaland</option>
+                                                        <option value="Orissa">Orissa</option>
+                                                        <option value="Pondicherry">Pondicherry</option>
+                                                        <option value="Punjab">Punjab</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Sikkim">Sikkim</option>
+                                                        <option value="TamilNadu">TamilNadu</option>
+                                                        <option value="Tripura">Tripura</option>
+                                                        <option value="UttarPradesh">UttarPradesh</option>
+                                                        <option value="Uttaranchal">Uttaranchal</option>
+                                                        <option value="WestBengal">WestBengal</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 no-padd">
+                                                <div class="form-group">
+                                                    <label>City *</label>
+                                                    <select name="Ccity" class="citylist">
+                                                        <option name="city" value="">Please select city</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Clinic Address *</label>
+                                                <textarea name="Caddress"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="profile-form-btn">
+                                            <button class="btn open001" type="button">Next <span
+                                                    class="fa fa-arrow-right"></span></button>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- step 01 -->
+                                <!-- step 02 -->
+                                <div id="sf002" class="frm001" style="display: none;">
+                                   <fieldset>
+                                        <legend>Appointment Schedule - Step 2 of 5</legend>
+                                        <!-- Add Appointment time -->
+                                        <div class="col-xs-12 time-table">
+                   <div> <b>Sunday</b> <span><label class="switch">
+				  <input type="checkbox" value="sunday1" class="check_box chk1" data-ptag="sunday1"  checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer sunday1">
+					<li><span class="time-dropdown">Open</span></li>
+					<div class="control-group after-add-more01"><li>
+                     <input class="time-dropdown alarm" type="text" name="sunday_appt_time1" value="">
+					</li>
+			         <li>
+					   <input class="time-dropdown alarm" type="text" name="sunday_appt_time2" value="">
+                     </li></div>
+			  <li class="time-dropdown add-more-fields add-more01"><a>Add Hours</a></li>
+			  </ul>
+                 <div class="copy01 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="sunday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="sunday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div>
+			</div>
+				  <div><b>Monday</b> <span><label class="switch">
+				  <input type="checkbox" value="monday1" class="check_box chk2" data-ptag="monday1" checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer2 monday1">
+				  <li><span class="time-dropdown">Open</span></li>
+				  <div class="control-group after-add-more02"><li>
+				  <input class="time-dropdown alarm" type="text" name="monday_appt_time1" value="">
+                  </li>
+                      <li><input class="time-dropdown alarm" type="text" name="monday_appt_time2" value=""></li></div>
+			  <li class="time-dropdown add-more-fields add-more02"><a>Add Hours</a></li>
+			  </ul>
+                <div class="copy02 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="monday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="monday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div>
+                  </div>
+
+			 <div><b>Tuesday</b> <span><label class="switch">
+				  <input type="checkbox" value="tuesday1" class="check_box chk2" data-ptag="tuesday1"  checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer3 tuesday1"><li><span class="time-dropdown">Open</span></li>
+				  <div class="control-group after-add-more03"><li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time1" value=""></li>
+                      <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time2" value=""></li></div>
+			  <li class="time-dropdown add-more-fields add-more03"><a>Add Hours</a></li>
+			  </ul>
+                <div class="copy03 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div>
+             </div>
+
+		 <div><b>Wednesday</b> <span><label class="switch">
+				  <input type="checkbox" value="Wednesday1" class="check_box chk2" data-ptag="Wednesday1"  checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer4 Wednesday1"><li><span class="time-dropdown">Open</span></li>
+				 <div class="control-group after-add-more04"> <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time1" value=""></li>
+                     <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time2" value=""></li></div>
+			  <li class="time-dropdown add-more-fields add-more04"><a>Add Hours</a></li>
+			  </ul><div class="copy04 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div>
+         </div>
+
+		        <div><b>Thursday</b> <span><label class="switch">
+				  <input type="checkbox" value="Thursday1" class="check_box chk2" data-ptag="Thursday1"  checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer5 Thursday1" id=""><li><span class="time-dropdown">Open</span></li>
+				  <div class="control-group after-add-more05"> <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time1" value=""></li>
+                      <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time2" value=""></li></div>
+			 <li class="time-dropdown add-more-fields add-more05"><a>Add Hours</a></li>
+			  </ul><div class="copy05 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div></div>
+
+			  	 <div><b>Friday</b> <span><label class="switch">
+				  <input type="checkbox" value="Friday1" class="check_box chk2" data-ptag="Friday1" checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer6 Friday1"><li><span class="time-dropdown">Open</span></li>
+				  <div class="control-group after-add-more06"> <li><input class="time-dropdown alarm" type="text" name="friday_appt_time1" value=""></li>
+                  <li><input class="time-dropdown alarm" type="text" name="friday_appt_time2" value=""></li></div>
+			  <li class="time-dropdown add-more-fields add-more05"><a>Add Hours</a></li>
+			  </ul>
+                 <div class="copy06 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="friday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="friday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div></div>
+
+			   <div><b>Saturday</b> <span><label class="switch">
+				  <input type="checkbox" value="Saturday1" class="check_box chk2" data-ptag="Saturday1"  checked="checked">
+				  <span class="slider round"></span></label></span>
+				  <ul class="hide_show TextBoxContainer7 Saturday1"><li><span class="time-dropdown">Open</span></li>
+				  <div class="control-group after-add-more07"> <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time1" value=""></li>
+                      <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time2" value=""></li></div>
+			  <li><a href="#" class="time-dropdown btnAdd7">Add Hours</a></li>
+                  </ul>
+               <div class="copy07 hide">
+                <div class="control-group input-group">
+                <ul>
+                   <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time1" value=""></li>
+                   <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+                </div></div></div></div>
+                                        <!-- Add Appointment time -->
+
+                                        <div class="profile-form-btn">
+                                            <button class="btn btn-warning back002" type="button"><span
+                                                    class="fa fa-arrow-left"></span> Back
+                                            </button>
+                                            <button class="btn open002" type="button">Next <span
+                                                    class="fa fa-arrow-right"></span></button>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- step 02 -->
+                                <!-- step 03 -->
+                                <div id="sf003" class="frm001" style="display: none;">
+                                     <fieldset>
+                                        <legend>Upload Clinic Photos - Step 3 of 5</legend>
+                                        <div class="form-group clinic-photos">
+                                            <div class="fileUpload">
+                                                <div class="image-upload-btn"><p class="custom-plus">+</p>
+                                                    <p class="custom-para">Upload</p></div>
+                                                <input type="file" multiple class="upload files" name="Cphotos">
+                                                <div class="clinic-image-list"></div>
+                                            </div>
+                                        </div>
+                                        <div class="profile-form-btn">
+                                            <button class="btn btn-warning back003" type="button"><span
+                                                    class="fa fa-arrow-left"></span> Back
+                                            </button>
+                                            <button class="btn open003" type="button">Next <span
+                                                    class="fa fa-arrow-right"></span></button>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                                <!-- step 03 -->
+                                 <!-- step 04 -->
+                                                                <div id="sf004" class="frm001" style="display: none;">
+                                                                    <fieldset>
+                                                                        <legend>Upload Clinic Proof - Step 4 of 5
+                                                                        </legend>
+                                                                        <div class="form-group">
+                                                                            <div class="fileUpload01">
+                                                                                <div class="image-upload-btn"><p
+                                                                                        class="custom-plus">+</p>
+                                                                                    <p class="custom-para">Upload</p>
+                                                                                </div>
+                                                                                <input type="file"
+                                                                                       class="upload upload001"
+                                                                                       value="{{clinic_list.Cproof}}"
+                                                                                       name="Cproof"></div>
+                                                                            <input class="uploadFile001"
+                                                                                   placeholder="0 files selected"
+                                                                                   readonly=""/>
+                                                                        </div>
+                                                                        <div class="profile-form-btn">
+                                                                            <button class="btn btn-warning back004"
+                                                                                    type="button"><span
+                                                                                    class="fa fa-arrow-left"></span>
+                                                                                Back
+                                                                            </button>
+                                                                            <button class="btn open004" type="button">
+                                                                                Next <span
+                                                                                    class="fa fa-arrow-right"></span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <!-- step 04 -->
+                                <!-- step 05 -->
+                                <div id="sf005" class="frm001" style="display: none;">
+                                    <fieldset>
+                                        <legend>Upload Medical Registration Proof - Step 5 of 5</legend>
+                                        <div class="form-group">
+                                            <div class="fileUpload01 ">
+                                                <div class="image-upload-btn"><p class="custom-plus">+</p>
+                                                    <p class="custom-para">Upload</p></div>
+                                                <input type="file" class="upload upload003" name="Cmedproof"></div>
+                                            <input class="uploadFile003" placeholder="0 files selected" readonly=""/>
+                                        </div>
+                                        <div class="profile-form-btn">
+                                            <button class="btn btn-warning back005" type="button"><span
+                                                    class="fa fa-arrow-left"></span> Back
+                                            </button>
+                                            <input class="btn" type="submit" value="Submit">
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- step 05 -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Clinic POPup-->
+
+{% if clinic_list == 'Null' %}
+<script>
+var complete = "{{value}}";
+if(complete ==0){
+$("#addClinic").modal("show");
+}
+</script>
+{% endif %}
+
+<script>
+$(function() {
+$(".statelist").change(function() {
+var $dropdown = $(this);
+$.getJSON("../static/data.json", function(data) {
+var key = $dropdown.val();
+var vals = [];
+switch(key) {
+case 'AndamanNicobar':
+vals = data.AndamanNicobar.split(",");
+break;
+case 'AndhraPradesh':
+vals = data.AndhraPradesh.split(",");
+break;
+case 'ArunachalPradesh':
+vals = data.ArunachalPradesh.split(",");
+break;
+case 'Assam':
+vals = data.Assam.split(",");
+break;
+case 'Bihar':
+vals = data.Bihar.split(",");
+break;
+case 'Chandigarh':
+vals = data.Chandigarh.split(",");
+break;
+case 'Chhattisgarh':
+vals = data.Chhattisgarh.split(",");
+break;
+case 'DadraNagarHaveli':
+vals = data.DadraNagarHaveli.split(",");
+break;
+case 'DamanDiu':
+vals = data.DamanDiu.split(",");
+break;
+case 'Delhi':
+vals = data.Delhi.split(",");
+break;
+case 'Goa':
+vals = data.Goa.split(",");
+break;
+case 'Gujarat':
+vals = data.Gujarat.split(",");
+break;
+case 'Haryana':
+vals = data.Haryana.split(",");
+break;
+case 'HimachalPradesh':
+vals = data.HimachalPradesh.split(",");
+break;
+case 'JammuKashmir':
+vals = data.JammuKashmir.split(",");
+break;
+case 'Jharkhand':
+vals = data.Jharkhand.split(",");
+break;
+case 'Karnataka':
+vals = data.Karnataka.split(",");
+break;
+case 'Kerala':
+vals = data.Kerala.split(",");
+break;
+case 'Lakshadweep':
+vals = data.Lakshadweep.split(",");
+break;
+case 'MadhyaPradesh':
+vals = data.MadhyaPradesh.split(",");
+break;
+case 'Maharashtra':
+vals = data.Maharashtra.split(",");
+break;
+case 'Manipur':
+vals = data.Manipur.split(",");
+break;
+case 'Meghalaya':
+vals = data.Meghalaya.split(",");
+break;
+case 'Mizoram':
+vals = data.Mizoram.split(",");
+break;
+case 'Nagaland':
+vals = data.Nagaland.split(",");
+break;
+case 'Orissa':
+vals = data.Orissa.split(",");
+break;
+case 'Pondicherry':
+vals = data.Pondicherry.split(",");
+break;
+case 'Punjab':
+vals = data.Punjab.split(",");
+break;
+case 'Rajasthan':
+vals = data.Rajasthan.split(",");
+break;
+case 'Sikkim':
+vals = data.Sikkim.split(",");
+break;
+case 'TamilNadu':
+vals = data.TamilNadu.split(",");
+break;
+case 'Tripura':
+vals = data.Tripura.split(",");
+break;
+case 'UttarPradesh':
+vals = data.UttarPradesh.split(",");
+break;
+case 'Uttaranchal':
+vals = data.Uttaranchal.split(",");
+break;
+case 'WestBengal':
+vals = data.WestBengal.split(",");
+break;
+case 'select':
+vals = ['Please choose from above'];
+}
+var $jsontwo = $(".citylist");
+$jsontwo.empty();
+$.each(vals, function(index, value) {
+$jsontwo.append("<option>" + value + "</option>");
+});
+});
+});
+});
+<!-- ================================ -->
+function displayme(input) {
+var file_size = $('.uploadimg')[0].files[0].size;
+if(file_size>2000000) {
+alert("File size is greater than 2MB");
+return false;
+}
+else
+{
+var reader = new FileReader();
+reader.onload = function (e) {
+$('#uploaded_image').attr('src', e.target.result);
+};
+reader.readAsDataURL(input.files[0]);
+return true;
+}
+}
+
+$(document).ready(function(){
+$('input.upload01').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile01").val(fileName);
+});
+$('input.upload02').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile02").val(fileName);
+});
+$('input.upload03').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile03").val(fileName);
+});
+$('input.upload001').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile001").val(fileName);
+});
+$('input.upload002').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile002").val(fileName);
+});
+$('input.upload003').change(function(e){
+var fileName = e.target.files[0].name;
+$(".uploadFile003").val(fileName);
+});
+});
+<!-- ================================ -->
+$(".closeit").click(function(){ $(".lightbox").hide();$("body").removeClass("modal-open"); })
+<!-- ================================ -->
+jQuery(function($){
+// Lightbox Triggers
+lightboxTrigger(".open-popup-link", ".popup-modal");
+});
+
+function lightboxTrigger(link, object) {
+var target = $(".open-popup-link").attr("href");
+$( window ).load( function(event) {
+event.preventDefault();
+$(target).wrap( "<div class='lightbox'></div>" );
+$(".lightbox").fadeIn(300, function() {
+$(target).fadeIn(0);
+$("body").addClass("modal-open");
+});
+
+$("body").on("click", function(event) {
+if(($(event.target).hasClass("lightbox") || $(event.target).hasClass("close")) && $(target).parent().hasClass("lightbox") ) {
+$(".lightbox").fadeOut(300, function() {
+$(target).hide(0);
+$(target).unwrap();
+});
+$("body").removeClass("modal-open");
+}
+});
+});
+
+$(".open-popup-link").on("click", function(event) {
+event.preventDefault();
+$(target).wrap( "<div class='lightbox'></div>" );
+$(".lightbox").fadeIn(300, function() {
+$(target).fadeIn(0);
+$("body").addClass("modal-open");
+});
+
+$("body").on("click", function(event) {
+if(($(event.target).hasClass("lightbox") || $(event.target).hasClass("close")) && $(target).parent().hasClass("lightbox") ) {
+$(".lightbox").fadeOut(300, function() {
+$(target).hide(0);
+$(target).unwrap();
+});
+$("body").removeClass("modal-open");
+}
+});
+
+});
+}
+<!-- ================================ -->
+$(function () {
+    $(".check_box").click(function () {
+        if ($(this).is(":checked")) {
+            $('.' + $(this).val()).closest('.hide_show').show();
+        } else {
+            $('.' + $(this).val()).closest('.hide_show').hide();
+        }
+    });
+});
+<!-- ================================ -->
+$(function () {
+$(".check_box1").click(function () {
+    if ($(this).is(":checked")) {
+        $('.' + $(this).val()).closest('.hide_show1').show();
+    } else {
+        $('.' + $(this).val()).closest('.hide_show1').hide();
+    }
+});
+});
+
+<!-- ================================ -->
+
+
+
+
+
+</script>
+<script>
+
+    $(document).ready(function(e) {
+if (window.File && window.FileList && window.FileReader) {
+$(".files").on("change", function(e) {
+var files = e.target.files,
+filesLength = files.length;
+for (var x = 0; x < filesLength; x++) {
+
+var f = files[x];
+
+var fileReader = new FileReader();
+fileReader.onload = (function(e) {
+var file = e.target;
+$("<span class=\"pip\">" +
+"<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+"<br/><span class=\"remove\">Remove image</span>" +
+"</span>").appendTo(".clinic-image-list");
+$(".remove").click(function(){
+$(this).parent(".pip").remove();
+});
+
+});
+fileReader.readAsDataURL(f);
+}
+
+});
+} else {
+alert("Your browser doesn't support")
+}
+});
+
+</script>
+ <script type="text/javascript">
+$(document).ready(function() {
+
+  $(".add-more2").click(function(){
+      var html = $(".copy2").html();
+      $(".after-add-more2").append(html);
+  });
+  $(".add-more3").click(function(){
+      var html = $(".copy3").html();
+      $(".after-add-more3").append(html);
+  });
+  $(".add-more4").click(function(){
+      var html = $(".copy4").html();
+      $(".after-add-more4").append(html);
+  });
+  $(".add-more5").click(function(){
+      var html = $(".copy5").html();
+      $(".after-add-more5").append(html);
+  });
+  $(".add-more6").click(function(){
+      var html = $(".copy6").html();
+      $(".after-add-more6").append(html);
+  });
+  $(".add-more7").click(function(){
+      var html = $(".copy7").html();
+      $(".after-add-more7").append(html);
+  });
+  $(".add-more01").click(function(){
+      var html = $(".copy01").html();
+      $(".after-add-more01").append(html);
+  });
+  $(".add-more02").click(function(){
+      var html = $(".copy02").html();
+      $(".after-add-more02").append(html);
+  });
+  $(".add-more03").click(function(){
+      var html = $(".copy03").html();
+      $(".after-add-more03").append(html);
+  });
+  $(".add-more04").click(function(){
+      var html = $(".copy04").html();
+      $(".after-add-more04").append(html);
+  });
+  $(".add-more05").click(function(){
+      var html = $(".copy05").html();
+      $(".after-add-more05").append(html);
+  });
+  $(".add-more06").click(function(){
+      var html = $(".copy06").html();
+      $(".after-add-more06").append(html);
+  });
+  $(".add-more07").click(function(){
+      var html = $(".copy07").html();
+      $(".after-add-more07").append(html);
+  });
+  $("body").on("click",".remove",function(){
+      $(this).closest(".control-group").remove();
+  });
+});
+</script>
+<link href="{% static '' %}admin-panel/css/datetimepicker.css" rel="stylesheet">
+<script src="{% static '' %}admin-panel/js/datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$(".add-more-fields").click(function(){
+$(".alarm").datetimepicker({
+pickDate: false,
+minuteStep: 5,
+pickerPosition: 'bottom-right',
+format: 'HH:ii p',
+autoclose: true,
+showMeridian: false,
+startView: 1,
+maxView: 1,
+});
+});
+$(".alarm").datetimepicker({
+pickDate: false,
+minuteStep: 5,
+pickerPosition: 'bottom-right',
+format: 'HH:ii p',
+autoclose: true,
+showMeridian: false,
+startView: 1,
+maxView: 1,
+});
+});
+</script>
+<script>
+    /* Credit:)
+https://getbootstrap.com
+https://kenwheeler.github.io/slick
+https://unsplash.it
+http://stackoverflow.com/a/25847520
+http://stackoverflow.com/a/34684385
+*/
+// Slick controls
+$('#popup-image-gallery').on('shown.bs.modal', function() {
+  $('.popup-slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    asNavFor: '.popup-slider-nav',
+    // adaptiveHeight: true,
+  });
+  $('.popup-slider-nav').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: '.popup-slider-for',
+    dots: false,
+    arrows: false,
+    focusOnSelect: true,
+    variableWidth: true,
+    centerMode: true,
+    infinite: true,
+  });
+});
+// Slick.js: Get current and total slides (ie. 3/5)
+var $status = $('.pagingInfo');
+var $slickElement = $('.popup-slider-for');
+
+$slickElement.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
+  //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+  var x = (currentSlide ? currentSlide : 0) + 1;
+  $status.text(x + '/' + slick.slideCount);
+});
+
+// Slick slider sync situation
+var slides = $(".popup-slider-for .slick-track > .slick-slide").length;
+$('.popup-slider-for').on('afterChange', function(event, slick, currentSlide, nextSlide) {
+  var inFocus = $('.popup-slider-for .slick-current').attr('data-slick-index');
+  $('.popup-slider-nav .slick-current').removeClass('slick-current');
+  $('.popup-slider-nav .slick-slide[data-slick-index="' + inFocus + '"]').trigger('click');
+});
+</script>
+
+<!--------Clinic upload script--------->
+<script>
+$('.upload-wrap input[type=file]').change(function(){
+    var id = $(this).attr("id");
+    var newimage = new FileReader();
+    newimage.readAsDataURL(this.files[0]);
+    newimage.onload = function(e){
+      $('.uploadpreview.' + id ).css('background-image', 'url(' + e.target.result + ')' );
+    }
+  });
+</script>
+{% include "doctor-panel/footer.html" %}

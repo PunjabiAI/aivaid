@@ -1,0 +1,492 @@
+<div class="col-xs-12 time-table">
+    <div>
+        <b>Sunday</b>
+        <span><label class="switch">
+                    <input type="checkbox" value="sunday" class="check_box1 chk1" data-ptag="sunday" checked="checked">
+                    <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer sunday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more1{{clinic_list.id}}">
+                <li>
+                    <input class="time-dropdown alarm" id="sunday_appt_time1{{clinic_list.id}}" type="text"
+                           name="sunday_appt_time1">
+                </li>
+                <li>
+                    <input class="time-dropdown alarm" type="text" id="sunday_appt_time2{{clinic_list.id}}"
+                           name="sunday_appt_time2" value="">
+                </li>
+            </div>
+
+            <li class="time-dropdown add-more-fields add-more1"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy1 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="sunday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="sunday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+                     var sunday_appt_time1 = {{ clinic_list.sunday_appt_time1|safe}};
+                     for (var x = 0; x < sunday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("sunday_appt_time1{{clinic_list.id}}").value =sunday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + sunday_appt_time1[x] + ']');
+                     }
+                     else{
+                      if(sunday_appt_time1[x] != ''){
+                            $(".after-add-more1{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="sunday_appt_time1{{clinic_list.id}}'+ x + '" name="sunday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="sunday_appt_time2{{clinic_list.id}}'+ x + '" name="sunday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("sunday_appt_time1{{clinic_list.id}}"+x).value =sunday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + sunday_appt_time1[x] + ']');
+                        }
+                     }
+                   }
+
+
+    </script>
+    <script>
+                     var sunday_appt_time2 = {{ clinic_list.sunday_appt_time2|safe}};
+                     for (var x = 0; x < sunday_appt_time2.length; ++x) {
+                     if(x == 0){
+                            document.getElementById("sunday_appt_time2{{clinic_list.id}}").value =sunday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + sunday_appt_time2[x] + ']');
+                     }
+                     else{
+                      if(sunday_appt_time2[x] != ''){
+                            document.getElementById("sunday_appt_time2{{clinic_list.id}}"+x).value =sunday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + sunday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                   $(".add-more1").click(function(){
+                    var html = $(".copy1").html();
+                    $(".after-add-more1{{clinic_list.id}}").append(html);
+                    });
+
+    </script>
+
+
+    <div><b>Monday</b> <span><label class="switch">
+				  <input type="checkbox" value="monday" class="check_box1 chk2" data-ptag="monday" checked="checked">
+				  <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer2 monday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more2{{clinic_list.id}}">
+                <li>
+                    <input class="time-dropdown alarm" type="text" id="monday_appt_time1{{clinic_list.id}}"
+                           name="monday_appt_time1" value="">
+                </li>
+                <li><input class="time-dropdown alarm" type="text" id="monday_appt_time2{{clinic_list.id}}"
+                           name="monday_appt_time2" value=""></li>
+            </div>
+            <li class="time-dropdown add-more-fields add-more2"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy2 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="monday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="monday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+    </div>
+    <script>
+                     var monday_appt_time1 = {{ clinic_list.monday_appt_time1|safe}};
+                     for (var x = 0; x < monday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("monday_appt_time1{{clinic_list.id}}").value =monday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + monday_appt_time1[x] + ']');
+                     }
+                     else{
+                      if(monday_appt_time1[x] != ''){
+                            $(".after-add-more2{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="monday_appt_time1{{clinic_list.id}}'+ x + '" name="monday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="monday_appt_time2{{clinic_list.id}}'+ x + '" name="monday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("monday_appt_time1{{clinic_list.id}}"+x).value =monday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + monday_appt_time1[x] + ']');
+                        }
+                     }
+
+                   }
+
+    </script>
+    <script>
+                     var monday_appt_time2 = {{ clinic_list.monday_appt_time2|safe}};
+                     for (var x = 0; x < monday_appt_time2.length; ++x) {
+                     if(x == 0){
+                            document.getElementById("monday_appt_time2{{clinic_list.id}}").value =monday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + monday_appt_time2[x] + ']');
+                     }
+                     else{
+                      if(monday_appt_time2[x] != ''){
+                            document.getElementById("monday_appt_time2{{clinic_list.id}}"+x).value =monday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + monday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                       $(".add-more2").click(function(){
+                        var html = $(".copy2").html();
+                        $(".after-add-more2{{clinic_list.id}}").append(html);
+                        });
+
+    </script>
+
+    <div><b>Tuesday</b> <span><label class="switch">
+				  <input type="checkbox" value="tuesday" class="check_box1 chk2" data-ptag="tuesday" checked="checked">
+				  <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer3 tuesday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more3{{clinic_list.id}}">
+                <li><input class="time-dropdown alarm" type="text" id="tuesday_appt_time1{{clinic_list.id}}"
+                           name="tuesday_appt_time1" value=""></li>
+                <li><input class="time-dropdown alarm" type="text" id="tuesday_appt_time2{{clinic_list.id}}"
+                           name="tuesday_appt_time2" value=""></li>
+            </div>
+            <li class="time-dropdown add-more-fields add-more3"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy3 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="tuesday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+    </div>
+    <script>
+                     var tuesday_appt_time1 = {{ clinic_list.tuesday_appt_time1|safe}};
+                     for (var x = 0; x < tuesday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("tuesday_appt_time1{{clinic_list.id}}").value =tuesday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + tuesday_appt_time1[x] + ']');
+                     }
+                     else{
+
+                      if(tuesday_appt_time1[x] != ''){
+
+                            $(".after-add-more3{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="tuesday_appt_time1{{clinic_list.id}}'+ x + '" name="tuesday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="tuesday_appt_time2{{clinic_list.id}}'+ x + '" name="tuesday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("tuesday_appt_time1{{clinic_list.id}}"+x).value =tuesday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + tuesday_appt_time1[x] + ']');
+                        }
+                     }
+                   }
+
+
+    </script>
+    <script>
+                   var tuesday_appt_time2 = {{ clinic_list.tuesday_appt_time2|safe}};
+                   for (var x = 0; x < tuesday_appt_time2.length; ++x) {
+                    if(x == 0){
+                            document.getElementById("tuesday_appt_time2{{clinic_list.id}}").value =tuesday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + tuesday_appt_time2[x] + ']');
+                    }
+                     else{
+                      if(tuesday_appt_time2[x] != ''){
+                            document.getElementById("tuesday_appt_time2{{clinic_list.id}}"+x).value =tuesday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + tuesday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                      $(".add-more3").click(function(){
+                        var html = $(".copy3").html();
+                        $(".after-add-more3{{clinic_list.id}}").append(html);
+                        });
+
+    </script>
+
+
+    <div><b>Wednesday</b> <span><label class="switch">
+				  <input type="checkbox" value="Wednesday" class="check_box1 chk2" data-ptag="Wednesday"
+                         checked="checked">
+				  <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer4 Wednesday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more4{{clinic_list.id}}">
+                <li>
+                    <input class="time-dropdown alarm" type="text" id="wednesday_appt_time1{{clinic_list.id}}"
+                           name="wednesday_appt_time1" value=""></li>
+                <li><input class="time-dropdown alarm" id="wednesday_appt_time2{{clinic_list.id}}" type="text"
+                           name="wednesday_appt_time2" value=""></li>
+            </div>
+            <li class="time-dropdown add-more-fields add-more4"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy4 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="wednesday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+                     var wednesday_appt_time1 = {{ clinic_list.wednesday_appt_time1|safe}};
+                     for (var x = 0; x < wednesday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("wednesday_appt_time1{{clinic_list.id}}").value =wednesday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + wednesday_appt_time1[x] + ']');
+                     }
+                     else{
+
+                      if(wednesday_appt_time1[x] != ''){
+
+                            $(".after-add-more4{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="wednesday_appt_time1{{clinic_list.id}}'+ x + '" name="wednesday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="wednesday_appt_time2{{clinic_list.id}}'+ x + '" name="wednesday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("wednesday_appt_time1{{clinic_list.id}}"+x).value =wednesday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + wednesday_appt_time1[x] + ']');
+                        }
+                     }
+                   }
+
+
+    </script>
+    <script>
+                   var wednesday_appt_time2 = {{ clinic_list.wednesday_appt_time2|safe}};
+                   for (var x = 0; x < wednesday_appt_time2.length; ++x) {
+                    if(x == 0){
+                            document.getElementById("wednesday_appt_time2{{clinic_list.id}}").value =wednesday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + wednesday_appt_time2[x] + ']');
+                    }
+                     else{
+                      if(wednesday_appt_time2[x] != ''){
+                            document.getElementById("wednesday_appt_time2{{clinic_list.id}}"+x).value =wednesday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + wednesday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                      $(".add-more4").click(function(){
+                        var html = $(".copy4").html();
+                        $(".after-add-more4{{clinic_list.id}}").append(html);
+                        });
+
+    </script>
+
+
+    <div><b>Thursday</b> <span><label class="switch">
+				  <input type="checkbox" value="Thursday" class="check_box1 chk2" data-ptag="Thursday"
+                         checked="checked">
+				  <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer5 Thursday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more5{{clinic_list.id}}">
+                <li>
+                    <input class="time-dropdown alarm" type="text" id="thursday_appt_time1{{clinic_list.id}}"
+                           name="thursday_appt_time1" value=""></li>
+                <li><input class="time-dropdown alarm" type="text" id="thursday_appt_time2{{clinic_list.id}}"
+                           name="thursday_appt_time2" value=""></li>
+            </div>
+            <li class="time-dropdown add-more-fields add-more5"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy5 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="thursday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+                     var thursday_appt_time1 = {{ clinic_list.thursday_appt_time1|safe}};
+                     for (var x = 0; x < thursday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("thursday_appt_time1{{clinic_list.id}}").value =thursday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + thursday_appt_time1[x] + ']');
+                     }
+                     else{
+
+                      if(thursday_appt_time1[x] != ''){
+
+                            $(".after-add-more5{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="thursday_appt_time1{{clinic_list.id}}'+ x + '" name="thursday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="thursday_appt_time2{{clinic_list.id}}'+ x + '" name="thursday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("thursday_appt_time1{{clinic_list.id}}"+x).value =thursday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + thursday_appt_time1[x] + ']');
+                        }
+                     }
+                   }
+
+
+    </script>
+    <script>
+                   var thursday_appt_time2 = {{ clinic_list.thursday_appt_time2|safe}};
+                   for (var x = 0; x < thursday_appt_time2.length; ++x) {
+                    if(x == 0){
+                            document.getElementById("thursday_appt_time2{{clinic_list.id}}").value =thursday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + thursday_appt_time2[x] + ']');
+                    }
+                     else{
+                      if(thursday_appt_time2[x] != ''){
+                            document.getElementById("thursday_appt_time2{{clinic_list.id}}"+x).value =thursday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + thursday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                      $(".add-more5").click(function(){
+                        var html = $(".copy5").html();
+                        $(".after-add-more5{{clinic_list.id}}").append(html);
+                        });
+
+    </script>
+
+
+    <div><b>Friday</b> <span><label class="switch">
+				  <input type="checkbox" value="Friday" class="check_box1 chk2" data-ptag="Friday" checked="checked">
+				  <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer6 Friday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more6{{clinic_list.id}}">
+                <li>
+                    <input class="time-dropdown alarm" type="text" id="friday_appt_time1{{clinic_list.id}}"
+                           name="friday_appt_time1" value=""></li>
+                <li><input class="time-dropdown alarm" type="text" id="friday_appt_time2{{clinic_list.id}}"
+                           name="friday_appt_time2" value=""></li>
+            </div>
+            <li class="time-dropdown add-more-fields add-more6"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy6 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="friday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="friday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+                     var friday_appt_time1 = {{ clinic_list.friday_appt_time1|safe}};
+                     for (var x = 0; x < friday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("friday_appt_time1{{clinic_list.id}}").value =friday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + friday_appt_time1[x] + ']');
+                     }
+                     else{
+
+                      if(friday_appt_time1[x] != ''){
+
+                            $(".after-add-more6{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="friday_appt_time1{{clinic_list.id}}'+ x + '" name="friday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="friday_appt_time2{{clinic_list.id}}'+ x + '" name="friday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("friday_appt_time1{{clinic_list.id}}"+x).value =friday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + friday_appt_time1[x] + ']');
+                        }
+                     }
+                   }
+
+
+    </script>
+    <script>
+                   var friday_appt_time2 = {{ clinic_list.friday_appt_time2|safe}};
+                   for (var x = 0; x < friday_appt_time2.length; ++x) {
+                    if(x == 0){
+                            document.getElementById("friday_appt_time2{{clinic_list.id}}").value =friday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + friday_appt_time2[x] + ']');
+                    }
+                     else{
+                      if(friday_appt_time2[x] != ''){
+                            document.getElementById("friday_appt_time2{{clinic_list.id}}"+x).value =friday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + friday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                      $(".add-more6").click(function(){
+                        var html = $(".copy6").html();
+                        $(".after-add-more6{{clinic_list.id}}").append(html);
+                        });
+
+    </script>
+
+
+    <div><b>Saturday</b> <span><label class="switch">
+    <input type="checkbox" value="Saturday" class="check_box chk2" data-ptag="Saturday" checked>
+    <span class="slider round"></span></label></span>
+        <ul class="hide_show1 TextBoxContainer7 Saturday">
+            <li><span class="time-dropdown">Open</span></li>
+            <div class="control-group after-add-more7{{clinic_list.id}}">
+                <li><input class="time-dropdown alarm" type="text" id="saturday_appt_time1{{clinic_list.id}}"
+                           name="saturday_appt_time1" value=""></li>
+                <li><input class="time-dropdown alarm" type="text" id="saturday_appt_time2{{clinic_list.id}}"
+                           name="saturday_appt_time2" value=""></li>
+            </div>
+            <li class="time-dropdown add-more-fields add-more7"><a>Add Hours</a></li>
+        </ul>
+        <div class="copy7 hide">
+            <div class="control-group input-group">
+                <ul>
+                    <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time1" value=""></li>
+                    <li><input class="time-dropdown alarm" type="text" name="saturday_appt_time2" value=""></li>
+                </ul>
+                <button class="btn btn-primary remove" type="button">X</button>
+            </div>
+        </div>
+    </div>
+    <script>
+                     var saturday_appt_time1 = {{ clinic_list.saturday_appt_time1|safe}};
+                     for (var x = 0; x < saturday_appt_time1.length; ++x) {
+                     if(x == 0){
+                          document.getElementById("saturday_appt_time1{{clinic_list.id}}").value =saturday_appt_time1[x];
+                          //alert('IF value at index [' + x + '] is: [' + saturday_appt_time1[x] + ']');
+                     }
+                     else{
+
+                      if(saturday_appt_time1[x] != ''){
+
+                            $(".after-add-more7{{clinic_list.id}}").append('<div class="control-group input-group"><ul><li><input class="time-dropdown alarm"  type="text" id="saturday_appt_time1{{clinic_list.id}}'+ x + '" name="saturday_appt_time1" value=""></li><li><input class="time-dropdown alarm" type="text" id="saturday_appt_time2{{clinic_list.id}}'+ x + '" name="saturday_appt_time2" value=""></li></ul><button class="btn btn-primary remove" type="button">X</button></div>');
+                            document.getElementById("saturday_appt_time1{{clinic_list.id}}"+x).value =saturday_appt_time1[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + saturday_appt_time1[x] + ']');
+                        }
+                     }
+                   }
+
+
+    </script>
+    <script>
+                   var saturday_appt_time2 = {{ clinic_list.saturday_appt_time2|safe}};
+                   for (var x = 0; x < saturday_appt_time2.length; ++x) {
+                    if(x == 0){
+                            document.getElementById("saturday_appt_time2{{clinic_list.id}}").value =saturday_appt_time2[x];
+                            //alert('IF value at index [' + x + '] is: [' + saturday_appt_time2[x] + ']');
+                    }
+                     else{
+                      if(saturday_appt_time2[x] != ''){
+                            document.getElementById("saturday_appt_time2{{clinic_list.id}}"+x).value =saturday_appt_time2[x];
+                            //alert(' ELSE IF value at index [' + x + '] is: [' + saturday_appt_time2[x] + ']');
+                        }
+                     }
+                   }
+
+    </script>
+    <script>
+                      $(".add-more7").click(function(){
+                        var html = $(".copy7").html();
+                        $(".after-add-more7{{clinic_list.id}}").append(html);
+                        });
+
+    </script>
+
+
+</div>

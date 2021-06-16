@@ -1,0 +1,160 @@
+{% load static %}
+{% include "header.html" %}
+<section id="newconsultation">
+	<div class="container-fluid">
+		  <div class="row">
+		      <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+				<form class="steps step2 consult" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
+					<fieldset>
+						<h3 class="fs-title">New Consultancy :</h3>
+							<div class="consultancy_box">
+								<div class="inner_box">
+									<h3>Explain Your Health Problem</h3>
+										<div class="row">
+											<div class="col-md-12">
+												<label for="problem">Explain your problem in detail  *</label>
+												<textarea id="problem" placeholder="Eg-I have been sufring from fevar" name="department" data-rule-required="true" data-msg-required="Please enter detail"></textarea>
+												<span class="error1" style="display: none;">
+													<i class="error-log fa fa-exclamation-triangle"></i>
+												</span>
+												<p class="suggestion">Min 75 characters</p>
+											</div>
+											<div class="col-md-12">
+												<label for="shorttitle">Please write a short title to your problem  *</label>
+												<input id="shorttitle" type="text"  placeholder="Eg-Consant Headache" name="shorttitle" data-rule-required="true" data-msg-required="Please enter title">
+												<span class="error1" style="display: none;">
+													<i class="error-log fa fa-exclamation-triangle"></i>
+												</span>
+											</div>
+											<div class="col-md-12">
+											  <label for="select1">Select problem area that matches your description  *</label>
+											  <select id="select1" name="select1" required="required" data-rule-required="true" data-msg-required="Please select one" >
+												<option value="">Select One..</option>
+												<option>Women's Sexual Health</option>
+												<option>Bones and Joint Problems</option>
+												<option>Physiotherapy</option>
+												<option>Mental Health</option>
+											  </select>
+											  <span class="error1" style="display: none;">
+												  <i class="error-log fa fa-exclamation-triangle"></i>
+											  </span>
+											   <i class="fa fa-angle-down"></i>
+											</div>
+										</div>
+								</div>
+							</div>
+						<input type="button" data-page="1" name="next" class="next action-button" value="Next" />
+					</fieldset>
+					<fieldset>
+						<h3 class="fs-title">New Consultancy :</h3>
+							<div class="consultancy_box">
+								<div class="inner_box">
+									<h3>Enter Patient Information</h3>
+									    <div class="row">
+											<div class="col-md-12">
+											  <label for="lastname">Enter Your Name *</label>
+											  <input id="lastname" name="last-name" required="required" type="text" value="" placeholder="" data-rule-required="true" data-msg-required="Please include your name" >
+											  <span class="error1" style="display: none;">
+												  <i class="error-log fa fa-exclamation-triangle"></i>
+											  </span>
+											</div>
+											<div class="col-md-12">
+											  <label for="email">Enter Your Email Address *</label>
+											  <input id="email" name="email" required="required" type="email" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter a valid email address." >
+											  <span class="error1" style="display: none;">
+												  <i class="error-log fa fa-exclamation-triangle"></i>
+											  </span>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+											  <label for="Mobile">Enter Your Mobile No. *</label>
+											  <input id="Mobile" name="Mobile" required="required" type="text" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter your mobile no." >
+											  <span class="error1" style="display: none;">
+												  <i class="error-log fa fa-exclamation-triangle"></i>
+											  </span>
+											</div>
+											<div class="col-md-6">
+											  <label for="age">Age *</label>
+											  <select id="age" name="age" required="required" data-rule-required="true" data-msg-required="Please select your age" >
+												<option value="">Select your age ..</option>
+												<option>Below 18</option>
+												<option>18-30 yr</option>
+												<option>30-50 yr</option>
+												<option>Above 50</option>
+											  </select>
+											  <span class="error1" style="display: none;">
+												  <i class="error-log fa fa-exclamation-triangle"></i>
+											  </span>
+											   <i class="fa fa-angle-down"></i>
+											</div>
+											<div class="col-md-6">
+												<label for="gender">Gender *</label>
+												<div id="gender" name="gender" class="input-group" required="required" data-rule-required="true" data-msg-required="Please select your age">
+												  <input type="radio" name="gender" value="male" id="gender-male"/>
+												  <label for="gender-male">Male</label>
+												  <input type="radio" name="gender" value="female" id="gender-female"/>
+												  <label for="gender-female">Female</label>
+												</div>
+												<span class="error1" style="display: none;">
+												  <i class="error-log fa fa-exclamation-triangle"></i>
+											  </span>
+											</div>
+										</div>
+								</div>
+							</div>
+						    <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
+							<input type="button" data-page="2" name="next" class="next action-button" value="Next" />	
+					</fieldset> 
+					<fieldset>
+						<h3 class="fs-title">New Consultancy :</h3>
+							<div class="consultancy_box">
+								<div class="inner_box">
+									<h3>Select Consultation Type</h3>
+									   <div class="row showradio">
+											<div class="col-md-6">
+												<div class="selecttype">
+													<input type="radio" id="Consultationtype"  name="Consultationtype" required="required" data-rule-required="true" data-msg-required="Please Select Consultation Type "/>
+													<span class="error1" style="display: none;">
+														<i class="error-log fa fa-exclamation-triangle"></i>
+													</span>
+													<h4><label for="Consultationtype">Video or Voice Call</label></h4>
+											    </div>
+												<span class="fees">( Rs.350 )</span>
+												<ul>
+													<li>Voice Calling</li>
+													<li>Video Calling</li>
+												</ul>
+											</div>
+											<div class="col-md-6">
+												<div class="selecttype">
+													<input type="radio" name="Consultationtype" required="required" data-rule-required="true" data-msg-required="Please select your age"/>
+													<h4>Visit Clinic</h4>
+													<span class="error1" style="display: none;">
+														<i class="error-log fa fa-exclamation-triangle"></i>
+													</span>
+												</div>
+												<span class="fees">( Free )</span>
+												<ul>
+													<li>No Video Calling</li>
+													<li>No Voice Calling</li>
+												</ul>
+											</div>
+									   </div>
+								</div>
+							</div>
+								<input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" />
+								<input id="submit" class="hs-button primary large action-button next" type="submit" value="Submit">
+					</fieldset>
+				</form>
+			</div>	  
+	    </div>
+	</div>
+</section>
+	<script>
+      $( function() {
+		$( ".datepicker" ).datepicker();
+		} );
+    </script>
+
+{% include "footer.html" %}

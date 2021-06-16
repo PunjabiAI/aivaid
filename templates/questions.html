@@ -1,0 +1,121 @@
+{% load static %}
+{% include 'header.html' %}
+<div class="container" id="innertabs">
+<div class="row">
+    <section>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="disabled">
+                        <a title="Introduction">
+                            <span class="round-tab">
+                               <i class="fas fa-info"></i>
+                            </span>
+                        </a>
+                        <div class="text-center"><span class="tabheading">Introduction</span></div>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a title="Patient">
+                            <span class="round-tab">
+                               <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                        <div class="text-center"><span class="tabheading">Patient</span></div>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a title="Symptom">
+                            <span class="round-tab">
+                                <i class="fa fa-stethoscope"></i>
+                            </span>
+                        </a>
+                        <div class="text-center"><span class="tabheading">Symptom</span></div>
+                    </li>
+                      <li role="presentation" class="disabled">
+                        <a title="Location">
+                            <span class="round-tab">
+                               <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </span>
+                        </a>
+                        <div class="text-center"><span class="tabheading">Location</span></div>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a title="Questions">
+                            <span class="round-tab">
+								<i class="fas fa-question"></i>
+                            </span>
+                        </a>
+                        <div class="text-center"><span class="tabheading">Questions</span></div>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a title="Complete">
+                            <span class="round-tab">
+                                <i class="far fa-list-alt"></i>
+                            </span>
+                        </a>
+                        <div class="text-center"><span class="tabheading">Result</span></div>
+                    </li>
+                </ul>
+            </div>
+            <!--ggggggggggggggggggggggggggggg-->
+<div class="add_ajax_code">
+
+            <form role="form" method="post">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step5">
+                        <h3>Do you have any of the following symptoms?</h3>
+                        <!--<p>Selection is required !</p>-->
+                        <div class="question1">{{listJinja_All}}</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name" onclick ="clickss()" name="radio_name" value="1" id="yes"/>
+                            <label for="yes">Yes</label>
+                            <input type="radio" class="question_name" onclick ="clickss()" name="radio_name" value="0" id="no"/>
+                            <label for="no">No</label>
+                        </div>
+                        <ul class="list-inline">
+                                <li><a href="../locations"><button type="button" class="btn btn-default prev-step">Previous</button></a></li>
+                                <!--<li><button type="button" class="btn btn-primary next-step" onclick ="clickss()" >Save and continue</button></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+    <script>
+
+   function clickss() {
+        var user = $('.question_name').val();
+        var check = $("input[name='question_name']:checked").val();
+
+        $.ajax({
+            url: '/questions',
+            data: $('form').serialize(),
+            type: 'POST',
+            success: function(response) {
+                    $(".add_ajax_code").html(response);
+
+            },
+            error: function(error) {
+                console.log(error);
+                             $(".add_ajax_code").html(error);
+        }
+    });
+
+}
+
+</script>
+
+</div>
+<!--ggggggggggggggggggggggggggggg-->
+
+
+
+        </div>
+    </section>
+</div>
+</div>
+<script src="{% static '' %}js/progress.js"></script>
+{% include 'footer.html' %}

@@ -1,0 +1,142 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="notice-list">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                </div>
+                <h1>Notice List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="panel-header">
+                            <div class="col-sm-4">
+                                <div class="dataTables_length">
+                                    <button id="csvdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        CSV
+                                    </button>
+                                    <button id="pdfdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        PDF
+                                    </button>
+                                    <button id="btnexcel" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        Excel
+                                    </button>
+                                    <button id="btnprint" class="btn btn-default buttons-excel buttons-html5 btn-sm">
+                                        Print
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="getData">
+                            <thead>
+                            <tr>
+                                <th>Serial No.</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                {% if notification_List_Patient %}
+                                {% for notification_List_Patient in notification_List_Patient %}
+                                <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{notification_List_Patient.0.date}}</td>
+                                <td>{{notification_List_Patient.0.time}}</td>
+                                <td>Dr.{{notification_List_Patient.1}}</td>
+
+                                <td>{{notification_List_Patient.0.notification}}</td>
+                                    </tr>
+                                {% endfor %}
+                                {% endif %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static '' %}js/get-data.js"></script>
+<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+
+
+</script>
+{% include 'patient-admin/footer.html' %}

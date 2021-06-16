@@ -1,0 +1,85 @@
+ @media only screen and (max-width : 768px) {
+.toggle-menu{
+  display:block !important;
+}
+.cross-toggle{
+	display:block !important;
+}
+.statistics .box {
+margin-bottom: 25px;
+}
+.list_header .header-icon {
+font-size: 45px;
+width: 50px;
+
+}
+ .list_header .header-title h1 {
+	font-size: 18px;
+}
+.dataTables_length label{
+	font-size:13px;
+}
+.step-content-body .container{
+	padding:1em 1em 2em 1em !important;
+}
+.time-table li{
+	padding:0px;
+}
+.head,legend {
+    font-size: 15px;
+}
+.h3, h3 {
+    font-size: 16px;
+}
+.list_header {
+    padding: 12px 6px;
+}
+#doctor-profile .profile-tab {
+    padding: 5px 0px 25px;
+}
+.side-nav {
+  z-index:9999;
+}
+div#getData_filter {
+    float: left;
+}
+}
+ @media screen and (max-width:990px){
+.upload-proff {
+    width: 100%;
+}
+.basic_detail .frm, .basic_detail .frm01 {
+    padding: 5px;
+}
+}
+@media screen and (min-width: 780px) and (max-width:1920px){
+	aside{
+		display:block !important;
+	}
+}
+@media screen and (min-width:1920px){
+#doctor-profile .displayerWrapper {
+    height: 320px;
+	}
+	#doctor-profile .preview {
+		
+		height: 320px;
+		
+	}
+}
+@media screen and (min-width:996px) and (max-width:1400px){
+	#doctor-profile .displayerWrapper {
+    height:170px;
+	}
+	#doctor-profile .preview {
+		
+		height:170px;
+		
+	}
+	.basic_detail {
+    width: 93%;
+}
+.patient_profile .innercontainer {
+	width: 92%!important;
+}
+}

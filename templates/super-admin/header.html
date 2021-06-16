@@ -1,0 +1,184 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static '' %}super-admin/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '' %}super-admin/css/mycss.css">
+    <link rel="stylesheet" href="{% static '' %}super-admin/css/responsive.css">
+    <link rel="stylesheet" href="{% static '' %}super-admin/css/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <script src='{% static "" %}super-admin/js/jquery-latest.js'></script>
+    <script src="{% static '' %}super-admin/js/bootstrap.min.js"></script>
+    <script src='{% static "" %}super-admin/js/dashboard.js'></script>
+    <script src='{% static "" %}super-admin/js/jquery.min.js'></script>
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc'></script>
+    <script src="{% static '' %}super-admin/js/index.js"></script>
+</head>
+<body>
+<aside class="side-nav">
+    <div class="cross-toggle" style="display:none;">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+    </div>
+    <div class="heading">
+        <img src="{% static '' %}super-admin/img/logo.png" alt="" class="img-responsive">
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Type here"><i class="fa fa-search"></i>
+    </div>
+    <ul class="categories">
+        <li><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="{% url 'superuser:dashboard' %}"
+                                                                  class="drop_hide" data-id="contents"> Dashboard</a>
+        </li>
+        <li><i class="far fa-user"></i><a href="{% url 'superuser:doctorlist' %}" class="drop_hide">Doctor list</a></li>
+        <li><i class="fas fa-user"></i><a href="{% url 'superuser:patientlist' %}" class="drop_hide"> Patient list</a>
+        </li>
+        <li><i class="fa fa-list-alt" aria-hidden="true"></i><a href="{% url 'superuser:hospitallist' %}"
+                                                                data-id="profile" class="drop_hide"> Hospital list</a>
+        </li>
+        <li><i class="fa fa-list-alt"></i><a href="{% url 'superuser:lablist' %}" class="drop_hide"> Lab list</a></li>
+        <li><i class="fa fa-list-alt" aria-hidden="true"></i><a href="{% url 'superuser:chemistlist' %}"
+                                                                class="drop_hide"> Chemist list</a></li>
+        <li><i class="fa fa-list-alt"></i><a href="{% url 'superuser:cliniclist' %}" class="drop_hide"> Clinic
+            Detail</a></li>
+        <li><i class="fa fa-list-alt" aria-hidden="true"></i> <a href=" "> Category</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="{% url 'superuser:category' %}">Add Category</a></li>
+                <li><a href="{% url 'superuser:categorylist' %}">Category list</a></li>
+            </ul>
+        </li>
+        <li><i class="fa fa-rss"></i> <a href=" "> Blogs</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="{% url 'superuser:addblog' %}">Add blog</a></li>
+                <li><a href="{% url 'superuser:bloglist' %}">Blog list</a></li>
+            </ul>
+        </li>
+
+        <li><i class="fas fa-exchange-alt"></i><a href=""> Transaction</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="Todaytransection.html">Today</a></li>
+                <li><a href="Alltransectionlist.html">All</a></li>
+            </ul>
+        </li>
+        <li><i class="fas fa-calendar-alt" aria-hidden="true"></i><a href="{% url 'superuser:appointmentlist' %}"
+                                                                     class="drop_hide"> Appointments</a>
+        </li>
+        <li><i class="fas fa-bell" aria-hidden="true"></i><a href=""> Notification</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="">Push notifications</a></li>
+                <li><a href="">Promotional SMS </a>
+                    <ul class="side-nav-dropdown">
+                        <li><a href="Sendsms.html">Send sms</a></li>
+                        <li><a href="Outbox.html">Outbox</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Promotional Emails </a>
+                    <ul class="side-nav-dropdown">
+                        <li><a href="Promotionemail.html">Send Mail</a></li>
+                        <li><a href="Mailoutbox.html">Outbox</a></li>
+                    </ul>
+                </li>
+                <li><a href="Notification.html">Notification List </a></li>
+            </ul>
+        </li>
+
+    </ul>
+</aside>
+<div id="contents">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="toggle-menu" style="display:none;">
+                <div class="toggle-icon"></div>
+                <div class="toggle-icon"></div>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <i class="fa fa-align-right"></i>
+                </button>
+                <a class="navbar-brand" href="{% url 'superuser:dashboard' %}">Super Admin<span class="main-color"> Dashboard</span></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">My profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><img src="{% static '' %}super-admin/img/patient-profile.jpg" alt=""
+                                     class="img-responsive img-circle profilepic"><h4>Mr.{{request.user.first_name}}
+                                {{request.user.last_name}}<br></h4>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="Accountsettings.html"><i class="fa fa-key fw" aria-hidden="true"></i> Change
+                                Password</a></li>
+                            <li><a href="Accountsettings.html"><i class="fa fa-user-md fw" aria-hidden="true"></i>
+                                Setting</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="../../logout"><i class="fas fa-power-off fw"></i> Log out</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-comments"></i><span>23</span></a>
+                        <ul class="dropdown-menu notification_list msges">
+                            <li><a href="#"><h3 class="notify_header"> Messages</h3></a></li>
+                            <li role="separator" class="divider"></li>
+                            <div class="clearfix"></div>
+                            <li><a href="#"><img src="{% static '' %}super-admin/img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">Just Now </p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="{% static '' %}super-admin/img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">16 mins ago</p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="{% static '' %}super-admin/img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">23 seconds ago</p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="{% static '' %}super-admin/img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">20 mins ago</p>
+                            </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" class="text-left view-all">View All Messages</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-bell"></i><span>98</span></a>
+                        <ul class="dropdown-menu notification_list">
+                            <li><a href="#"><h3 class="notify_header"> Notifications</h3></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Neha is now following you
+                                <p class="notice_tm">Just Now</p>
+                            </a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-user-plus"></i> 20 new member joined
+                                <p class="notice_tm">16 mins ago</p>
+                            </a></li>
+                            <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Manya Changed Name
+                                <p class="notice_tm">23 seconds ago</p>
+                            </a></li>
+                            <li><a href="#"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Warning
+                                <p class="notice_tm">20 mins ago</p>
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="notification.html" class="text-left view-all">View All Notification</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

@@ -1,0 +1,159 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="appointment-list">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                </div>
+                <h1>Appointment List</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="panel-header">
+                            <div class="col-sm-4">
+                                <div class="dataTables_length">
+                                    <button id="csvdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        CSV
+                                    </button>
+                                    <button id="pdfdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        PDF
+                                    </button>
+                                    <button id="btnexcel" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        Excel
+                                    </button>
+                                    <button id="btnprint" class="btn btn-default buttons-excel buttons-html5 btn-sm">
+                                        Print
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="getData">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Doctor Name</th>
+                                <th>Payment</th>
+                                <th>Time</th>
+                                <th>Clinic Name</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for appointment_list in appointment_list %}
+                            <tr>
+                                <td>{{appointment_list.date_of_appointment}}</td>
+                                <td>{{appointment_list.doctor.doctor_profile_id}}</td>
+                                <td>{{appointment_list.payment}}</td>
+                                <td>{{appointment_list.start_time}}{{appointment_list.end_time}}</td>
+                                <td>{{appointment_list.clinic.Cname}}</td>
+
+                                {% if appointment_list.status == None %}
+                                <td>
+                                    <a href="">
+                                        <button type="submit" class="btn btn default custom padd_btn">Reschedule
+                                        </button>
+                                    </a>
+                                    <a href="../delete-patient-Appointment/{{appointment_list.id}}">
+                                        <button type="submit" class="btn btn default custom">Cancel appointment</button>
+                                    </a>
+                                </td>
+                                {% else %}
+                                <td>{{appointment_list.status}}</td>
+                                {% endif %}
+
+                            </tr>
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+
+
+
+
+
+</script>
+<script src="{% static '' %}js/get-data.js"></script>
+{% include 'patient-admin/footer.html' %}

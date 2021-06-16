@@ -1,0 +1,57 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="appointment-list">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-comments"></i>
+                </div>
+                <h1>Online Consultancy</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                <div class="tab">
+                    <button class="btn btn-primary tablinks active" onclick="openCity(event, 'free')">Free</button>
+                    <button class="btn btn-primary tablinks" onclick="openCity(event, 'paid')">Paid</button>
+                </div>
+                <div id="free" class="tabcontent active">
+                    <img src="{% static '' %}admin-panel/images/consultation.png" class="img-responsive consultimg" alt="consultation"/>
+                    <div class="text-center">
+                        <p>You do not have any consultations yet.</p>
+                        <a href="../find-doctor">
+                            <button class="btn btn-info" type="submit">Ask a Doctor</button>
+                        </a>
+                    </div>
+                </div>
+                <div id="paid" class="tabcontent" style="display:none;">
+                    <img src="{% static '' %}admin-panel/images/consultation.png" class="img-responsive consultimg"/>
+                    <div class="text-center">
+                        <p>You do not have any consultations yet.</p>
+                        <a href="../find-doctor">
+                            <button class="btn btn-info" type="submit">Ask a Doctor</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+</script>
+{% include 'patient-admin/footer.html' %}

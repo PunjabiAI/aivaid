@@ -1,0 +1,134 @@
+{% include 'header.html' %}
+		<section id="Promotionalemail">
+			<div class="container-fluid">
+				<div class="row list_header">
+					<div class="col-md-12 header-title">
+						<div class="header-icon">
+							<i class="fa fa-envelope"></i> 
+						</div>
+						<h1>Sent Mail</h1>
+					</div>
+				</div>
+				<div class="addbox">
+					<div class="row">
+						<div class="col-md-12">
+							<label>Send To:-</label>
+								<div class="input-group input-group-icon" required >
+									<select type="text" >
+										<option>Doctor</option>
+										<option>Patient</option>
+										<option>Other</option>
+									</select>
+									<i class="fa fa-angle-down"></i>
+								</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>Send From:-</label>
+							<input type="text" placeholder="Enter email id"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+						<label>Message:-</label>
+							<textarea id="elm1" name="area"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-success">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+	});
+	</script>
+		<script src='http://cdn.tinymce.com/4/tinymce.min.js'></script>
+		<script src='js/emailbox.js'></script>
+
+    <script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+		
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+			
+		});
+	});	 
+	</script>
+</body>
+</html>

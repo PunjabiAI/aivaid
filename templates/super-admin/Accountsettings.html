@@ -1,0 +1,320 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/mycss.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/jquery-ui.css"/>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+ 
+  </head>
+<body>
+   <aside class="side-nav">
+		<div class="cross-toggle" style="display:none;">
+			<div class="bar1"></div>
+			<div class="bar2"></div>
+		</div>
+        <div class="heading">
+			<img src="img/logo.png" alt="" class="img-responsive">
+		</div>
+		<div class="search">
+			<input type="text" placeholder="Type here"><i class="fa fa-search"></i>
+		</div>
+		<ul class="categories">
+			<li><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="dashboard.html" class="drop_hide" data-id="contents"> Dashboard</a></li>
+			<li><i class="far fa-user"></i><a href="Doctorlist.html" class="drop_hide">Doctor list</a></li>
+			<li><i class="fas fa-user"></i><a href="Patientlist.html" class="drop_hide"> Patient list</a></li>
+			<li><i class="fa fa-list-alt" aria-hidden="true"></i><a href="Hospitallist.html" data-id="profile" class="drop_hide"> Hospital list</a></li>
+			<li><i class="fa fa-list-alt"></i><a href="Lablist.html" class="drop_hide"> Lab list</a></li>
+			<li><i class="fa fa-list-alt" aria-hidden="true"></i><a href="Chemistlist.html" class="drop_hide"> Chemist list</a></li>
+			<li><i class="fa fa-list-alt"></i><a href="Cliniclist.html" class="drop_hide"> Clinic Detail</a></li>
+			<li><i class="fas fa-exchange-alt"></i><a href=""> Transaction</a>
+				<ul class="side-nav-dropdown">
+					<li><a href="Todaytransection.html">Today</a></li>
+					<li><a href="Alltransectionlist.html">All</a></li>
+				</ul>
+			</li>
+			<li><i class="fas fa-calendar-alt" aria-hidden="true"></i><a href="Appointmentlist.html" class="drop_hide"> Appointments</a>
+			</li>
+			<li><i class="fas fa-bell" aria-hidden="true"></i><a href=""> Notification</a>
+				<ul class="side-nav-dropdown">
+					<li><a href="">Push notifications</a></li>
+					<li><a href="">Promotional SMS </a>
+						<ul class="side-nav-dropdown">
+							<li><a href="Sendsms.html">Send sms</a></li>
+							<li><a href="Outbox.html">Outbox</a></li>
+						</ul>
+					</li>
+					<li><a href="">Promotional Emails </a>
+							<ul class="side-nav-dropdown">
+							<li><a href="Promotionemail.html">Send Mail</a></li>
+							<li><a href="Mailoutbox.html">Outbox</a></li>
+						</ul>
+					</li>
+					<li><a href="Notification.html">Notification List </a></li>
+				 </ul>
+			</li>
+			<li><i class="fa fa-rss"></i> <a href="f" > Blogs</a>
+				<ul class="side-nav-dropdown">
+							<li><a href="Addblog.html">Add blog</a></li>
+							<li><a href="Bloglist.html">Blog list</a></li>
+						</ul>
+			</li>
+		</ul>
+    </aside>
+	<div id="contents">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="toggle-menu" style="display:none;">
+				  <div class="toggle-icon"></div>
+				  <div class="toggle-icon"></div>
+				  <div class="toggle-icon"></div>
+				</div>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					  <i class="fa fa-align-right"></i>
+					</button>
+					<a class="navbar-brand" href="dashboard.html">Super Admin<span class="main-color"> Dashboard</span></a>
+				</div>
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My profile <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><img src="img/patient-profile.jpg" alt="" class="img-responsive img-circle profilepic"><h4>Mr. Rakesh <br></h4><p>+91 9876754325</p></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="Accountsettings.html"><i class="fa fa-key fw" aria-hidden="true"></i>  Change Password</a></li>
+								<li><a href="Accountsettings.html"><i class="fa fa-user-md fw" aria-hidden="true"></i> Setting</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#"><i class="fas fa-power-off fw"></i> Log out</a></li>
+							</ul>
+						</li>
+						<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-comments"></i><span>23</span></a>
+							<ul class="dropdown-menu notification_list msges">
+								<li><a href="#"><h3 class="notify_header"> Messages</h3></a></li>
+								<li role="separator" class="divider"></li>
+								   <div class="clearfix"></div>
+								<li><a href="#"><img src="img/patient-profile.jpg" class="img-circle img-responsive msg_prof"/> Anu Mehra
+									<p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+									<p class="notice_tm">Just Now </p>
+								</a>    
+								</li>
+								<li><a href="#"><img src="img/patient-profile.jpg" class="img-circle img-responsive msg_prof"/> Anu Mehra
+									<p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+									<p class="notice_tm">16 mins ago</p>
+									</a>
+								</li>
+								<li><a href="#"><img src="img/patient-profile.jpg" class="img-circle img-responsive msg_prof"/> Anu Mehra
+								   <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+								  <p class="notice_tm">23 seconds ago</p>
+								  </a>
+								</li>
+								<li><a href="#"><img src="img/patient-profile.jpg" class="img-circle img-responsive msg_prof"/> Anu Mehra
+								   <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+								   <p class="notice_tm">20 mins ago</p>
+								   </a>
+								</li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#" class="text-left view-all">View All Messages</a></li>
+							</ul> 
+						</li>
+						<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span>98</span></a>
+							<ul class="dropdown-menu notification_list">
+							  <li><a href="#"><h3 class="notify_header"> Notifications</h3></a></li>
+							  <li role="separator" class="divider"></li>
+							  <li><a href="#"><i class="fa fa-user"></i> Neha is now following you
+								<p class="notice_tm">Just Now</p>
+							  </a>    
+							  </li>
+							  <li><a href="#"><i class="fa fa-user-plus"></i> 20 new member joined
+								<p class="notice_tm">16 mins ago</p>
+							  </a></li>
+							  <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Manya Changed Name
+							  <p class="notice_tm">23 seconds ago</p>
+							  </a></li>
+							   <li><a href="#"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Warning
+							   <p class="notice_tm">20 mins ago</p>
+							   </a></li>
+							  <li role="separator" class="divider"></li>
+							  <li><a href="notification.html" class="text-left view-all">View All Notification</a></li>
+							</ul>   
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+      <section class="setting">
+        <div class="container-fluid">
+		
+		 <div class="row list_header">
+		   
+			<div class="col-md-12 header-title">
+                         
+                    <div class="header-icon">
+                       <i class="fa fa-cogs" aria-hidden="true"></i>
+
+                    </div>
+					<h1>Settings</h1>
+                       
+                    </div>
+		  </div>
+		<div class="row">
+		  <div class="col-md-12 list-top-head">
+		   <div class="panel-body">
+			<div class="row">
+				<div class="col-md-8 setting-border">
+					<div class="tab-content">
+						  <div role="tabpanel" class="tab-pane fade in active" id="change_password">
+						   <h4><b>Change passowrd :</b></h4>
+						   <hr/>
+						  <form class="step2" action="">
+								
+									
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12 hs_title hs-form-field">
+											<label>Current Password *</label>
+											<input name="current_pass" type="password" required>
+											
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12">
+										  <label>New Password *</label>
+											  <input type="password" name="new_pass" required>
+											
+										</div>
+									
+										<div class="col-xs-12 col-sm-12 col-md-12">
+										  <label>Confirm Password*</label>
+										  <input name="conf_pass" type="password" required>
+											
+										</div>
+										
+									</div>
+							   <input type="submit" value="Submit"> 
+								
+							  </form> 
+						  
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="noti_set"> <h4><b>Notification Settings :</b></h4><hr/>
+							<p>You are currently receiving all communications on <b>webtunix@gmail.com</b> <a href="#" data-toggle="collapse" data-target="#demo">(Change)</a></p>
+								<form class="step2 collapse" action="" id="demo">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<label>Current Email *</label>
+											<input type="email" required>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12">
+											<label>New Email *</label>
+											<input type="password"  class="hs-input" required>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 hs-start_date">
+											<label>Confirm Email*</label>
+											<input name="conf_email" required>
+										</div>
+									</div>
+									<input type="submit" value="Submit">
+								</form> 
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 left-bar">
+				  <ul id="tabs" class="nav flex-column" role="tablist">
+					<li role="presentation" class="nav-item">
+					  <a class="nav-link" href="#change_password" role="tab" data-toggle="tab">
+					  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+				      Change Password</a>
+					</li>
+					<li role="presentation" class="nav-item">
+					  <a class="nav-link" href="#noti_set" role="tab" data-toggle="tab">
+					  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+					  Notification Settings</a>
+					</li>
+					 <li role="presentation" class="nav-item">
+					  <a class="nav-link" href="#"><i class="fas fa-power-off fa"></i> Log out</a>
+					</li>
+				  </ul>
+				</div>
+			</div>
+		  </div>
+         </div>
+        </div>
+		</div>
+      </section>
+       
+        
+</div>
+	  <script>
+			$(function() {
+		  var step = 0;
+		  var stepItem = $('.step-progress .step-slider .step-slider-item');
+
+		  // Step Next
+		  $('.step-content .step-content-foot button[name="next"]').on('click', function() {
+			var instance = $(this);
+			if (stepItem.length - 1 < step) {
+			  return;
+			}
+			if (step == (stepItem.length - 2)) {
+			  instance.addClass('out');
+			  instance.siblings('button[name="finish"]').removeClass('out');
+			}
+			$(stepItem[step]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step + 1].dataset.id).removeClass('out');
+			step++;
+		  });
+
+		  // Step Last
+		  $('.step-content .step-content-foot button[name="finish"]').on('click', function() {
+			if (step == stepItem.length) {
+			  return;
+			}
+			$(stepItem[stepItem.length - 1]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#stepLast').removeClass('out');
+		  });
+
+		  // Step Previous
+		  $('.step-content .step-content-foot button[name="prev"]').on('click', function() {
+			var instance = $(this);
+			$(stepItem[step]).removeClass('active');
+			if (step == (stepItem.length - 1)) {
+			  instance.siblings('button[name="next"]').removeClass('out');
+			  instance.siblings('button[name="finish"]').addClass('out');
+			}
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step].dataset.id).removeClass('out');
+			if (step <= 0) {
+			  return;
+			}
+			step--;
+		  });
+		});
+	</script>
+
+    <script src='js/jquery-latest.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/dashboard.js'></script>
+	 <script src='js/jquery.min.js'></script> 
+	 <script src='js/jquery.easing.min.js'></script>
+<script src='js/jquery.validate.js'></script>
+    <script  src="js/error.js"></script>
+<script src="js/jquery-ui.js"></script>
+	 <script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+		
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+			
+		});
+	});
+</script>
+</body>
+</html>

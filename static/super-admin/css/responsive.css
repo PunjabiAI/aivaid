@@ -1,0 +1,93 @@
+ @media only screen and (max-width : 768px) {
+.toggle-menu{
+ display:block !important;
+}
+.right .btn {
+	padding: 6px 8px;
+	font-size: 11px;
+	margin-bottom: 7px;
+} 
+#Promotionalemail .addbox {
+    width: 100%;
+}
+.sendbox {
+	width: 100%;
+}
+.innersmsbox {
+	width: 100%;
+}
+.cross-toggle{
+	display:block !important;
+}
+.statistics .box {
+	margin-bottom: 25px;
+}
+.list_header .header-icon {
+	font-size: 45px;
+	width: 50px;
+}
+ .list_header .header-title h1 {
+	font-size: 18px;
+}
+.dataTables_length label{
+	font-size:13px;
+}
+.step-content-body .container{
+	padding:1em 1em 2em 1em !important;
+}
+.time-table li{
+	padding:0px;
+}
+ }
+ 
+ @media screen and (max-width:990px){
+ .post-popup{
+ height:1000px;	
+}
+.post-popup2 {
+    height: 1560px;
+}
+.upload-proff {
+    width: 100%;
+}
+.inner_box{
+	padding:0px;
+}
+.consultancy_box{
+	width:100%;
+}
+.step2{
+	padding:0px;
+}
+ }
+ 
+@media screen and (min-width: 992px) and (max-width:1024px){
+	  .sendbox {
+	width: 80%;
+}
+#Promotionalemail .addbox {
+    width: 80%;
+}
+ }
+@media screen and (min-width: 780px) and (max-width:1920px){
+	aside{
+		display:block !important;
+	}
+}
+@media screen and (min-width:1920px){
+    #doctor-profile .displayerWrapper {
+        height: 320px;
+	}
+	#doctor-profile .preview {
+		height: 320px;
+	}
+}
+ 
+@media screen and (min-width:996px) and (max-width:1300px){
+	#doctor-profile .displayerWrapper {
+        height:170px;
+	}
+	#doctor-profile .preview {
+		height:170px;
+	}
+}

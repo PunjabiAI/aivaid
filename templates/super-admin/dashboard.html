@@ -1,0 +1,147 @@
+{% include 'super-admin/header.html' %}
+		<section class="statistics">
+			<div class="container-fluid">
+				<div class="row list_header">
+					<div class="col-md-12 header-title">
+						<h1 class="text-center" style="font-size:27px;">Welcome To Aivaid</h1>
+				   </div>
+				</div>
+			</div>
+		</section>
+		<section class='statis text-center'>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="box bg-primary">
+						  <i class="fa fa-user"></i>
+						  <h3>{{patient_list}}</h3>
+						  <p class="lead">Total Patient's</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box danger">
+						  <i class="fa fa-user"></i>
+						  <h3>{{users_List_Patient_New}}</h3>
+						  <p class="lead">Today Patient's Register</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box bg-primary">
+						  <i class="fa fa-calendar"></i>
+						  <h3>{{doctor_list}}</h3>
+						  <p class="lead">Total Doctor's</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<section class='statis text-center'>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="box danger">
+						  <i class="fa fa-calendar"></i>
+						  <h3>{{users_List_Doctor_New}}</h3>
+						  <p class="lead">Today Doctor's Register</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box bg-primary">
+						  <i class="fa fa-calendar"></i>
+						  <h3>{{patient_appointment_list}}</h3>
+						  <p class="lead">Total Appointment's</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box danger">
+						  <i class="fa fa-calendar"></i>
+						  <h3>{{today_patient_appointment_list}}</h3>
+						  <p class="lead">Today Appointment's</p>
+						</div>
+					</div>
+					<!--<div class="col-md-3">-->
+						<!--<div class="box bg-primary">-->
+						  <!--<i class="fa fa-calendar"></i>-->
+						  <!--<h3>0</h3>-->
+						  <!--<p class="lead">Total Transaction</p>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="col-md-3">-->
+						<!--<div class="box danger">-->
+						  <!--<i class="fa fa-calendar"></i>-->
+						  <!--<h3>0</h3>-->
+						  <!--<p class="lead">Today Transaction</p>-->
+						<!--</div>-->
+					<!--</div>-->
+				</div>
+			</div>
+		</section>
+	</div>
+	<script>
+			$(function() {
+		  var step = 0;
+		  var stepItem = $('.step-progress .step-slider .step-slider-item');
+
+		  // Step Next
+		  $('.step-content .step-content-foot button[name="next"]').on('click', function() {
+			var instance = $(this);
+			if (stepItem.length - 1 < step) {
+			  return;
+			}
+			if (step == (stepItem.length - 2)) {
+			  instance.addClass('out');
+			  instance.siblings('button[name="finish"]').removeClass('out');
+			}
+			$(stepItem[step]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step + 1].dataset.id).removeClass('out');
+			step++;
+		  });
+
+		  // Step Last
+		  $('.step-content .step-content-foot button[name="finish"]').on('click', function() {
+			if (step == stepItem.length) {
+			  return;
+			}
+			$(stepItem[stepItem.length - 1]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#stepLast').removeClass('out');
+		  });
+
+		  // Step Previous
+		  $('.step-content .step-content-foot button[name="prev"]').on('click', function() {
+			var instance = $(this);
+			$(stepItem[step]).removeClass('active');
+			if (step == (stepItem.length - 1)) {
+			  instance.siblings('button[name="next"]').removeClass('out');
+			  instance.siblings('button[name="finish"]').addClass('out');
+			}
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step].dataset.id).removeClass('out');
+			if (step <= 0) {
+			  return;
+			}
+			step--;
+		  });
+		});
+	</script>
+    <script src='js/jquery-latest.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Chart.bundle.js"></script>
+    <script src='js/dashboard.js'></script>
+	<script src='js/jquery.min.js'></script> 
+	<script>
+		$(document).ready(function(){
+			$(".toggle-menu").click(function(){
+				$("aside").show();
+			});
+		});
+		$(document).ready(function(){
+			$(".cross-toggle").click(function(){
+				$("aside").hide();
+			});
+		});
+	</script>
+</body>
+</html>

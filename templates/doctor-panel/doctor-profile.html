@@ -1,0 +1,3209 @@
+{% include 'doctor-panel/header.html' %}
+
+{% load static %}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div id="doctor-profile">
+
+    <div class="container-fluid">
+
+        <div class="row list_header">
+
+            <div class="col-xs-12 col-sm-12 col-md-12 header-title">
+
+                <div class="header-icon">
+
+                    <i class="fa fa-user" aria-hidden="true"></i>
+
+                </div>
+
+                <h1>Profile</h1>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            {% if profile_list %}
+
+            {% for list in profile_list %}
+
+            <div class="col-md-3 col-sm-5 col-xs-12 no-padd">
+
+                <div class="sidebar">
+
+                    <div class="uploadpopup">
+
+                        <div id="views">
+
+                            {% if list.pic %}
+
+
+
+                            <img src="../uploads/{{list.pic}}" id="uploaded_image"
+
+                                             alt="Doctor Profile"/>
+
+                            {% else %}
+
+
+
+                             <img src="{% static '' %}admin-panel/images/profile.jpg"
+
+                                             alt="Doctor Profile"/>
+
+
+
+                            {% endif %}
+
+
+
+
+
+                        </div>
+
+                        <!--<div class="fileUpload">-->
+
+                            <!--<p class="custom-para">Upload Image</p>-->
+
+                            <!--<input id="uploadBtn" type="file" class="upload uploadimg" onchange="displayme(this)"/>-->
+
+                        <!--</div>-->
+
+                        <!--<div class="camera"><a href="#" class="btn btn-warning">-->
+
+                            <!--<i class="fa fa-camera" aria-hidden="true"></i> Open-->
+
+                            <!--Camera</a></div>-->
+
+                        <h4><strong>Profile Complete :</strong></h4>
+
+                        <div class="progress">
+
+                            <div class="progress-bar" style="width:{{total}}%; background-color:{{colour}};">{{total}}%</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="profile-content">
+
+                        <h3>Dr. {{request.user.first_name}}&nbsp;{{request.user.last_name}}</h3>
+
+                        <p>{{list.Description}}</p>
+
+                        <table class="table table-striped table-hover">
+
+                            <tbody>
+
+                            <tr>
+
+                                <td>Status</td>
+
+                                <td><span class="label label-success">
+
+
+
+                                    {% if list.admin_verify == '1' %}
+
+
+
+                                    Active
+
+                                    {% else %}
+
+                                    Inactive
+
+                                    {% endif %}
+
+                                </span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>User Rating</td>
+
+                                <td><span class="ratingbox">{{review_list_avrage|floatformat}}<i class="fa fa-star vd_yellow fa-fw"></i></span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Feedback</td>
+
+                                <td> {{review_list_count}} feedback</td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-9 col-sm-7 col-xs-12">
+
+                <div class="profile-tab">
+
+
+
+                {% if list %}
+
+                <a data-target="#editprofilepopup" data-toggle="modal" class="addbtn"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+
+                {% else %}
+
+
+
+                <a data-target="#post-popup" class="addbtn" data-toggle="modal"><i class="fa fa-plus addfa"></i>Add Profile</a>
+
+  {% endif %}
+
+
+
+
+
+                    <h3 class=""><i class="fa fa-user"></i>&nbsp;&nbsp; ABOUT</h3>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <table class="table abt-table">
+
+                                <tr>
+
+                                    <td><strong>First Name:</strong></td>
+
+                                    <td>{{request.user.first_name}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>User Name:</strong></td>
+
+                                    <td>{{request.user.username}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>City:</strong></td>
+
+                                    <td>{{list.selectcity}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>Date of Birth:</strong></td>
+
+                                    <td>{{list.udob}}</td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <table class="table abt-table">
+
+                                <tr>
+
+                                    <td><strong>Last Name:</strong></td>
+
+                                    <td>{{request.user.last_name}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>Email:</strong></td>
+
+                                    <td>{{request.user.email}}
+
+                                        <a href="#" class="btn btn-success verify-btn">Verified</a>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>State:</strong></td>
+
+                                    <td>{{list.state}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>Phone:</strong></td>
+
+                                    <td>{{list.umobile}}
+
+
+
+                                         <td>
+
+
+
+                                    {% if list.mobile_verify == '0' %}
+
+                                    <a href="#" class="btn btn-success verify-now" data-toggle="modal" data-target="#myModal">Verify now</a></td>
+
+                                    {% else%}
+
+                                        <a href="#" class="btn btn-success verify-btn">Verified</a>
+
+                                    {% endif %}
+
+
+
+
+
+
+
+                                        <!--mobile vertifcation poupup-->
+
+
+
+                                            <!-- Modal -->
+
+                                          <div class="modal fade mobileverification" id="myModal" role="dialog">
+
+                                            <div class="modal-dialog">
+
+
+
+                                              <!-- Modal content-->
+
+                                              <div class="modal-content">
+
+                                                <div class="modal-header">
+
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                  <h4 class="modal-title">Mobile Verification</h4>
+
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                  <div class="new-login-area">
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-12">
+
+                                                             <div id='sign-in' class='login-setup-section'>
+
+                                                                    <h3 class="request-otp-header">Please verify your mobile number</h3>
+
+                                                                 <p class="add_ajax"></p>
+
+                                                                 <form name="form1" action="" method="post">
+
+                                                                     {% csrf_token %}
+
+                                                                    <div class="form-group login-label">
+
+                                                                        <label>mobile number</label>
+
+                                                                        <input type="number" name="mobile" value="{{list.umobile}}" disabled class="form-control input-edit" placeholder='Enter mobile number' id="mobile_number">
+
+                                                                    </div>
+
+                                                                    <button type="button"  onclick="clickss()" class="btn btn-default btn-lg btn-block request-otp" id='request-otp'>Get OTP</button>
+
+                                                                 </form>
+
+                                                            </div>
+
+                                                            <div id='verify-otp' class="login-setup-section">
+
+                                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+
+                                                                    <h3 class="request-otp-header">Verify OTP</h3>
+
+                                                                <p class="add_ajax_code"></p>
+
+                                                                <form name="form2"  method="post">
+
+                                                                  {% csrf_token %}
+
+
+
+                                                                    <div class="form-group login-label">
+
+                                                                        <label>One Time Password</label>
+
+                                                                        <input type="number" class="form-control input-edit" name="otp_number" placeholder='Enter OTP' id="otp_number">
+
+                                                                         <div class="timer">
+
+                                                                           <p class="optmsg">Your otp expire in   </p>
+
+                                                                             <div id="otp_timer"><span class="minutes">01</span>:<span class="seconds">00</span></div>
+
+                                                                        </div>
+
+
+
+                                                                        <div id="Resend" style="display:none;">
+
+                                                                        <label onclick='UpdateStatus()'  class="pull-right resend-otp">Resend otp</label>
+
+                                                                        </div>
+
+
+
+                                                                    </div>
+
+                                                                    <button type="button"  onclick ="clickss_otp()" class="btn btn-default btn-lg btn-block request-otp ">Verify</button>
+
+                                                                </form>
+
+                                                            </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                                </div>
+
+                                              </div>
+
+                                            </div>
+
+                                          </div>
+
+                                              <!-- Modal content-->
+
+                                          <!--mobile vertifcation poupup-->
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="education">
+
+                                <h3 class=""><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;&nbsp; EDUCATION</h3>
+
+                                <table class="table abt-table">
+
+                                    <tr>
+
+                                        <td><strong>Degree:</strong></td>
+
+                                        <td>{{list.selectdegree}} </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>College/Institute:</strong></td>
+
+                                        <td>{{list.uinstitute}}</td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>Year of Completion:</strong></td>
+
+                                        <td>{{list.degreecompletion}}</td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="experience">
+
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp; EXPERIENCE
+
+                                </h3>
+
+                                <table class="table abt-table">
+
+                                    <tr>
+
+                                        <td><strong>In years:</strong></td>
+
+                                        <td>{{list.uexperience01}} Year </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>In months:</strong></td>
+
+                                        <td>{{list.uexperience_month}} Months</td>
+
+                                    </tr>
+
+
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="experience">
+
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp; MEDICAL
+
+                                    REGISTRATION</h3>
+
+                                <table class="table abt-table">
+
+                                    <tr>
+
+                                        <td><strong>Registration Number:</strong></td>
+
+                                        <td>{{list.uregNumber}}</td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>Registration Council:</strong></td>
+
+                                        <td>{{list.ucounsil}}</td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>Registration Year:</strong></td>
+
+                                        <td>{{list.regyear}}</td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="experience">
+
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>  Documents</h3>
+
+                                <table class="table abt-table">
+
+                                    <tr>
+
+                                        <td><strong>ID Proof 1:</strong></td>
+
+                                        <td><a href="#" data-toggle="modal" data-target="#popup-image-galleryd{{list.id}}"  class="viewproof">View</a>
+
+                                        <div class="modal popup-image-gallery" id="popup-image-galleryd{{list.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+                                          <div class="modal-dialog" role="document">
+
+                                            <div class="modal-content">
+
+                                              <div class="modal-body">
+
+                                                <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;</span></button>
+
+                                                <div class="popup-slider-for">
+
+                                                  <div class="main-image">
+
+                                                    <img src="../uploads/{{list.doctor_idproof}}" alt="">
+
+                                                  </div>
+
+                                                </div>
+
+                                              </div>
+
+                                            </div>
+
+                                          </div>
+
+                                        </div>
+
+                                     </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>ID Proof 2:</strong></td>
+
+                                        <td><a href="#" data-toggle="modal" data-target="#popup-image-galleryd2{{list.id}}"  class="viewproof">View</a>
+
+                                        <div class="modal popup-image-gallery" id="popup-image-galleryd2{{list.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+                                          <div class="modal-dialog" role="document">
+
+                                            <div class="modal-content">
+
+                                              <div class="modal-body">
+
+                                                <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;</span></button>
+
+                                                <div class="popup-slider-for">
+
+                                                  <div class="main-image">
+
+                                                    <img src="../uploads/{{list.doctor_idproof2}}" alt="">
+
+                                                  </div>
+
+                                                </div>
+
+                                              </div>
+
+                                            </div>
+
+                                          </div>
+
+                                        </div>
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+            {% else %}
+
+            <div class="col-md-3 col-sm-5 col-xs-12 no-padd">
+
+                <div class="sidebar">
+
+                    <div class="uploadpopup">
+
+                        <div id="views">
+
+                             <img src="{% static '' %}admin-panel/images/profile.jpg"
+
+                                             alt="Doctor Profile"/>
+
+                        </div>
+
+                        <!--<div class="fileUpload">-->
+
+                            <!--<p class="custom-para">Upload Image</p>-->
+
+                            <!--<input id="uploadBtn" type="file" class="upload uploadimg" onchange="displayme(this)"/>-->
+
+                        <!--</div>-->
+
+                        <!--<div class="camera"><a href="#" class="btn btn-warning">-->
+
+                            <!--<i class="fa fa-camera" aria-hidden="true"></i> Open-->
+
+                            <!--Camera</a></div>-->
+
+                        <h4><strong>Profile Complete :</strong></h4>
+
+                        <div class="progress">
+
+                            <div class="progress-bar" style="width:20%; background-color:#d9534f;">20%</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="profile-content">
+
+                        <h3>Dr. {{request.user.first_name}}&nbsp;{{request.user.last_name}}</h3>
+
+                        <p></p>
+
+                        <table class="table table-striped table-hover">
+
+                            <tbody>
+
+                            <tr>
+
+                                <td>Status</td>
+
+                                <td><span class="label label-success">
+
+
+
+
+
+                                    Active
+
+
+
+                                </span></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>User Rating</td>
+
+                                <td><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i
+
+                                        class="fa fa-star vd_yellow fa-fw"></i><i
+
+                                        class="fa fa-star vd_yellow fa-fw"></i><i
+
+                                        class="fa fa-star vd_yellow fa-fw"></i></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>Feedback</td>
+
+                                <td> 10 feedback</td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-9 col-sm-7 col-xs-12">
+
+                <div class="profile-tab">
+
+
+
+               <a data-target="#post-popup" class="addbtn" data-toggle="modal"><i class="fa fa-plus addfa"></i>Add Profile</a>
+
+
+
+                    <h3 class=""><i class="fa fa-user"></i>&nbsp;&nbsp; ABOUT</h3>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <table class="table abt-table">
+
+                                <tr>
+
+                                    <td><strong>First Name:</strong></td>
+
+                                    <td>{{request.user.first_name}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>User Name:</strong></td>
+
+                                    <td>{{request.user.username}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>City:</strong></td>
+
+                                    <td></td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>Date of Birth:</strong></td>
+
+                                    <td></td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <table class="table abt-table">
+
+                                <tr>
+
+                                    <td><strong>Last Name:</strong></td>
+
+                                    <td>{{request.user.last_name}}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>Email:</strong></td>
+
+                                    <td>{{request.user.email}} <a href="#" class="btn btn-success verify-btn">Verify</a>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>State:</strong></td>
+
+                                    <td></td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td><strong>Phone:</strong></td>
+
+                                    <td> <a href="#" class="btn btn-success verify-now">Verify now</a></td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="education">
+
+                                <h3 class=""><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;&nbsp; EDUCATION</h3>
+
+                                <table class="table abt-table">
+
+                                    <tr>
+
+                                        <td><strong>Degree:</strong></td>
+
+                                        <td> </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>College/Institute:</strong></td>
+
+                                        <td></td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>Year of Completion:</strong></td>
+
+                                        <td></td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="experience">
+
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp; EXPERIENCE
+
+                                </h3>
+
+                                <ul>
+
+                                    <li><span class="li_padd"></span></li>
+
+                                    <li><span class="li_padd"> </span></li>
+
+                                    <li><span class="li_padd"> </span></li>
+
+
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+
+                            <div class="experience">
+
+                                <h3 class=""><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp; MEDICAL
+
+                                    REGISTRATION</h3>
+
+                                <table class="table abt-table">
+
+                                    <tr>
+
+                                        <td><strong>Registration Number:</strong></td>
+
+                                        <td></td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>Registration Council:</strong></td>
+
+                                        <td></td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td><strong>Registration Year:</strong></td>
+
+                                        <td></td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr/>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="info">
+
+    <!--<h3><a href="" class="open-popup-link">Dr. {{user.username}}</a></h3>-->
+
+</div>
+
+<!-- Edit Profile Popup -->
+
+{% for list in profile_list %}
+
+
+
+<div id="editprofilepopup" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <div class="modal-body">
+
+    <div id="profile">
+
+        <h2 class="head">Edit Your Profile!</h2>
+
+        <p class="marked-fields"><strong>Fields marked with star (*) are required.</strong></p>
+
+        <div class="panel">
+
+            <div class="panel-body">
+
+                <form action="{% url 'save_doctor_profile_edit_data' %}" name="basicform" id="basicform01" class="basic_detail" method="post" enctype="multipart/form-data">
+
+                    <!-- step 01 -->
+
+                    <div id="sf10" class="frm1 sf10">
+
+                        <fieldset>
+
+                            <legend>Account Information - Step 1 of 6</legend>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label>First Name *</label>
+
+                                     {% csrf_token %}
+
+                                     <input type="hidden" name="id"  value="{{user.id}}" class=""
+
+                                          >
+
+                                    <input type="text" name="first_name"  value="{{user.first_name}}" class=""
+
+                                           autocomplete="off">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Last Name *</label>
+
+                                    <input type="text" value="{{user.last_name}}"  name="last_name" class=""
+
+                                           autocomplete="off">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Select Date of Birth *</label>
+
+                                    <input type="text" class="doctordob" value="{{list.udob}}" name="udob" />
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Gender *</label>
+
+                                    <select name="ugender">
+
+                                        <option value="" disabled>Select gender</option>
+
+                                        <option value="Male" {% if list.ugender == "Male" %} selected {% endif %}> Male</option>
+
+                                        <option value="Female" {% if list.ugender == "Female" %} selected {% endif %}>Female</option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label>Mobile *</label>
+
+                                    <input type="text" value="{{list.umobile}}" name="umobile"
+
+                                           onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+
+                                           autocomplete="off">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Select State *</label>
+
+                                    <select name="state" class="states statelist">
+
+                                        <option value="">Please select state</option>
+
+                                        <option value="AndamanNicobar" {% if list.state == "AndamanNicobar" %} selected {% endif %}>Andaman Nicobar</option>
+
+                                        <option value="AndhraPradesh" {% if list.state == "AndhraPradesh" %} selected {% endif %}>Andhra Pradesh</option>
+
+                                        <option value="ArunachalPradesh" {% if list.state == "ArunachalPradesh" %} selected {% endif %}>Arunachal Pradesh</option>
+
+                                        <option value="Assam" {% if list.state == "Assam" %} selected {% endif %}>Assam</option>
+
+                                        <option value="Bihar" {% if list.state == "Bihar" %} selected {% endif %}>Bihar</option>
+
+                                        <option value="Chandigarh" {% if list.state == "Chandigarh" %} selected {% endif %}>Chandigarh</option>
+
+                                        <option value="Chhattisgarh" {% if list.state == "Chhattisgarh" %} selected {% endif %}>Chhattisgarh</option>
+
+                                        <option value="DadraNagarHaveli" {% if list.state == "DadraNagarHaveli" %} selected {% endif %}>Dadra Nagar Haveli</option>
+
+                                        <option value="DamanDiu" {% if list.state == "DamanDiu" %} selected {% endif %}>Daman Diu</option>
+
+                                        <option value="Delhi" {% if list.state == "Delhi" %} selected {% endif %}>Delhi</option>
+
+                                        <option value="Goa" {% if list.state == "Goa" %} selected {% endif %}>Goa</option>
+
+                                        <option value="Gujarat"{% if list.state == "Gujarat" %} selected {% endif %}>Gujarat</option>
+
+                                        <option value="Haryana" {% if list.state == "Haryana" %} selected {% endif %}>Haryana</option>
+
+                                        <option value="HimachalPradesh"{% if list.state == "HimachalPradesh" %} selected {% endif %}>Himachal Pradesh</option>
+
+                                        <option value="JammuKashmir" {% if list.state == "JammuKashmir" %} selected {% endif %}>Jammu Kashmir</option>
+
+                                        <option value="Jharkhand" {% if list.state == "Jharkhand" %} selected {% endif %}>Jharkhand</option>
+
+                                        <option value="Karnataka"{% if list.state == "Karnataka" %} selected {% endif %}>Karnataka</option>
+
+
+
+
+
+                                        <option value="Kerala" {% if list.state == "Kerala" %} selected {% endif %}>Kerala</option>
+
+                                        <option value="Lakshadweep" {% if list.state == "Lakshadweep" %} selected {% endif %}>Lakshadweep</option>
+
+                                        <option value="MadhyaPradesh" {% if list.state == "MadhyaPradesh" %} selected {% endif %}>Madhya Pradesh</option>
+
+                                        <option value="Maharashtra" {% if list.state == "Maharashtra" %} selected {% endif %}>Maharashtra</option>
+
+                                        <option value="Manipur"{% if list.state == "Manipur" %} selected {% endif %}>Manipur</option>
+
+                                        <option value="Meghalaya" {% if list.state == "Meghalaya" %} selected {% endif %}>Meghalaya</option>
+
+                                        <option value="Mizoram" {% if list.state == "Mizoram" %} selected {% endif %}>Mizoram</option>
+
+                                        <option value="Nagaland" {% if list.state == "Nagaland" %} selected {% endif %}>Nagaland</option>
+
+                                        <option value="Orissa" {% if list.state == "Orissa" %} selected {% endif %}>Orissa</option>
+
+                                        <option value="Pondicherry" {% if list.state == "Pondicherry" %} selected {% endif %}>Pondicherry</option>
+
+                                        <option value="Punjab" {% if list.state == "Punjab" %} selected {% endif %}>Punjab</option>
+
+                                        <option value="Rajasthan" {% if list.state == "Rajasthan" %} selected {% endif %}>Rajasthan</option>
+
+                                        <option value="Sikkim" {% if list.state == "Sikkim" %} selected {% endif %}>Sikkim</option>
+
+                                        <option value="TamilNadu" {% if list.state == "TamilNadu" %} selected {% endif %}>TamilNadu</option>
+
+                                        <option value="Tripura" {% if list.state == "Tripura" %} selected {% endif %}>Tripura</option>
+
+                                        <option value="UttarPradesh" {% if list.state == "UttarPradesh" %} selected {% endif %}>UttarPradesh</option>
+
+                                        <option value="Uttaranchal" {% if list.state == "Uttaranchal" %} selected {% endif %}>Uttaranchal</option>
+
+                                        <option value="WestBengal" {% if list.state == "WestBengal" %} selected {% endif %} >WestBengal</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Select City *</label>
+
+                                    <select class="citylist" name="selectcity">
+
+                                      <option name="city" value="" disabled>Please select city</option>
+
+                                      <option value="{{list.selectcity}}" >{{list.selectcity}}</option>
+
+                                    </select>
+
+                                </div>
+
+                                 <div class="form-group">
+
+                                    <label>Upload image *</label>
+
+                                     <input type="file" name="pic" value="{{list.pic}}" />
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+
+                                    <label>Desciption *</label>
+
+                                    <textarea placeholder="Description"  id="content_txt"  runat="server" maxlength="1000" class="largebox" name="Description">{{list.Description}}</textarea>
+
+
+
+                                            <p id="message" style="color:red;"></p>
+
+
+
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="profile-form-btn">
+
+                                <button class="btn open10" type="button">Next <span
+
+                                        class="fa fa-arrow-right"></span></button>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <!-- step 01 -->
+
+                    <!-- step 02 -->
+
+                    <div id="sf20" class="frm1 sf20" style="display: none;">
+
+                        <fieldset>
+
+                            <legend>Medical Registration - Step 2 of 6</legend>
+
+                            <div class="form-group">
+
+                                <label>Registration Number *</label>
+
+                                <input type="text" value="{{list.uregNumber}}" name="uregNumber"
+
+                                       class="" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Registration Council *</label>
+
+                                <input type="text" value="{{list.ucounsil}}" name="ucounsil"
+
+                                       class="" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Registration Year *</label>
+
+                                <select name="regyear">
+
+                                    <option value="">Select Registration Year</option>
+
+                                    <option value="1950" {% if list.regyear == "1950" %} selected {% endif %} >1950</option>
+
+                                    <option value="1951" {% if list.regyear == "1951" %} selected {% endif %} >1951</option>
+
+                                    <option value="1952" {% if list.regyear == "1953" %} selected {% endif %} >1952</option>
+
+                                    <option value="1953" {% if list.regyear == "1953" %} selected {% endif %} >1953</option>
+
+                                    <option value="1954" {% if list.regyear == "1954" %} selected {% endif %} >1954</option>
+
+                                    <option value="1955" {% if list.regyear == "1955" %} selected {% endif %} >1955</option>
+
+                                    <option value="1956" {% if list.regyear == "1956" %} selected {% endif %} >1956</option>
+
+                                    <option value="1957" {% if list.regyear == "1957" %} selected {% endif %} >1957</option>
+
+                                    <option value="1958" {% if list.regyear == "1958" %} selected {% endif %} >1958</option>
+
+                                    <option value="1959" {% if list.regyear == "1959" %} selected {% endif %} >1959</option>
+
+                                    <option value="1960" {% if list.regyear == "1960" %} selected {% endif %} >1960</option>
+
+                                    <option value="1961" {% if list.regyear == "1961" %} selected {% endif %} >1961</option>
+
+                                    <option value="1962" {% if list.regyear == "1962" %} selected {% endif %} >1962</option>
+
+                                    <option value="1963" {% if list.regyear == "1963" %} selected {% endif %} >1963</option>
+
+                                    <option value="1964" {% if list.regyear == "1964" %} selected {% endif %} >1964</option>
+
+                                    <option value="1965" {% if list.regyear == "1965" %} selected {% endif %} >1965</option>
+
+                                    <option value="1966" {% if list.regyear == "1966" %} selected {% endif %} >1966</option>
+
+                                    <option value="1967" {% if list.regyear == "1967" %} selected {% endif %} >1967</option>
+
+                                    <option value="1968" {% if list.regyear == "1968" %} selected {% endif %} >1968</option>
+
+                                    <option value="1969" {% if list.regyear == "1969" %} selected {% endif %} >1969</option>
+
+                                    <option value="1970" {% if list.regyear == "1970" %} selected {% endif %} >1970</option>
+
+                                    <option value="1971" {% if list.regyear == "1971" %} selected {% endif %} >1971</option>
+
+                                    <option value="1972" {% if list.regyear == "1972" %} selected {% endif %} >1972</option>
+
+                                    <option value="1973" {% if list.regyear == "1973" %} selected {% endif %} >1973</option>
+
+                                    <option value="1974" {% if list.regyear == "1974" %} selected {% endif %} >1974</option>
+
+                                    <option value="1975" {% if list.regyear == "1975" %} selected {% endif %} >1975</option>
+
+                                    <option value="1976" {% if list.regyear == "1976" %} selected {% endif %} >1976</option>
+
+                                    <option value="1977" {% if list.regyear == "1977" %} selected {% endif %} >1977</option>
+
+                                    <option value="1978" {% if list.regyear == "1978" %} selected {% endif %} >1978</option>
+
+                                    <option value="1979" {% if list.regyear == "1979" %} selected {% endif %} >1979</option>
+
+                                    <option value="1980" {% if list.regyear == "1980" %} selected {% endif %} >1980</option>
+
+                                    <option value="1981" {% if list.regyear == "1981" %} selected {% endif %} >1981</option>
+
+                                    <option value="1982" {% if list.regyear == "1982" %} selected {% endif %} >1982</option>
+
+                                    <option value="1983" {% if list.regyear == "1983" %} selected {% endif %} >1983</option>
+
+                                    <option value="1984" {% if list.regyear == "1984" %} selected {% endif %} >1984</option>
+
+                                    <option value="1985" {% if list.regyear == "1985" %} selected {% endif %} >1985</option>
+
+                                    <option value="1986" {% if list.regyear == "1986" %} selected {% endif %} >1986</option>
+
+                                    <option value="1987" {% if list.regyear == "1987" %} selected {% endif %} >1987</option>
+
+                                    <option value="1988" {% if list.regyear == "1988" %} selected {% endif %} >1988</option>
+
+                                    <option value="1989" {% if list.regyear == "1989" %} selected {% endif %} >1989</option>
+
+                                    <option value="1990" {% if list.regyear == "1990" %} selected {% endif %} >1990</option>
+
+                                    <option value="1991" {% if list.regyear == "1991" %} selected {% endif %} >1991</option>
+
+                                    <option value="1992" {% if list.regyear == "1992" %} selected {% endif %} >1992</option>
+
+                                    <option value="1993" {% if list.regyear == "1993" %} selected {% endif %} >1993</option>
+
+                                    <option value="1994" {% if list.regyear == "1994" %} selected {% endif %} >1994</option>
+
+                                    <option value="1995" {% if list.regyear == "1995" %} selected {% endif %} >1995</option>
+
+                                    <option value="1996" {% if list.regyear == "1996" %} selected {% endif %} >1996</option>
+
+                                    <option value="1997" {% if list.regyear == "1997" %} selected {% endif %} >1997</option>
+
+                                    <option value="1998" {% if list.regyear == "1998" %} selected {% endif %} >1998</option>
+
+                                    <option value="1999" {% if list.regyear == "1999" %} selected {% endif %} >1999</option>
+
+                                    <option value="2000" {% if list.regyear == "2000" %} selected {% endif %} >2000</option>
+
+                                    <option value="2001" {% if list.regyear == "2001" %} selected {% endif %} >2001</option>
+
+                                    <option value="2002" {% if list.regyear == "2002" %} selected {% endif %} >2002</option>
+
+                                    <option value="2003" {% if list.regyear == "2003" %} selected {% endif %} >2003</option>
+
+                                    <option value="2004" {% if list.regyear == "2004" %} selected {% endif %} >2004</option>
+
+                                    <option value="2005" {% if list.regyear == "2005" %} selected {% endif %} >2005</option>
+
+                                    <option value="2006" {% if list.regyear == "2006" %} selected {% endif %} >2006</option>
+
+                                    <option value="2007" {% if list.regyear == "2007" %} selected {% endif %} >2007</option>
+
+                                    <option value="2008" {% if list.regyear == "2008" %} selected {% endif %} >2008</option>
+
+                                    <option value="2009" {% if list.regyear == "2009" %} selected {% endif %} >2009</option>
+
+                                    <option value="2010" {% if list.regyear == "2010" %} selected {% endif %} >2010</option>
+
+                                    <option value="2011" {% if list.regyear == "2011" %} selected {% endif %} >2011</option>
+
+                                    <option value="2012" {% if list.regyear == "2012" %} selected {% endif %} >2012</option>
+
+                                    <option value="2013" {% if list.regyear == "2013" %} selected {% endif %} >2013</option>
+
+                                    <option value="2014" {% if list.regyear == "2014" %} selected {% endif %} >2014</option>
+
+                                    <option value="2015" {% if list.regyear == "2015" %} selected {% endif %} >2015</option>
+
+                                    <option value="2016" {% if list.regyear == "2016" %} selected {% endif %} >2016</option>
+
+                                    <option value="2017" {% if list.regyear == "2017" %} selected {% endif %} >2017</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="profile-form-btn">
+
+                                <button class="btn btn-warning back20" type="button"><span
+
+                                        class="fa fa-arrow-left"></span> Back
+
+                                </button>
+
+                                <button class="btn open20" type="button">Next <span
+
+                                        class="fa fa-arrow-right"></span></button>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <!-- step 02 -->
+
+                    <!-- step 03 -->
+
+                    <div id="sf30" class="frm1 sf30" style="display: none;">
+
+                        <fieldset>
+
+                            <legend>Education Qualification - Step 3 of 6</legend>
+
+                            <div class="form-group">
+
+                                <label>Degree *</label>
+
+                                <select name="selectdegree">
+
+                                    <option value="">Select Degree</option>
+
+                                    <option  value="MBBS" {% if list.selectdegree == "MBBS" %} selected {% endif %} >MBBS</option>
+
+                                    <option value="MD"  {% if list.selectdegree == "MD" %} selected {% endif %} >MD</option>
+
+                                    <option value="B.D.S" {% if list.selectdegree == "B.D.S" %} selected {% endif %} >B.D.S</option>
+
+                                    <option value="B.Pharma" {% if list.selectdegree == "B.Pharma" %} selected {% endif %} >B.Pharma</option>
+
+                                    <option value="B.Sc Nursing" {% if list.selectdegree == "B.Sc Nursing" %} selected {% endif %} >B.Sc Nursing</option>
+
+                                    <option value="B.P.T(Physiotherapy)" {% if list.selectdegree == "B.P.T(Physiotherapy)" %} selected {% endif %} >B.P.T (Physiotherapy)</option>
+
+                                    <option value="B.O.T (Occupational Therapy)" {% if list.selectdegree == "B.O.T (Occupational Therapy)" %} selected {% endif %} >B.O.T (Occupational Therapy)</option>
+
+                                    <option value="B.H.M.S(Homeopathy Medicine)" {% if list.selectdegree == "B.H.M.S(Homeopathy Medicine)" %} selected {% endif %} >B.H.M.S(Homeopathy Medicine)</option>
+
+                                    <option value="B.U.M.S(Unani Medicine)" {% if list.selectdegree == "B.U.M.S(Unani Medicine)" %} selected {% endif %} >B.U.M.S(Unani Medicine)</option>
+
+                                    <option value="Optometry" {% if list.selectdegree == "Optometry" %} selected {% endif %} >Optometry</option>
+
+                                    <option value="B.A.M.S(Ayurvedic,Siddha Medicine)" {% if list.selectdegree == "B.A.M.S(Ayurvedic,Siddha Medicine)" %} selected {% endif %} >B.A.M.S(Ayurvedic, Siddha
+
+                                        Medicine)
+
+                                    </option>
+
+                                    <option value="D.Pharma(Ayurvedic,SiddhaMedicine)" {% if list.selectdegree == "D.Pharma(Ayurvedic,SiddhaMedicine)" %} selected {% endif %} >D. Pharma(Ayurvedic, Siddha
+
+                                        Medicine)
+
+                                    </option>
+
+                                    <option value="M.S" {% if list.selectdegree == "M.S" %} selected {% endif %} >M.S. (Master of Surgery)</option>
+
+                                    <option value="D.M" {% if list.selectdegree == "D.M" %} selected {% endif %} >D.M (Doctorate in Medicine)</option>
+
+                                    <option value="B.P.T" {% if list.selectdegree == "B.P.T" %} selected {% endif %} >B.P.T (Physiotherapy)</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>College/Institute</label>
+
+                                <input type="text" value="{{list.uinstitute}}" name="uinstitute"
+
+                                       class="" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Year of Completion *</label>
+
+                                <select name="degreecompletion">
+
+                                    <option value="">Select Year</option>
+
+                                    <option value="1950" {% if list.degreecompletion == "1950" %} selected {% endif %} >1950</option>
+
+                                    <option value="1951" {% if list.degreecompletion == "1951" %} selected {% endif %} >1951</option>
+
+                                    <option value="1952" {% if list.degreecompletion == "1953" %} selected {% endif %} >1952</option>
+
+                                    <option value="1953" {% if list.degreecompletion == "1953" %} selected {% endif %} >1953</option>
+
+                                    <option value="1954" {% if list.degreecompletion == "1954" %} selected {% endif %} >1954</option>
+
+                                    <option value="1955" {% if list.degreecompletion == "1955" %} selected {% endif %} >1955</option>
+
+                                    <option value="1956" {% if list.degreecompletion == "1956" %} selected {% endif %} >1956</option>
+
+                                    <option value="1957" {% if list.degreecompletion == "1957" %} selected {% endif %} >1957</option>
+
+                                    <option value="1958" {% if list.degreecompletion == "1958" %} selected {% endif %} >1958</option>
+
+                                    <option value="1959" {% if list.degreecompletion == "1959" %} selected {% endif %} >1959</option>
+
+                                    <option value="1960" {% if list.degreecompletion == "1960" %} selected {% endif %} >1960</option>
+
+                                    <option value="1961" {% if list.degreecompletion == "1961" %} selected {% endif %} >1961</option>
+
+                                    <option value="1962" {% if list.degreecompletion == "1962" %} selected {% endif %} >1962</option>
+
+                                    <option value="1963" {% if list.degreecompletion == "1963" %} selected {% endif %} >1963</option>
+
+                                    <option value="1964" {% if list.degreecompletion == "1964" %} selected {% endif %} >1964</option>
+
+                                    <option value="1965" {% if list.degreecompletion == "1965" %} selected {% endif %} >1965</option>
+
+                                    <option value="1966" {% if list.degreecompletion == "1966" %} selected {% endif %} >1966</option>
+
+                                    <option value="1967" {% if list.degreecompletion == "1967" %} selected {% endif %} >1967</option>
+
+                                    <option value="1968" {% if list.degreecompletion == "1968" %} selected {% endif %} >1968</option>
+
+                                    <option value="1969" {% if list.degreecompletion == "1969" %} selected {% endif %} >1969</option>
+
+                                    <option value="1970" {% if list.degreecompletion == "1970" %} selected {% endif %} >1970</option>
+
+                                    <option value="1971" {% if list.degreecompletion == "1971" %} selected {% endif %} >1971</option>
+
+                                    <option value="1972" {% if list.degreecompletion == "1972" %} selected {% endif %} >1972</option>
+
+                                    <option value="1973" {% if list.degreecompletion == "1973" %} selected {% endif %} >1973</option>
+
+                                    <option value="1974" {% if list.degreecompletion == "1974" %} selected {% endif %} >1974</option>
+
+                                    <option value="1975" {% if list.degreecompletion == "1975" %} selected {% endif %} >1975</option>
+
+                                    <option value="1976" {% if list.degreecompletion == "1976" %} selected {% endif %} >1976</option>
+
+                                    <option value="1977" {% if list.degreecompletion == "1977" %} selected {% endif %} >1977</option>
+
+                                    <option value="1978" {% if list.degreecompletion == "1978" %} selected {% endif %} >1978</option>
+
+                                    <option value="1979" {% if list.degreecompletion == "1979" %} selected {% endif %} >1979</option>
+
+                                    <option value="1980" {% if list.degreecompletion == "1980" %} selected {% endif %} >1980</option>
+
+                                    <option value="1981" {% if list.degreecompletion == "1981" %} selected {% endif %} >1981</option>
+
+                                    <option value="1982" {% if list.degreecompletion == "1982" %} selected {% endif %} >1982</option>
+
+                                    <option value="1983" {% if list.degreecompletion == "1983" %} selected {% endif %} >1983</option>
+
+                                    <option value="1984" {% if list.degreecompletion == "1984" %} selected {% endif %} >1984</option>
+
+                                    <option value="1985" {% if list.degreecompletion == "1985" %} selected {% endif %} >1985</option>
+
+                                    <option value="1986" {% if list.degreecompletion == "1986" %} selected {% endif %} >1986</option>
+
+                                    <option value="1987" {% if list.degreecompletion == "1987" %} selected {% endif %} >1987</option>
+
+                                    <option value="1988" {% if list.degreecompletion == "1988" %} selected {% endif %} >1988</option>
+
+                                    <option value="1989" {% if list.degreecompletion == "1989" %} selected {% endif %} >1989</option>
+
+                                    <option value="1990" {% if list.degreecompletion == "1990" %} selected {% endif %} >1990</option>
+
+                                    <option value="1991" {% if list.degreecompletion == "1991" %} selected {% endif %} >1991</option>
+
+                                    <option value="1992" {% if list.degreecompletion == "1992" %} selected {% endif %} >1992</option>
+
+                                    <option value="1993" {% if list.degreecompletion == "1993" %} selected {% endif %} >1993</option>
+
+                                    <option value="1994" {% if list.degreecompletion == "1994" %} selected {% endif %} >1994</option>
+
+                                    <option value="1995" {% if list.degreecompletion == "1995" %} selected {% endif %} >1995</option>
+
+                                    <option value="1996" {% if list.degreecompletion == "1996" %} selected {% endif %} >1996</option>
+
+                                    <option value="1997" {% if list.degreecompletion == "1997" %} selected {% endif %} >1997</option>
+
+                                    <option value="1998" {% if list.degreecompletion == "1998" %} selected {% endif %} >1998</option>
+
+                                    <option value="1999" {% if list.degreecompletion == "1999" %} selected {% endif %} >1999</option>
+
+                                    <option value="2000" {% if list.degreecompletion == "2000" %} selected {% endif %} >2000</option>
+
+                                    <option value="2001" {% if list.degreecompletion == "2001" %} selected {% endif %} >2001</option>
+
+                                    <option value="2002" {% if list.degreecompletion == "2002" %} selected {% endif %} >2002</option>
+
+                                    <option value="2003" {% if list.degreecompletion == "2003" %} selected {% endif %} >2003</option>
+
+                                    <option value="2004" {% if list.degreecompletion == "2004" %} selected {% endif %} >2004</option>
+
+                                    <option value="2005" {% if list.degreecompletion == "2005" %} selected {% endif %} >2005</option>
+
+                                    <option value="2006" {% if list.degreecompletion == "2006" %} selected {% endif %} >2006</option>
+
+                                    <option value="2007" {% if list.degreecompletion == "2007" %} selected {% endif %} >2007</option>
+
+                                    <option value="2008" {% if list.degreecompletion == "2008" %} selected {% endif %} >2008</option>
+
+                                    <option value="2009" {% if list.degreecompletion == "2009" %} selected {% endif %} >2009</option>
+
+                                    <option value="2010" {% if list.degreecompletion == "2010" %} selected {% endif %} >2010</option>
+
+                                    <option value="2011" {% if list.degreecompletion == "2011" %} selected {% endif %} >2011</option>
+
+                                    <option value="2012" {% if list.degreecompletion == "2012" %} selected {% endif %} >2012</option>
+
+                                    <option value="2013" {% if list.degreecompletion == "2013" %} selected {% endif %} >2013</option>
+
+                                    <option value="2014" {% if list.degreecompletion == "2014" %} selected {% endif %} >2014</option>
+
+                                    <option value="2015" {% if list.degreecompletion == "2015" %} selected {% endif %} >2015</option>
+
+                                    <option value="2016" {% if list.degreecompletion == "2016" %} selected {% endif %} >2016</option>
+
+                                    <option value="2017" {% if list.degreecompletion == "2017" %} selected {% endif %} >2017</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="profile-form-btn">
+
+                                <button class="btn btn-warning back30" type="button"><span
+
+                                        class="fa fa-arrow-left"></span> Back
+
+                                </button>
+
+                                <button class="btn open30" type="button">Next <span
+
+                                        class="fa fa-arrow-right"></span></button>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <!-- step 03 -->
+
+
+
+                    <!-- step 04 -->
+
+                        <div id="sf40" class="frm1 sf40" style="display: none;">
+
+                            <fieldset>
+
+                            <legend>Experience (in Years) - Step 4 of 6</legend>
+
+
+
+                            <div class="form-group">
+
+                                <label>Experience in Profile *</label>
+
+                                <select name="uexperience02" autocomplete="off">
+
+                                    <option value="General Surgery ">General Surgery </option>
+
+                                    <option value="Cardiothoracic Surgery">Cardiothoracic Surgery</option>
+
+                                    <option value="Vascular Surgery">Vascular Surgery</option>
+
+                                    <option value="Cosmetic and Reconstructive Surgery ">Cosmetic and Reconstructive Surgery </option>
+
+                                    <option value="Colorectal Surgery">Colorectal Surgery</option>
+
+                                    <option value="Surgical Oncology">Surgical Oncology</option>
+
+                                    <option value="Transplant Surgery">Transplant Surgery</option>
+
+                                    <option value="Trauma Surgery">Trauma Surgery</option>
+
+                                    <option value="Surgical Endocrinology">Surgical Endocrinology</option>
+
+                                    <option value="Orthopedic Surgery">Orthopedic Surgery</option>
+
+                                    <option value="Neurosurgery">Neurosurgery</option>
+
+                                    <option value="Urology ">Urology </option>
+
+                                    <option value="ENT ">ENT </option>
+
+                                    <option value="Ophthalmology">Ophthalmology</option>
+
+                                    <option value="Obstetrics & Gynecology (Ob/Gyn)">Obstetrics & Gynecology (Ob/Gyn)</option>
+
+                                    <option value="Dermatology">Dermatology</option>
+
+                                    <option value="Neurology">Neurology</option>
+
+                                    <option value="Pathology">Pathology</option>
+
+                                    <option value="Radiology">Radiology</option>
+
+                                    <option value="Anesthesiology">Anesthesiology</option>
+
+                                    <option value="Psychiatry">Psychiatry</option>
+
+                                    <option value="Pediatrics">Pediatrics</option>
+
+                                    <option value="Family Practice">Family Practice</option>
+
+                                    <option value="Radiation Oncology">Radiation Oncology</option>
+
+                                    <option value="Physical Medicine and Rehab (PM & R)">Physical Medicine and Rehab (PM & R)</option>
+
+                                    <option value="Emergency Medicine">Emergency Medicine</option>
+
+                                    <option value="Psychologists/Counselors ">Psychologists/Counselors </option>
+
+                                    <option value="Podiatrists">Podiatrists</option>
+
+                                    <option value="Optometrists">Optometrists</option>
+
+                                    <option value="Maternal-Fetal Medicine (MFM)">Maternal-Fetal Medicine (MFM)</option>
+
+                                    <option value="Reproductive Endocrinology">Reproductive Endocrinology</option>
+
+                                    <option value="Gynecologic Oncology">Gynecologic Oncology</option>
+
+                                    <option value="Urogynecology">Urogynecology</option>
+
+                                    <option value="Hand Surgeons">Hand Surgeons</option>
+
+                                    <option value="Shoulder Surgeons">Shoulder Surgeons</option>
+
+                                    <option value="Knee Surgeons">Knee Surgeons</option>
+
+                                    <option value="Hip Surgeons">Hip Surgeons</option>
+
+                                    <option value="Spine Surgeons">Spine Surgeons</option>
+
+                                    <option value="Sports Medicine">Sports Medicine</option>
+
+                                    <option value="Orthopedic Oncology">Orthopedic Oncology</option>
+
+
+
+                                </select>
+
+                            </div>
+
+                              <div class="form-group">
+
+                                <div class="col-md-6"><label>Experience (in years) *</label>
+
+                                <!--<input type="text"  value="{{list.uexperience01}}"  name="uexperience01"-->
+
+                                       <!--autocomplete="off">-->
+
+                                 <select name="uexperience01">
+
+                                     <option value="select value">Select value</option>
+
+                                     <option value="1" {% if list.uexperience01 == '1' %} selected {% endif %}>1</option>
+
+                                     <option value="2" {% if list.uexperience01 == '2' %} selected {% endif %}>2</option>
+
+                                     <option value="3" {% if list.uexperience01 == '3' %} selected {% endif %}>3</option>
+
+                                     <option value="4" {% if list.uexperience01 == '4' %} selected {% endif %}>4</option>
+
+                                     <option value="5" {% if list.uexperience01 == '5' %} selected {% endif %}>5</option>
+
+                                     <option value="6" {% if list.uexperience01 == '6' %} selected {% endif %}>6</option>
+
+                                     <option value="7" {% if list.uexperience01 == '7' %} selected {% endif %}>7</option>
+
+                                     <option value="8" {% if list.uexperience01 == '8' %} selected {% endif %}>8</option>
+
+                                     <option value="9" {% if list.uexperience01 == '9' %} selected {% endif %}>9</option>
+
+                                     <option value="10" {% if list.uexperience01 == '10' %} selected {% endif %}>10</option>
+
+                                     <option value="11" {% if list.uexperience01 == '11' %} selected {% endif %}>11</option>
+
+                                     <option value="12" {% if list.uexperience01 == '12' %} selected {% endif %}>12</option>
+
+                                     <option value="13" {% if list.uexperience01 == '13' %} selected {% endif %}>13</option>
+
+                                     <option value="14" {% if list.uexperience01 == '14' %} selected {% endif %}>14</option>
+
+                                     <option value="15" {% if list.uexperience01 == '15' %} selected {% endif %}>15</option>
+
+                                     <option value="16" {% if list.uexperience01 == '16' %} selected {% endif %}>16</option>
+
+                                     <option value="17" {% if list.uexperience01 == '17' %} selected {% endif %}>17</option>
+
+                                     <option value="19" {% if list.uexperience01 == '18' %} selected {% endif %}>18</option>
+
+                                     <option value="19" {% if list.uexperience01 == '19' %} selected {% endif %}>19</option>
+
+                                     <option value="20" {% if list.uexperience01 == '20' %} selected {% endif %}>20</option>
+
+                                     <option value="20+" {% if list.uexperience01 == '20+' %} selected {% endif %}>20+</option>
+
+                                </select>
+
+                                </div>
+
+                                <div class="col-md-6"><label>Experience (in months) *</label>
+
+                                 <select name="uexperience_month">
+
+                                    <option value="select value">Select value</option>
+
+                                    <option value="0" {% if list.uexperience_month == '0' %} selected {% endif %}>0</option>
+
+                                    <option value="1"  {% if list.uexperience_month == '1' %} selected {% endif %}>1</option>
+
+                                    <option value="2"  {% if list.uexperience_month == '2' %} selected {% endif %}>2</option>
+
+                                    <option value="3"  {% if list.uexperience_month == '3' %} selected {% endif %}>3</option>
+
+                                    <option value="4"  {% if list.uexperience_month == '4' %} selected {% endif %}>4</option>
+
+                                    <option value="5"  {% if list.uexperience_month == '5' %} selected {% endif %}>5</option>
+
+                                    <option value="6"  {% if list.uexperience_month == '6' %} selected {% endif %}>6</option>
+
+                                    <option value="7"  {% if list.uexperience_month == '7' %} selected {% endif %}>7</option>
+
+                                    <option value="8"  {% if list.uexperience_month == '8' %} selected {% endif %}>8</option>
+
+                                    <option value="9"  {% if list.uexperience_month == '9' %} selected {% endif %}>9</option>
+
+                                    <option value="10"  {% if list.uexperience_month == '10' %} selected {% endif %}>10</option>
+
+                                    <option value="11"  {% if list.uexperience_month == '11' %} selected {% endif %}>11</option>
+
+                                </select></div>
+
+                            </div>
+
+                                 <div class="profile-form-btn">
+
+                                    <button class="btn btn-warning back40"
+
+                                            type="button"><span
+
+                                            class="fa fa-arrow-left"></span>
+
+                                        Back
+
+                                    </button>
+
+                                    <button class="btn open40" type="button">
+
+                                        Next <span
+
+                                            class="fa fa-arrow-right"></span>
+
+                                    </button>
+
+                                </div>
+
+
+
+                        </fieldset>
+
+                        </div>
+
+                        <!-- step 04 -->
+
+
+
+                    <!-- step 05 -->
+
+                    <div id="sf50" class="frm1 sf50" style="display: none;">
+
+                        <fieldset>
+
+                                <legend>Upload ID Proof - Step 5 of 6</legend>
+
+                                <div class="fileUpload01">
+
+                                    <div class="image-upload-btn"><p
+
+                                            class="custom-plus">+</p>
+
+                                        <p class="custom-para">Upload</p></div>
+
+                                    <input type="file" value="{{list.doctor_idproof}}" class="upload upload002" name="doctor_idproof"></div>
+
+                                <input class="uploadFile02"
+
+                                       placeholder="0 files selected"
+
+                                       readonly=""/>
+
+                               <div class="profile-form-btn">
+
+                                    <button class="btn btn-warning back50"
+
+                                            type="button"><span
+
+                                            class="fa fa-arrow-left"></span>
+
+                                        Back
+
+                                    </button>
+
+                                    <button class="btn open50" type="button">
+
+                                        Next <span
+
+                                            class="fa fa-arrow-right"></span>
+
+                                    </button>
+
+                                </div>
+
+                            </fieldset>
+
+
+
+                    </div>
+
+                    <!-- step 05 -->
+
+                    <!----step 06 -->
+
+                     <div id="sf60" class="frm1 sf60" style="display: none;">
+
+                         <fieldset>
+
+                            <legend>Upload ID Proof 2 - Step 6 of 6</legend>
+
+                                <div class="fileUpload01">
+
+                                    <div class="image-upload-btn"><p
+
+                                            class="custom-plus">+</p>
+
+                                        <p class="custom-para">Upload</p></div>
+
+                                    <input type="file" value="{{list.doctor_idproof2}}" class="upload upload002" name="doctor_idproof2"></div>
+
+                                <input class="uploadFile02"
+
+                                       placeholder="0 files selected"
+
+                                       readonly=""/>
+
+                               <div class="profile-form-btn">
+
+                                <button class="btn btn-warning back60" type="button"><span
+
+                                        class="fa fa-arrow-left"></span> Back
+
+                                </button>
+
+                                <input class="btn " type="submit" value="Submit">
+
+                            </div>
+
+
+
+                         </fieldset>
+
+                     </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+<!-- Edit Profile Popup -->
+
+
+
+<!--Add Profile popup -->
+
+<div id="post-popup" class="modal fade"  role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+        <div class="modal-header"><h2 class="head">Complete Your Profile in quick 4 steps!</h2>
+
+        <p class="marked-fields"><strong>Fields marked with star (*) are required.</strong></p></div>
+
+        <div class="modal-body">
+
+            <div class="">
+
+                <form action="{% url 'save_doctor_profile_edit_data' %}" name="basicform" id="basicform" class="basic_detail" method="post" enctype="multipart/form-data">
+
+                    <!-- step 01 -->
+
+                    {% csrf_token %}
+
+                    <div id="sf1" class="frm">
+
+                        <fieldset>
+
+                            <legend>Account Information - Step 1 of 6</legend>
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <label>First Name *</label>
+
+                                    <input type="hidden"  name="id" value="{{user.id}}">
+
+                                    <input type="text" placeholder="First Name" name="first_name" class=""
+
+                                           autocomplete="off" value="{{user.first_name}}">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Last Name *</label>
+
+                                    <input type="text" placeholder="Last Name" name="last_name" value="{{user.last_name}}" class=""
+
+                                           autocomplete="off">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Select Date of Birth *</label>
+
+                                    <input type="text" class="doctordob" placeholder="Date of Birth" name="udob" />
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Gender *</label>
+
+                                    <select name="ugender">
+
+                                        <option value="">Select gender</option>
+
+                                        <option value="Male">Male</option>
+
+                                        <option value="Female">Female</option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+
+
+                                <div class="form-group">
+
+                                    <label>Mobile *</label>
+
+                                    <input type="text" placeholder="Mobile" name="umobile"
+
+                                           onkeyup="this.value=this.value.replace(/[^\d]/,'')"
+
+                                           autocomplete="off">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Upload image *</label>
+
+                                     <input type="file" name="pic" />
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Select State *</label>
+
+                                    <select name="state" class="states statelist">
+
+                                        <option value="">Please select state</option>
+
+                                        <option value="AndamanNicobar">Andaman Nicobar</option>
+
+                                        <option value="AndhraPradesh">Andhra Pradesh</option>
+
+                                        <option value="ArunachalPradesh">Arunachal Pradesh</option>
+
+                                        <option value="Assam">Assam</option>
+
+                                        <option value="Bihar">Bihar</option>
+
+                                        <option value="Chandigarh">Chandigarh</option>
+
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+
+                                        <option value="DadraNagarHaveli">Dadra Nagar Haveli</option>
+
+                                        <option value="DamanDiu">Daman Diu</option>
+
+                                        <option value="Delhi">Delhi</option>
+
+                                        <option value="Goa">Goa</option>
+
+                                        <option value="Gujarat">Gujarat</option>
+
+                                        <option value="Haryana">Haryana</option>
+
+                                        <option value="HimachalPradesh">Himachal Pradesh</option>
+
+                                        <option value="JammuKashmir">Jammu Kashmir</option>
+
+                                        <option value="Jharkhand">Jharkhand</option>
+
+                                        <option value="Karnataka">Karnataka</option>
+
+                                        <option value="Kerala">Kerala</option>
+
+                                        <option value="Lakshadweep">Lakshadweep</option>
+
+                                        <option value="MadhyaPradesh">Madhya Pradesh</option>
+
+                                        <option value="Maharashtra">Maharashtra</option>
+
+                                        <option value="Manipur">Manipur</option>
+
+                                        <option value="Meghalaya">Meghalaya</option>
+
+                                        <option value="Mizoram">Mizoram</option>
+
+                                        <option value="Nagaland">Nagaland</option>
+
+                                        <option value="Orissa">Orissa</option>
+
+                                        <option value="Pondicherry">Pondicherry</option>
+
+                                        <option value="Punjab">Punjab</option>
+
+                                        <option value="Rajasthan">Rajasthan</option>
+
+                                        <option value="Sikkim">Sikkim</option>
+
+                                        <option value="TamilNadu">TamilNadu</option>
+
+                                        <option value="Tripura">Tripura</option>
+
+                                        <option value="UttarPradesh">UttarPradesh</option>
+
+                                        <option value="Uttaranchal">Uttaranchal</option>
+
+                                        <option value="WestBengal">WestBengal</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label>Select City *</label>
+
+                                    <select class="citylist" name="selectcity">
+
+                                        <option name="city" value="">Please select city</option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+
+                                    <label>Desciption *</label>
+
+                                    <textarea class="largebox" placeholder="Description" name="Description"></textarea>
+
+                                </div>
+
+                            </div>
+
+                            <div class="profile-form-btn">
+
+                                <button class="btn open1" type="button">Next <span
+
+                                        class="fa fa-arrow-right"></span></button>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <!-- step 01 -->
+
+
+
+                    <!-- step 02 -->
+
+                    <div id="sf2" class="frm" style="display: none;">
+
+                        <fieldset>
+
+                            <legend>Medical Registration - Step 2 of 6</legend>
+
+                            <div class="form-group">
+
+                                <label>Registration Number *</label>
+
+                                <input type="text" placeholder="Registration Number" name="uregNumber"
+
+                                       class="" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Registration Council *</label>
+
+                                <input type="text" placeholder="Registration Council" name="ucounsil"
+
+                                       class="" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Registration Year *</label>
+
+                                <select name="regyear">
+
+                                    <option value="">Select Registration Year</option>
+
+                                    <option value="1950">1950</option>
+
+                                    <option value="1951">1951</option>
+
+                                    <option value="1952">1952</option>
+
+                                    <option value="1953">1953</option>
+
+                                    <option value="1954">1954</option>
+
+                                    <option value="1955">1955</option>
+
+                                    <option value="1956">1956</option>
+
+                                    <option value="1957">1957</option>
+
+                                    <option value="1958">1958</option>
+
+                                    <option value="1959">1959</option>
+
+                                    <option value="1960">1960</option>
+
+                                    <option value="1961">1961</option>
+
+                                    <option value="1962">1962</option>
+
+                                    <option value="1963">1963</option>
+
+                                    <option value="1964">1964</option>
+
+                                    <option value="1965">1965</option>
+
+                                    <option value="1966">1966</option>
+
+                                    <option value="1967">1967</option>
+
+                                    <option value="1968">1968</option>
+
+                                    <option value="1969">1969</option>
+
+                                    <option value="1970">1970</option>
+
+                                    <option value="1971">1971</option>
+
+                                    <option value="1972">1972</option>
+
+                                    <option value="1973">1973</option>
+
+                                    <option value="1974">1974</option>
+
+                                    <option value="1975">1975</option>
+
+                                    <option value="1976">1976</option>
+
+                                    <option value="1977">1977</option>
+
+                                    <option value="1978">1978</option>
+
+                                    <option value="1979">1979</option>
+
+                                    <option value="1980">1980</option>
+
+                                    <option value="1981">1981</option>
+
+                                    <option value="1982">1982</option>
+
+                                    <option value="1983">1983</option>
+
+                                    <option value="1984">1984</option>
+
+                                    <option value="1985">1985</option>
+
+                                    <option value="1986">1986</option>
+
+                                    <option value="1987">1987</option>
+
+                                    <option value="1988">1988</option>
+
+                                    <option value="1989">1989</option>
+
+                                    <option value="1990">1990</option>
+
+                                    <option value="1991">1991</option>
+
+                                    <option value="1992">1992</option>
+
+                                    <option value="1993">1993</option>
+
+                                    <option value="1994">1994</option>
+
+                                    <option value="1995">1995</option>
+
+                                    <option value="1996">1996</option>
+
+                                    <option value="1997">1997</option>
+
+                                    <option value="1998">1998</option>
+
+                                    <option value="1999">1999</option>
+
+                                    <option value="2000">2000</option>
+
+                                    <option value="2001">2001</option>
+
+                                    <option value="2002">2002</option>
+
+                                    <option value="2003">2003</option>
+
+                                    <option value="2004">2004</option>
+
+                                    <option value="2005">2005</option>
+
+                                    <option value="2006">2006</option>
+
+                                    <option value="2007">2007</option>
+
+                                    <option value="2008">2008</option>
+
+                                    <option value="2009">2009</option>
+
+                                    <option value="2010">2010</option>
+
+                                    <option value="2011">2011</option>
+
+                                    <option value="2012">2012</option>
+
+                                    <option value="2013">2013</option>
+
+                                    <option value="2014">2014</option>
+
+                                    <option value="2015">2015</option>
+
+                                    <option value="2016">2016</option>
+
+                                    <option value="2017">2017</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="profile-form-btn">
+
+                                <button class="btn btn-warning back2" type="button"><span
+
+                                        class="fa fa-arrow-left"></span> Back
+
+                                </button>
+
+                                <button class="btn open2" type="button">Next <span
+
+                                        class="fa fa-arrow-right"></span></button>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <!-- step 02 -->
+
+
+
+                    <!-- step 03 -->
+
+                    <div id="sf3" class="frm" style="display: none;">
+
+                        <fieldset>
+
+                            <legend>Education Qualification - Step 3 of 6</legend>
+
+                            <div class="form-group">
+
+                                <label>Degree *</label>
+
+                                <select name="selectdegree">
+
+                                    <option value="">Select Degree</option>
+
+                                    <option value="MBBS">MBBS</option>
+
+                                    <option value="MD">MD</option>
+
+                                    <option value="B.D.S">B.D.S</option>
+
+                                    <option value="B.Pharma">B.Pharma</option>
+
+                                    <option value="B.Sc Nursing">B.Sc Nursing</option>
+
+                                    <option value="B.P.T (Physiotherapy)">B.P.T (Physiotherapy)</option>
+
+                                    <option value="B.O.T (Occupational Therapy)">B.O.T (Occupational Therapy)</option>
+
+                                    <option value="B.H.M.S(Homeopathy Medicine)">B.H.M.S(Homeopathy Medicine)</option>
+
+                                    <option value="B.U.M.S(Unani Medicine)">B.U.M.S(Unani Medicine)</option>
+
+                                    <option value="Optometry">Optometry</option>
+
+                                    <option value="B.A.M.S(Ayurvedic, Siddha Medicine)">B.A.M.S(Ayurvedic, Siddha
+
+                                        Medicine)
+
+                                    </option>
+
+                                    <option value="D. Pharma(Ayurvedic, Siddha Medicine)">D. Pharma(Ayurvedic, Siddha
+
+                                        Medicine)
+
+                                    </option>
+
+                                    <option value="M.S. (Master of Surgery)">M.S. (Master of Surgery)</option>
+
+                                    <option value="D.M (Doctorate in Medicine)">D.M (Doctorate in Medicine)</option>
+
+                                    <option value="B.P.T (Physiotherapy)">B.P.T (Physiotherapy)</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>College/Institute</label>
+
+                                <input type="text" placeholder="College/Institute" name="uinstitute"
+
+                                       class="" autocomplete="off">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>Year of Completion *</label>
+
+                                <select name="degreecompletion">
+
+                                    <option value="">Select Year</option>
+
+                                    <option value="1990">1990</option>
+
+                                    <option value="1991">1991</option>
+
+                                    <option value="1992">1992</option>
+
+                                    <option value="1993">1993</option>
+
+                                    <option value="1994">1994</option>
+
+                                    <option value="1995">1995</option>
+
+                                    <option value="1996">1996</option>
+
+                                    <option value="1997">1997</option>
+
+                                    <option value="1998">1998</option>
+
+                                    <option value="1999">1999</option>
+
+                                    <option value="2000">2000</option>
+
+                                    <option value="2001">2001</option>
+
+                                    <option value="2002">2002</option>
+
+                                    <option value="2003">2003</option>
+
+                                    <option value="2004">2004</option>
+
+                                    <option value="2005">2005</option>
+
+                                    <option value="2006">2006</option>
+
+                                    <option value="2007">2007</option>
+
+                                    <option value="2008">2008</option>
+
+                                    <option value="2009">2009</option>
+
+                                    <option value="2010">2010</option>
+
+                                    <option value="2011">2011</option>
+
+                                    <option value="2012">2012</option>
+
+                                    <option value="2013">2013</option>
+
+                                    <option value="2014">2014</option>
+
+                                    <option value="2015">2015</option>
+
+                                    <option value="2016">2016</option>
+
+                                    <option value="2017">2017</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="profile-form-btn">
+
+                                <button class="btn btn-warning back3" type="button"><span
+
+                                        class="fa fa-arrow-left"></span> Back
+
+                                </button>
+
+                                <button class="btn open3" type="button">Next <span
+
+                                        class="fa fa-arrow-right"></span></button>
+
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+
+                    <!-- step 03 -->
+
+
+
+                     <!-- step 04 -->
+
+                        <div id="sf4" class="frm" style="display: none;">
+
+                            <fieldset>
+
+                            <legend>Experience (in Years) - Step 4 of 6</legend>
+
+
+
+                            <div class="form-group">
+
+                                <label>Experience in Profile *</label>
+
+                                <select name="uexperience02" autocomplete="off">
+
+                                    <option value="General Surgery ">General Surgery </option>
+
+                                    <option value="Cardiothoracic Surgery">Cardiothoracic Surgery</option>
+
+                                    <option value="Vascular Surgery">Vascular Surgery</option>
+
+                                    <option value="Cosmetic and Reconstructive Surgery ">Cosmetic and Reconstructive Surgery </option>
+
+                                    <option value="Colorectal Surgery">Colorectal Surgery</option>
+
+                                    <option value="Surgical Oncology">Surgical Oncology</option>
+
+                                    <option value="Transplant Surgery">Transplant Surgery</option>
+
+                                    <option value="Trauma Surgery">Trauma Surgery</option>
+
+                                    <option value="Surgical Endocrinology">Surgical Endocrinology</option>
+
+                                    <option value="Orthopedic Surgery">Orthopedic Surgery</option>
+
+                                    <option value="Neurosurgery">Neurosurgery</option>
+
+                                    <option value="Urology ">Urology </option>
+
+                                    <option value="ENT ">ENT </option>
+
+                                    <option value="Ophthalmology">Ophthalmology</option>
+
+                                    <option value="Obstetrics & Gynecology (Ob/Gyn)">Obstetrics & Gynecology (Ob/Gyn)</option>
+
+                                    <option value="Dermatology">Dermatology</option>
+
+                                    <option value="Neurology">Neurology</option>
+
+                                    <option value="Pathology">Pathology</option>
+
+                                    <option value="Radiology">Radiology</option>
+
+                                    <option value="Anesthesiology">Anesthesiology</option>
+
+                                    <option value="Psychiatry">Psychiatry</option>
+
+                                    <option value="Pediatrics">Pediatrics</option>
+
+                                    <option value="Family Practice">Family Practice</option>
+
+                                    <option value="Radiation Oncology">Radiation Oncology</option>
+
+                                    <option value="Physical Medicine and Rehab (PM & R)">Physical Medicine and Rehab (PM & R)</option>
+
+                                    <option value="Emergency Medicine">Emergency Medicine</option>
+
+                                    <option value="Psychologists/Counselors ">Psychologists/Counselors </option>
+
+                                    <option value="Podiatrists">Podiatrists</option>
+
+                                    <option value="Optometrists">Optometrists</option>
+
+                                    <option value="Maternal-Fetal Medicine (MFM)">Maternal-Fetal Medicine (MFM)</option>
+
+                                    <option value="Reproductive Endocrinology">Reproductive Endocrinology</option>
+
+                                    <option value="Gynecologic Oncology">Gynecologic Oncology</option>
+
+                                    <option value="Urogynecology">Urogynecology</option>
+
+                                    <option value="Hand Surgeons">Hand Surgeons</option>
+
+                                    <option value="Shoulder Surgeons">Shoulder Surgeons</option>
+
+                                    <option value="Knee Surgeons">Knee Surgeons</option>
+
+                                    <option value="Hip Surgeons">Hip Surgeons</option>
+
+                                    <option value="Spine Surgeons">Spine Surgeons</option>
+
+                                    <option value="Sports Medicine">Sports Medicine</option>
+
+                                    <option value="Orthopedic Oncology">Orthopedic Oncology</option>
+
+
+
+                                </select>
+
+                            </div>
+
+                              <div class="form-group">
+
+                                <div class="col-md-6"><label>Experience (in years) *</label>
+
+                                <!--<input type="text"  value="{{list.uexperience01}}"  name="uexperience01"-->
+
+                                       <!--autocomplete="off">-->
+
+                                 <select name="uexperience01">
+
+                                     <option value="select value" disabled>Select value</option>
+
+                                     <option value="1">1</option>
+
+                                     <option value="2" >2</option>
+
+                                     <option value="3">3</option>
+
+                                     <option value="4" >4</option>
+
+                                     <option value="5" >5</option>
+
+                                     <option value="6" >6</option>
+
+                                     <option value="7">7</option>
+
+                                     <option value="8" >8</option>
+
+                                     <option value="9" >9</option>
+
+                                     <option value="10">10</option>
+
+                                     <option value="11">11</option>
+
+                                     <option value="12">12</option>
+
+                                     <option value="13" >13</option>
+
+                                     <option value="14">14</option>
+
+                                     <option value="15">15</option>
+
+                                     <option value="16">16</option>
+
+                                     <option value="17" >17</option>
+
+                                     <option value="19">18</option>
+
+                                     <option value="19">19</option>
+
+                                     <option value="20" >20</option>
+
+                                     <option value="20+">20+</option>
+
+                                </select>
+
+                                </div>
+
+                                <div class="col-md-6"><label>Experience (in months) *</label>
+
+                                 <select name="uexperience_month">
+
+                                    <option value="select value">Select value</option>
+
+                                    <option value="0" >0</option>
+
+                                    <option value="1">1</option>
+
+                                    <option value="2">2</option>
+
+                                    <option value="3">3</option>
+
+                                    <option value="4">4</option>
+
+                                    <option value="5">5</option>
+
+                                    <option value="6">6</option>
+
+                                    <option value="7">7</option>
+
+                                    <option value="8">8</option>
+
+                                    <option value="9">9</option>
+
+                                    <option value="10">10</option>
+
+                                    <option value="11">11</option>
+
+                                </select></div>
+
+                            </div>
+
+                                 <div class="profile-form-btn">
+
+                                    <button class="btn btn-warning back4"
+
+                                            type="button"><span
+
+                                            class="fa fa-arrow-left"></span>
+
+                                        Back
+
+                                    </button>
+
+                                    <button class="btn open4" type="button">
+
+                                        Next <span
+
+                                            class="fa fa-arrow-right"></span>
+
+                                    </button>
+
+                                </div>
+
+
+
+                        </fieldset>
+
+                        </div>
+
+                        <!-- step 04 -->
+
+
+
+                    <!-- step 05 -->
+
+
+
+                    <div id="sf5" class="frm" style="display: none;">
+
+                        <fieldset>
+
+                                <legend>Upload ID Proof - Step 5 of 6</legend>
+
+                                <div class="fileUpload01">
+
+                                    <div class="image-upload-btn"><p
+
+                                            class="custom-plus">+</p>
+
+                                        <p class="custom-para">Upload</p></div>
+
+                                    <input type="file" class="upload upload002" name="doctor_idproof"></div>
+
+                                <input class="uploadFile02"
+
+                                       placeholder="0 files selected"
+
+                                       readonly=""/>
+
+                               <div class="profile-form-btn">
+
+                                    <button class="btn btn-warning back5"
+
+                                            type="button"><span
+
+                                            class="fa fa-arrow-left"></span>
+
+                                        Back
+
+                                    </button>
+
+                                    <button class="btn open5" type="button">
+
+                                        Next <span
+
+                                            class="fa fa-arrow-right"></span>
+
+                                    </button>
+
+                                </div>
+
+                            </fieldset>
+
+
+
+                    </div>
+
+                    <!-- step 05 -->
+
+
+
+                     <!----step 06 -->
+
+                     <div id="sf6" class="frm" style="display: none;">
+
+                         <fieldset>
+
+                            <legend>Upload ID Proof 2 - Step 6 of 6</legend>
+
+                                <div class="fileUpload01">
+
+                                    <div class="image-upload-btn"><p
+
+                                            class="custom-plus">+</p>
+
+                                        <p class="custom-para">Upload</p></div>
+
+                                    <input type="file"  class="upload upload002" name="doctor_idproof2"></div>
+
+                                <input class="uploadFile02"
+
+                                       placeholder="0 files selected"
+
+                                       readonly=""/>
+
+                               <div class="profile-form-btn">
+
+                                <button class="btn btn-warning back6" type="button"><span
+
+                                        class="fa fa-arrow-left"></span> Back
+
+                                </button>
+
+                                <input class="btn " type="submit" value="Submit">
+
+                            </div>
+
+
+
+                         </fieldset></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div></div>
+
+</div>
+
+<script>
+
+var complete = "{{total}}";
+
+if(complete > 0 && complete < 100){$("#editprofilepopup").modal("show");}
+
+if(complete == 0){$("#post-popup").modal("show");}
+
+</script>
+
+
+
+
+
+<script>
+
+
+
+
+
+function UpdateStatus(){
+
+
+
+$.ajax({
+
+
+
+        type:"GET",
+
+        url:'/resend_otp_verify_doctor/',
+
+        success:function(responsedata){
+
+               alert("got response as "+"'"+responsedata+"'");
+
+
+
+        }
+
+     })
+
+
+
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+ <script>
+
+
+
+function clickss() {
+
+        var mobile=$("#mobile_number").val();
+
+        $.ajax({
+
+        url: '/mobile_verify_doctor/',
+
+        data: {
+
+        mobile:mobile,
+
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+
+        },
+
+        type: 'POST',
+
+        success: function(response) {
+
+                <!--$('#request-otp').on('click',function(){-->
+
+                $('#sign-in').hide();
+
+                $('#verify-otp').show();
+
+
+
+        },
+
+            error: function(error) {
+
+                console.log(error);
+
+                             $(".add_ajax").html(error);
+
+        }
+
+    });
+
+
+
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+<script>
+
+
+
+function clickss_otp() {
+
+
+
+            var otp=$("#otp_number").val();
+
+           var time = $('#otp_timer span').text();
+
+
+
+        $.ajax({
+
+            url: '/otp_verify_doctor/',
+
+             data: {
+
+            otp:otp,
+
+            time:time,
+
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+
+            },
+
+            type: 'POST',
+
+            success: function(response) {
+
+                            console.log(response);
+
+                            if (response == 1) {
+
+                                location.reload();
+
+
+
+                            }
+
+                            else if(response == 2){
+
+                              $(".add_ajax_code").html('Your otp has been expired');
+
+
+
+                            }
+
+                            else{
+
+                            $(".add_ajax_code").html('Please enter a Valid OTP');
+
+
+
+                            }
+
+            },
+
+            error: function(error) {
+
+                console.log(error);
+
+                             $(".add_ajax").html(error);
+
+        }
+
+    });
+
+}
+
+
+
+</script>
+
+<script>
+
+$('#verify-otp').hide();
+
+$('.fa-chevron-left').on('click',function(){
+
+  $('#sign-in').show();
+
+  $('#verify-otp').hide();
+
+});
+
+</script>
+
+<script>
+
+
+
+$(document).ready(function(){
+
+$('input.upload002').change(function(e){
+
+var fileName = e.target.files[0].name;
+
+$(".uploadFile02").val(fileName);
+
+})
+
+});
+
+</script>
+
+<script>
+
+    $(document).ready(function() {
+
+    var start = new Date();
+
+    start.setFullYear(start.getFullYear() - 68);
+
+    var end = new Date();
+
+    end.setFullYear(end.getFullYear() - 18);
+
+         $(".doctordob").datepicker({
+
+         maxDate: '31-12-2000',
+
+         changeMonth: true,
+
+         changeYear: true,
+
+         dateFormat:"dd-mm-yy",
+
+         yearRange: start.getFullYear() + ':' + end.getFullYear()
+
+       });
+
+    });
+
+</script>
+
+<!-------------textarea word counter------------------->
+
+<script>
+
+                                var area = document.getElementById("content_txt");
+
+var message = document.getElementById("message");
+
+var maxLength = 1000;
+
+var checkLength = function() {
+
+    if(area.value.length < maxLength) {
+
+        message.innerHTML = (maxLength-area.value.length) + " characters remaining";
+
+    }
+
+}
+
+setInterval(checkLength, 300);
+
+</script>
+
+<!------------- End of textarea word counter------------------->
+
+
+
+<script src="{% static '' %}admin-panel/js/jquery.validate.js"></script>
+
+
+
+
+
+{% include 'doctor-panel/footer.html' %}
+
+

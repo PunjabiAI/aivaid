@@ -1,0 +1,378 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/patient.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body>
+<aside class="side-nav">
+    <div class="cross-toggle" style="display:none;">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+    </div>
+    <div class="heading">
+        <img src="img/patient-profile.jpg" alt="" class="img-responsive img-circle">
+        <div class="info">
+            <h3><a href="#">Mr. Rakesh</a></h3>
+        </div>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Type here"><i class="fa fa-search"></i>
+    </div>
+    <ul class="categories">
+        <li><i class="fa fa-home fa-fw" aria-hidden="true"></i><a href="dashboard.html" class="drop_hide"
+                                                                  data-id="contents"> Dashboard</a></li>
+        <li><i class="fa fa-calendar"></i><a href="#"> Appointment</a>
+            <ul class="side-nav-dropdown">
+                <li><a href="newcounsultation.html">Visit to Doctor</a></li>
+                <li><a href="newcounsultation.html">Chat or Video call</a></li>
+                <li><a href="appointment-list.html">Appointment list</a></li>
+            </ul>
+        </li>
+        <li><i class="far fa-file"></i><a href="undermantainance.html" class="drop_hide"> Lab test</a></li>
+        <li><i class="fas fa-comments"></i><a href="undermantainance.html" class="drop_hide"> Conversation</a></li>
+        <li><i class="fa fa-hospital-o" aria-hidden="true"></i><a href="medical-record.html" data-id="profile"
+                                                                  class="drop_hide"> Medical Record</a></li>
+        <li><i class="fas fa-medkit"></i><a href="undermantainance.html" class="drop_hide"> Medicine Order</a></li>
+        <li><i class="fa fa-list-alt" aria-hidden="true"></i><a href="" class="drop_hide"> Reviews</a></li>
+        <li><i class="fas fa-bell"></i><a href="notification.html" class="drop_hide"> Notification</a></li>
+        <li><i class="fa fa-credit-card" aria-hidden="true"></i><a href="undermantainance.html" class="drop_hide">
+            Payment</a></li>
+        <li><i class="fas fa-exchange-alt"></i><a href="trasaction.html" class="drop_hide"> Transaction</a></li>
+        <li><i class="fa fa-question-circle" aria-hidden="true"></i><a href="helpandsupport.html" class="drop_hide">
+            Help and Support</a></li>
+        <li><i class="fa fa-question" aria-hidden="true"></i><a href="faq.html" class="drop_hide"> FAQ</a></li>
+    </ul>
+</aside>
+<section id="contents">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="toggle-menu" style="display:none;">
+                <div class="toggle-icon"></div>
+                <div class="toggle-icon"></div>
+                <div class="toggle-icon"></div>
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <i class="fa fa-align-right"></i>
+                </button>
+                <a class="navbar-brand" href="dashboard.html">My<span class="main-color"> Dashboard</span></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">My profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><img src="img/patient-profile.jpg" alt="" class="img-responsive img-circle profilepic">
+                                <h4>Mr. Rakesh <br></h4>
+                                <p>+91 9876754325</p></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="accountdetail.html"><i class="fa fa-user fw"></i> View And Update</a></li>
+                            <li><a href="settings.html"><i class="fa fa-key fw" aria-hidden="true"></i> Change Password</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-user-md fw" aria-hidden="true"></i> Switch To Doctor profile</a>
+                            </li>
+                            <li><a href="settings.html"><i class="fa fa-user-md fw" aria-hidden="true"></i> Setting</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fas fa-power-off fw"></i> Log out</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-comments"></i><span>23</span></a>
+                        <ul class="dropdown-menu notification_list msges">
+                            <li><a href="#"><h3 class="notify_header"> Messages</h3></a></li>
+                            <li role="separator" class="divider"></li>
+                            <div class="clearfix"></div>
+                            <li><a href="#"><img src="img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">Just Now </p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">16 mins ago</p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">23 seconds ago</p>
+                            </a>
+                            </li>
+                            <li><a href="#"><img src="img/patient-profile.jpg"
+                                                 class="img-circle img-responsive msg_prof"/> Anu Mehra
+                                <p class="notice_tm">Lorem Ipsum Lorem Ipsum </p>
+                                <p class="notice_tm">20 mins ago</p>
+                            </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" class="text-left view-all">View All Messages</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa fa-bell"></i><span>98</span></a>
+                        <ul class="dropdown-menu notification_list">
+                            <li><a href="#"><h3 class="notify_header"> Notifications</h3></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Neha is now following you
+                                <p class="notice_tm">Just Now</p>
+                            </a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-user-plus"></i> 20 new member joined
+                                <p class="notice_tm">16 mins ago</p>
+                            </a></li>
+                            <li><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Manya Changed Name
+                                <p class="notice_tm">23 seconds ago</p>
+                            </a></li>
+                            <li><a href="#"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Warning
+                                <p class="notice_tm">20 mins ago</p>
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="notification.html" class="text-left view-all">View All Notification</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="notice-list">
+        <div class="container-fluid">
+            <div class="row list_header">
+
+                <div class="col-md-12 header-title">
+
+                    <div class="header-icon">
+                        <i class="fa fa-file-text" aria-hidden="true"></i>
+                    </div>
+                    <h1>Notice List</h1>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 list-top-head">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="panel-header">
+                                <div class="col-sm-4">
+                                    <div class="dataTables_length">
+                                        <label>Display <select name="example_length">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> records per page</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="dataTables_length">
+                                        <a class="btn btn-default buttons-copy btn-sm"
+                                           tabindex="0"><span>Copy</span></a>
+                                        <a class="btn btn-default buttons-csv buttons-html5 btn-sm" tabindex="0"><span>CSV</span></a>
+                                        <a class="btn btn-default buttons-excel buttons-html5 btn-sm"
+                                           tabindex="0"><span>Excel</span></a>
+                                        <a class="btn btn-default buttons-pdf buttons-html5 btn-sm" tabindex="0"><span>PDF</span></a>
+                                        <a class="btn btn-default buttons-print btn-sm" tabindex="0"><span>Print</span></a>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="dataTables_length" id="example_length">
+                                        <div class="input-group custom-search-form">
+                                            <input type="search" class="form-control" placeholder="search..">
+                                            <span class="input-group-btn">
+                                                      <button class="btn btn-primary" type="submit">
+                                                          <i class="fa fa-search" aria-hidden="true"></i>
+
+                                                      </button>
+                                                  </span>
+                                        </div><!-- /input-group -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Serial No.</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Notification Title</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>05/12/2018</td>
+                                    <td>12:46 PM</td>
+                                    <td>Lorem Ipsum</td>
+                                    <td>Lorem Ipsum Lorem Ipsum Lorem Ipsum</td>
+                                    <td><a href="#" class="btn btn-primary">Active</a> <a href="#"
+                                                                                          class="btn btn-primary">Inactive</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-primary"><i class="fa fa-trash"
+                                                                               aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>05/12/2018</td>
+                                    <td>12:46 PM</td>
+                                    <td>Lorem Ipsum</td>
+                                    <td>Lorem Ipsum Lorem Ipsum Lorem Ipsum</td>
+                                    <td><a href="#" class="btn btn-primary">Active</a> <a href="#"
+                                                                                          class="btn btn-primary">Inactive</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-primary"><i class="fa fa-trash"
+                                                                               aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>05/12/2018</td>
+                                    <td>12:46 PM</td>
+                                    <td>Lorem Ipsum</td>
+                                    <td>Lorem Ipsum Lorem Ipsum Lorem Ipsum</td>
+                                    <td><a href="#" class="btn btn-primary">Active</a> <a href="#"
+                                                                                          class="btn btn-primary">Inactive</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-primary"><i class="fa fa-trash"
+                                                                               aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>05/12/2018</td>
+                                    <td>12:46 PM</td>
+                                    <td>Lorem Ipsum</td>
+                                    <td>Lorem Ipsum Lorem Ipsum Lorem Ipsum</td>
+                                    <td><a href="#" class="btn btn-primary">Active</a> <a href="#"
+                                                                                          class="btn btn-primary">Inactive</a>
+                                    </td>
+                                    <td><a href="#" class="btn btn-primary"><i class="fa fa-trash"
+                                                                               aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="page-nation text-right">
+                            <ul class="pagination pagination-large">
+                                <li class="disabled"><span>«</span></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li class="disabled"><span>...</span></li>
+                                <li>
+                                </li>
+                                <li><a rel="next" href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+
+</script>
+<script src='js/jquery-latest.js'></script>
+<script src="js/bootstrap.min.js"></script>
+<script src='js/dashboard.js'></script>
+<script src='js/jquery.min.js'></script>
+<script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+		
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+			
+		});
+	});	 
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load static %}
+{% include 'header.html' %}
+<section class="blogfullpage">
+    <div class="container">
+        <div class="row">
+            {% for single_blog in single_blog %}
+            <h1 class="text-center">{{single_blog.title}}</h1>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="full-blog">
+                    <img src="../uploads/{{single_blog.image}}" class="img-responsive blog-upload-pic" alt="AI Vaid Blog"/>
+                    <h4><strong>{{single_blog.title}}</strong></h4>
+                    <div class="meta">
+                        By : <a href="../doctordetail/{{single_blog.user.username}}" title="Posts by admin" rel="author">{{single_blog.user.first_name}} {{single_blog.user.last_name}} </a>on : <a href="#">{{single_blog.date}}</a>
+                        <!--comments : <a href="#">(0)</a>-->
+                    </div>
+
+
+                    <p>{{single_blog.description|safe}}</p>
+
+
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="side-blog">
+                    <div id="search">
+                        <h5 class="side-head">SEARCH</h5>
+                        <hr/>
+                        <form method="get" class="search_blog" action="#">
+                            <div>
+                                <input type="text" value=""><span><input type="submit" id="searchsubmit" value="Search"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="category">
+                        <h5 class="side-head">CATEGORY</h5>
+                        <hr/>
+                        <ul class="category-ul">
+                            {% for categories_data in categories_data %}
+                            <li><a href="">{{categories_data.name}}</a>
+                            </li>
+                            {% endfor %}
+
+
+                        </ul>
+                    </div>
+                    <div class="recent-post">
+                        <h5 class="side-head">RECENT POST</h5>
+                        <hr/>
+
+                        {% for bloglisting in bloglisting %}
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <img src="../uploads/{{bloglisting.image}}" class="img-responsive"
+                                     alt="AI Vaid Recent Post"/>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <h4 class="title">{{bloglisting.title}}</h4>
+                                <p>on: <a href="../blog/{{bloglisting.slug}}">{{bloglisting.date}}</a></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}

@@ -1,0 +1,61 @@
+{% load static %}
+{% include 'header.html' %}
+<section id="blogs">
+	<div class="container">
+		<div class="row">
+			<div class="text-center"><h1>BLOGS</h1></div>
+		</div>
+		<div class="row">
+
+
+			{% for bloglisting in bloglisting %}
+			<div class="col-lg-4 col-sm-6">
+					<div class="wrapper">
+						<div class="card radius shadowDepth1">
+							<div class="card__image border-tlr-radius">
+								<img src="../uploads/{{bloglisting.image}}" alt="AI Vaid Blog" class="border-tlr-radius">
+							</div>
+							<div class="card__content card__padding">
+								<div class="card__share">
+									<a id="share" class="share-icon" href="../blog/{{bloglisting.slug}}"><i class="fa fa-plus"></i></a>
+								</div>
+								<div class="card__meta">
+									<time>{{bloglisting.date}}</time>
+								</div>
+								<article class="card__article">
+									<h2><a href="../blog/{{bloglisting.slug}}">{{bloglisting.title}}</a></h2>
+									<p>{{bloglisting.description|safe|slice:":100"}}</p>
+								</article>
+							</div>
+							<div class="card__action">
+								
+								<div class="card__author">
+									<img src="http://lorempixel.com/40/40/sports/" alt="user">
+									<div class="card__author-content">
+										By <a href="../doctordetail/{{bloglisting.user.username}}">{{bloglisting.user.first_name}} {{bloglisting.user.last_name}}</a>
+									</div>
+								</div>
+							</div>
+						</div>
+                        <p class="text-center">Created By <a href="https://twitter.com/mithicher">Aivaid</a></p>
+    	            </div>
+			</div>
+			{% endfor %}
+
+
+
+
+
+		</div>	
+	</div>
+</section>
+<script>
+	$(document).ready(function($) {
+	$('.card__share > a').on('click', function(e){ 
+		e.preventDefault() // prevent default action - hash doesn't appear in url
+   		$(this).parent().find( 'div' ).toggleClass( 'card__social--active' );
+		$(this).toggleClass('share-expanded');
+    });
+});
+</script>
+{% include 'footer.html' %}

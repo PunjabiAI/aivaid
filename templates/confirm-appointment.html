@@ -1,0 +1,61 @@
+{% load static %}
+{% include 'header.html' %}
+<section id="confirmappointmenttab2">
+    <div class="container">
+        <h1>Confirm <b>Appointment</b></h1>
+
+        {% for appointment_List in appointment_list %}
+        <div class="innerwrap">
+            <div class="row">
+                <div class="col-md-6 borderright">
+                    {%  if appointment_List.doctor.pic %}
+                     <img src="../../uploads/{{appointment_List.doctor.pic}}" class="img-responsive doctorimg" alt="">
+
+                    {% else %}
+                    <img src="{% static ''%}images/doctor-profile.jpg" class="img-responsive doctorimg" alt="">
+                    {% endif %}
+
+                    <div class="changedate">Change date and time</div>
+                    <span class="datetitle">
+							<i class="fas fa-calendar-alt"></i> On <b>{{appointment_List.date_of_appointment}}</b>
+							<span class="text-right"><i class="fa fa-clock-o"></i> At <b>{{appointment_List.start_time}}</b></span>
+						</span>
+                    <h1 class="dr_name">Dr.{{appointment_List.doctor.doctor_profile_id.first_name}} {{appointment_List.doctor.doctor_profile_id.last_name}}</h1>
+                    <p id="doctor_detail">{{appointment_List.doctor.selectdegree}}, {{appointment_List.doctor.uexperience02}}<br> {{appointment_List.doctor.uexperience01}} Year experience<br>{{appointment_List.doctor.uexperience02}}</p>
+                    <div class="clinicwrap">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{appointment_List.clinic.Cname}}</p>
+                                <p>{{appointment_List.clinic.Caddress}}</p>
+                                <a href="#">Get Direction</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form action="{% url 'confirm_appointment_save' %}" method="post">
+                                                                                                {% csrf_token %}
+
+                        <label>Patient Name</label>
+                        <input type="hidden" name="id" value="{{appointment_List.id}}" required>
+                        <input type="text"  name="first_name" value="{{appointment_List.first_name}}" required>
+                        <label>Email</label>
+                        <input type="text" name="email" value="{{appointment_List.email}}" required>
+                        <label>Mobile Number</label>
+                        <input type="text" name="mobile" value="{{appointment_List.mobile}}" required>
+                        <p class="term">By booking appointment, you agree to Aivaid's <a href="#"
+                                                                                         style="color: #26a69a;">Terms
+                            and Conditions</a></p>
+                        <button type="submit" class="btn btn-default" value="Confirm">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+
+    </div>
+</section>
+{% include 'footer.html' %}

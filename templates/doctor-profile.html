@@ -1,0 +1,197 @@
+{% load static %}
+{% include "header.html" %}
+<section id="confirmappointment" class="appointmentbook">
+	<div class="container">
+		<h1>Doctor <b>Profile</b></h1>
+			<div class="innerwrap">
+				<div class="row">
+					<div class="col-md-2">
+						<img src="{% static ''%}images/doctor-profile.jpg" class="img-responsive" alt="">
+					</div>
+					<div class="col-md-3">
+						<h1>Dr. Mehta</h1>
+						<p>MBBS, MD-Dermatology<br>19 Year experience<br>Dermatology</p>
+						<p><b>Mehta Clinic</b></p>
+							<div class="clinic">
+								<img src="{% static ''%}images/clinic1.png" class="img-responsive">
+								<img src="{% static ''%}images/clinic2.png" class="img-responsive">
+								<img src="{% static ''%}images/clinic3.png" class="img-responsive">
+								<img src="{% static ''%}images/clinic4.png" class="img-responsive">
+							</div>
+					</div>
+					<div class="col-md-4 text-center">
+						<h1>Clinic Name</h1>
+						<ol class="cliniclist text-center" style="list-style-type:decimal !important;">
+							<li>Mehta Clinic</li>
+							<li>Mehta Clinic</li>
+							<li>Mehta Clinic</li>
+							<li>Mehta Clinic</li>
+						</ol>
+					</div>
+					<div class="col-md-3">
+						<div class="doctor_detail">
+							<table class="table table-primary">
+								<tbody>
+									<tr>
+										<td><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></td>
+										<td> 100% (300 votes)</td>
+									</tr>
+									<tr>
+										<td> <i class="fa fa-commenting-o" aria-hidden="true"></i></td>
+										<td>35 Feedback</td>
+									</tr>
+									<tr>
+										<td>  <i class="fa fa-map-marker" aria-hidden="true"></i></td>
+										<td>Banglore</td>
+									</tr>
+									<tr>
+										<td>  <i class="fa fa-inr" aria-hidden="true"></i> </td>
+										<td>500</td>
+									</tr>
+									<tr>
+										<td>  <i class="fa fa-clock" aria-hidden="true"></i> </td>
+										<td>Visit Today</td>
+									</tr>
+									<tr>
+										<td>  <i class="fas fa-calendar-alt"></i></td>
+										<td>Mon - Fri</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<ul class="nav nav-tabs nav-justified">
+					<li><a href="#">Chat Doctor</a></li>
+					<li><a href="#">Consult Online</a></li>
+					<li><a href="#" id="ff">Book Appointment</a></li>
+				  </ul>
+				  </div>
+				</div>
+				<div class="display">
+				<div class="row">
+						<div class="Appointment_wrap">
+							<div class="col-md-6 hs-appoint_date">
+							  <label for="appoint_date">Select Appointment Date *</label>
+							  <input id="appoint_date" class="datepicker hs-input" name="appoint_date" required>
+							</div>
+							<div class="col-md-6 hs-time" id="webform-component-cultivation--amount-2">
+							  <label for="time">Select Appointment Time *</label>
+							  <select id="time" class="hs-input" name="time" required>
+							   <option value="">Select Time</option>
+									<option value="09:00 am to 09:30 am">09:00 am to 09:30 am</option>
+									<option value="09:30 am to 10:00 am">09:30 am to 10:00 am</option>
+									<option value="10:00 am to 10:30 am">10:00 am to 10:30 am</option>
+									<option value="10:30 am to 11:00 am">10:30 am to 11:00 am</option>
+									<option value="11:00 am to 11:30 am">11:00 am to 11:30 am</option>
+									<option value="11:30 am to 12:00 pm">11:30 am to 12:00 pm</option>
+									<option value="12:00 pm to 12:30 pm">12:00 pm to 12:30 pm</option>
+									<option value="12:30 pm to 01:00 pm">12:30 pm to 01:00 pm</option>
+									<option value="01:00 pm to 01:30 pm">01:00 pm to 01:30 pm</option>
+									<option value="01:30 pm to 02:00 pm">01:30 pm to 02:00 pm</option>
+									<option value="02:00 pm to 02:30 pm">02:00 pm to 02:30 pm</option>
+									<option value="02:30 pm to 03:00 pm">02:30 pm to 03:00 pm</option>
+									<option value="03:00 pm to 03:30 pm">03:00 pm to 03:30 pm</option>
+									<option value="03:30 pm to 04:00 pm">03:30 pm to 04:00 pm</option>
+									<option value="04:00 pm to 04:30 pm">04:00 pm to 04:30 pm</option>
+									<option value="04:30 pm to 05:00 pm">04:30 pm to 05:00 pm</option>
+									<option value="05:00 pm to 05:30 pm">05:00 pm to 05:30 pm</option>
+									<option value="05:30 pm to 06:00 pm">05:30 pm to 06:00 pm</option>
+									<option value="06:00 pm to 06:30 pm">06:00 pm to 06:30 pm</option>
+									<option value="06:30 pm to 07:00 pm">06:30 pm to 07:00 pm</option>
+									</select>
+							  <span class="error1" style="display: none;">
+								  <i class="error-log fa fa-exclamation-triangle"></i>
+							  </span>
+							</div>
+						</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<a href="confirmappointement.html"><button class="btn btn-info book" type="button">Book</button></a>
+					</div>
+				</div>
+			    <div class="row">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<tr class="head-tr">
+							   <td colspan="9"><b>Doctor Availability</b></td>
+							</tr>
+							<tr class="tr-list">
+								<td>Available</td>
+								<td>Mon</td>
+								<td>Tue</td>
+								<td>Wed</td>
+								<td>Thurs</td>
+								<td>Fri</td>
+								<td>Sat</td>
+								<td>Sun</td>
+							</tr>
+							<tr>
+								<td><b style="color:#26a69a;">Morning<b></td>
+								<td><a href="#">8:00 AM</a></td>
+								<td><a href="#">8:00 AM</a></td>
+								<td><a href="#">8:00 AM</a></td>
+								<td><a href="#">8:00 AM</a></td>
+								<td><a href="#">8:00 AM</a></td>
+								<td><a href="#">8:00 AM</a></td>
+								<td><a href="#">8:00 AM</a></td>
+							</tr>
+							<tr>
+								<td><b style="color:#26a69a;">Afternoon<b></td>
+								<td><a href="#">1:00 PM</a></td>
+								<td><a href="#">1:00 PM</a></td>
+								<td><a href="#">1:00 PM</a></td>
+								<td><a href="#">1:00 PM</a></td>
+								<td><a href="#">1:00 PM</a></td>
+								<td><a href="#">1:00 PM</a></td>
+								<td><a href="#">1:00 PM</a></td>
+							</tr>
+							<tr>
+								<td><b style="color:#26a69a;">Evening<b></td>
+								<td><a href="#">4:00 PM</a></td>
+								<td><a href="#">4:00 PM</a></td>
+								<td><a href="#">4:00 PM</a></td>
+								<td><a href="#">4:00 PM</a></td>
+								<td><a href="#">4:00 PM</a></td>
+								<td><a href="#">4:00 PM</a></td>
+								<td><a href="#">4:00 PM</a></td>
+							</tr>
+							<tr>
+								<td><b style="color:#26a69a;">Night<b></td>
+								<td><a href="#">9:00 PM</a></td>
+								<td><a href="#">9:00 PM</a></td>
+								<td><a href="#">9:00 PM</a></td>
+								<td><a href="#">9:00 PM</a></td>
+								<td><a href="#">9:00 PM</a></td>
+								<td><a href="#">9:00 PM</a></td>
+								<td><a href="#">9:00 PM</a></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			</div>
+	</div>
+</div>
+</section>
+
+{% include 'footer.html' %}
+<script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+</script>
+<script>
+$(document).ready(function(){
+	$("#ff").click(function(){
+        $(".display").toggle();
+    });
+
+});
+</script>
+<script src='{% static "" %}js/jquery-1.11.0.js'></script>
+<script src="{% static '' %}js/bootstrap.min.js"></script>
+<script src="{% static '' %}js/jquery-ui.js"></script>

@@ -1,0 +1,103 @@
+{% load static %}
+{% include "header.html" %}
+<section class="user login-user">
+    <div class="user_options-container">
+        <div class="user_options-text">
+            <div class="user_options-unregistered">
+                <h2 class="user_unregistered-title">Don't have an account?</h2>
+                <p class="user_unregistered-text">Create a new account on AIVaid. It's easy and fast. Take the first step toward better health.
+                  </p>
+                <a href="../signup" class="user_unregistered-signup" id="signup-button">Sign up</a>
+            </div>
+        </div>
+        <div class="user_options-forms loginform gg" id="user_options-forms">
+            <div class="user_forms-login">
+
+                <h2 class="forms_title">Login</h2>
+                <form class="forms_form" method="post">
+                    <fieldset class="forms_fieldset">
+                        <div class="forms_field">
+                             {% csrf_token %}
+                            {% for field in form %}
+                            {{ field.label_tag }}<br>
+                             {{field}}
+
+
+                        {% for error in field.errors %}
+                        <p style="color:red; font-size:15px;">{{ error }}</p>
+                        {% endfor %}
+
+                        {% endfor %}
+                            </div>
+
+                    </fieldset>
+                      {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+                    <input type="checkbox" checked/> <span class="checktxt">Remember me</span>
+                 <input type="submit" value="Log In" class="forms_buttons-action userBtn01">
+                </form>
+                  <div class="forms_buttons">
+                        <a href="../password_reset"><button type="button" class="forms_buttons-forgot forgot">Forgot password?</button></a>
+
+                    </div>
+                    <div class="social-Button">
+                         <a class="btn btn-default social__button social__button--Google" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google-plus-g smallfa"
+                                                                                    aria-hidden="true"></i>Signin
+                            with Google </a>
+                        <br>
+                        <p class="or" style="margin-top:30px">or</p>
+                        <a class="btn btn-default social__button social__button--facebook" href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook smallfa"
+                                                                                      aria-hidden="true"></i>Connect
+                            with
+                            Facebook</a>
+
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script>
+$(function() {
+$('.forms_field').on('keydown', '.forms_field-input', function(e) {
+if (e.which === 32 &&  e.target.selectionStart === 0) {return false;}
+});
+});
+<!-- ============  -->
+jQuery('document').ready(function($) {
+$('.userBtn01').click(function() {
+   var empty = false;
+    $('.userinput01').each(function() {
+    if ($(this).val() === '') {empty = true;}
+    });
+    if(empty){alert("Please fill all fields.");return false;}
+    else{return true;}
+});
+});
+<!-- ============  -->
+jQuery('document').ready(function($) {
+    $('.userBtn02').click(function() {
+       var empty = false;
+        $('.userinput02').each(function() {
+        if ($(this).val() === '') { empty = true;}
+        });
+         if (empty || (!$('input[name="gender"]').is(':checked')) || ($('#password').val() !== $('#confirm_password').val())){
+        alert("Fill all fields correctly");
+        $('#message').html('Password not matched').css('color', 'red');
+        return false;
+      }
+      else
+      { $('#message').html('Password matched').css('color', 'green');return true;
+       return true;
+      }
+    });
+});
+<!-- ============  -->
+
+</script>
+{% include "footer.html" %}

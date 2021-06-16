@@ -1,0 +1,100 @@
+{% include 'header.html' %}
+		<section class="setting">
+			<div class="container-fluid">
+				<div class="row list_header">
+					<div class="col-md-12 header-title">
+						<div class="header-icon">
+						   <i class="fa fa-paper-plane" aria-hidden="true"></i>
+						</div>
+						<h1>Send sms</h1>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-md-12">
+						<div class="sendbox">
+							<div class="innersmsbox">
+								<form action="/action_page.php" method="post">
+									<p>Send from</p>
+									<input type="text" name="fname" placeholder="+919874561230"required><br/>
+									<p>Send to</p>
+									<input type="text" name="fname" required>
+									<p>Sms</p>
+									<textarea type="text" name="fname" required></textarea>
+									<input type="submit" value="Submit" class="btn btn-success"><br/>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src='js/jquery-latest.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/Chart.bundle.js"></script>
+    <script src='js/dashboard.js'></script>
+	<script src='js/jquery.min.js'></script>
+	<script>
+			$(function() {
+		  var step = 0;
+		  var stepItem = $('.step-progress .step-slider .step-slider-item');
+
+		  // Step Next
+		  $('.step-content .step-content-foot button[name="next"]').on('click', function() {
+			var instance = $(this);
+			if (stepItem.length - 1 < step) {
+			  return;
+			}
+			if (step == (stepItem.length - 2)) {
+			  instance.addClass('out');
+			  instance.siblings('button[name="finish"]').removeClass('out');
+			}
+			$(stepItem[step]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step + 1].dataset.id).removeClass('out');
+			step++;
+		  });
+
+		  // Step Last
+		  $('.step-content .step-content-foot button[name="finish"]').on('click', function() {
+			if (step == stepItem.length) {
+			  return;
+			}
+			$(stepItem[stepItem.length - 1]).addClass('active');
+			$('.step-content-body').addClass('out');
+			$('#stepLast').removeClass('out');
+		  });
+
+		  // Step Previous
+		  $('.step-content .step-content-foot button[name="prev"]').on('click', function() {
+			var instance = $(this);
+			$(stepItem[step]).removeClass('active');
+			if (step == (stepItem.length - 1)) {
+			  instance.siblings('button[name="next"]').removeClass('out');
+			  instance.siblings('button[name="finish"]').addClass('out');
+			}
+			$('.step-content-body').addClass('out');
+			$('#' + stepItem[step].dataset.id).removeClass('out');
+			if (step <= 0) {
+			  return;
+			}
+			step--;
+		  });
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$(".toggle-menu").click(function(){
+				$("aside").show();
+			
+			});
+		});
+		$(document).ready(function(){
+			$(".cross-toggle").click(function(){
+				$("aside").hide();
+				
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+{% load static %}
+<footer>
+<section id="topfooter">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 no-padd">
+					<ul>
+						<li><i class="fa fa-comments"></i>Chat with a Doctor</li>
+						<li><i class="fa fa-shopping-cart"></i>Order Medicines</li>
+						<li><i class="fa fa-sticky-note-o"></i>View Medical Records</li>
+						<li><i class="fa fa-calendar"></i>Book Test</li>
+						<li><i class="fa fa-newspaper-o"></i>Read Articles</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</section>
+<div class="container">
+        <div class="row">
+            <div class="home-footer">
+                <div class="col-xs-12 no-padd">
+                    <div class="text-center"><h2 class="text-center section-heading2">Contact us</h2></div>
+                    <h4 class="text-center section-heading4">
+                        Get in Touch. We cherish all Interactions! </h4>
+                </div>
+                <div class="col-xs-12 no-padd contact-email-number">
+                    <ul>
+                        <!--<li><a href="callto:+91-98888-25206">+91-98888-25206</a></li>-->
+                        <!--<li><a href="callto:+91-98887-73536">+91-98887-73536</a></li>-->
+                        <li><a href="mailto:info@aivaid.com">info@aivaid.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 no-padd">
+                    <div class="col-md-3 col-sm-4 col-xs-12 no-padd">
+                        <div class="home-footer-part">
+                            <h3>Recent Activities</h3>
+							<ul>
+                                <li><a href="#"><img src="{% static 'images/diabaties.jpg' %}" class="img-responsive" alt="AI Vaid Blog"/><span class="img-txt">How to Control Diabities</span></a></li>
+                                <li><a href="#"><img src="{% static 'images/Gynaecologist.png' %}" class="img-responsive" alt="AI Vaid Blog"/><span class="img-txt">How to Control Blood Pressure</span></a></li>
+								<li><a href="#"><img src="{% static 'images/Gynaecologist.png' %}" class="img-responsive" alt="AI Vaid Blog"/><span class="img-txt">How to check Symptoms online</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-12 no-padd">
+                        <div class="home-footer-part footer-useful-links">
+                            <h3>Useful Links</h3>
+                            <ul>
+                                <li><a href="../about-us">About Us</a></li>
+                                <!--<li><a href="../make-appointment">Make Appointment</a></li>-->
+                                <li><a href="../contact-us">Contact Us</a></li>
+                                <li><a href="../blogs">Blogs</a></li>
+                                <li><a href="../terms-conditions">Terms &amp; Conditions</a></li>
+                                <li><a href="../privacy-policy">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-12 no-padd">
+                        <div class="home-footer-part footer-useful-links">
+                            <h3>Newsletter</h3>
+                            <form action="{% url 'send-subscription' %}" method="post" name="subscribe_form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="email" placeholder="Enter Email" name="email_Subscribe" class="email_Subscribe"/>
+                                    <p id="emailError"></p>
+                                    <input type="submit" value="Subscribe" class="subscribe-btn"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-12 no-padd">
+                        <div class="home-footer-part">
+                            <h3>Follow us</h3>
+                            <div class="share-bar">
+                                <div class="svg-share">
+                                    <ul>
+                                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/aivaid9" target="_blank"><i
+                                                class="fa fa-twitter"></i></a></li>
+                                        <li><a href="https://www.youtube.com/channel/UCwgNeF79ahnRc0Q0M7GTA6w"
+                                               target="_blank"><i class="fa fa-youtube"></i></a></li>
+                                        <li><a href="https://plus.google.com/u/0/111992377469146022648" target="_blank"><i
+                                                class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="bar-cover">
+                                    <p>Follow Us</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padd">
+                    <p class="aivaid-copyright text-center">&copy; 2018. AI Vaid. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+ <script src="{% static '' %}js/owl.carousel.min.js"></script>
+<script  src="{% static '' %}js/error.js"></script>
+<script src='{% static "" %}js/jquery.validate.js'></script>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'></script>
+<script>
+<!-- ============  -->
+$(".hover").mouseleave(
+  function () {
+    $(this).removeClass("hover");
+  }
+);
+<!-- ============  -->
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({trigger: 'manual'}).tooltip('show');
+});
+$(".progress-bar").each(function(){
+each_bar_width = $(this).attr('aria-valuenow');
+$(this).width(each_bar_width + '%');
+});
+<!-- ================== -->
+$('.subscribe-btn').click(function()
+{
+var empty = false;
+$('.email_Subscribe').each(function() {
+  if ($(this).val() === '') {empty = true;}
+});
+if(empty){$('#emailError').html("Enter your email");return false;}
+else{return true;}
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+{% include 'super-admin/header.html' %}
+	<section id="Addblog">
+	    <div class="container-fluid">
+			<form action="{% url 'superuser:savecategories' %}" method="post">
+				{% csrf_token %}
+			<div class="row list_header">
+				<div class="col-md-12 header-title">
+					<div class="header-icon">
+						<i class="fa fa-list-alt" aria-hidden="true"></i>
+					</div>
+					<h1>Category</h1>
+				</div>
+			</div>
+			<div class="addbox">
+				<div class="row">
+					<div class="col-md-12">
+						<label>Title</label>
+						<input type="text" name="name" placeholder="Title"/>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<label>Description</label>
+						<textarea name="description"></textarea>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<button type="submit" class="btn btn-success">Submit</button>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>
+	<script>
+	$(function() {
+	function maskImgs() {
+		//$('.img-wrapper img').imagesLoaded({}, function() {
+		$.each($('.img-wrapper img'), function(index, img) {
+			var src = $(img).attr('src');
+			var parent = $(img).parent();
+			parent
+				.css('background', 'url(' + src + ') no-repeat center center')
+				.css('background-size', 'cover');
+			$(img).remove();
+		});
+		//});
+	}
+
+	var preview = {
+		init: function() {
+			preview.setPreviewImg();
+			preview.listenInput();
+		},
+		setPreviewImg: function(fileInput) {
+			var path = $(fileInput).val();
+			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+			if (!path) {
+				$(uploadText).val('');
+			} else {
+				path = path.replace(/^C:\\fakepath\\/, "");
+				$(uploadText).val(path);
+
+				preview.showPreview(fileInput, path, uploadText);
+			}
+		},
+		showPreview: function(fileInput, path, uploadText) {
+			var file = $(fileInput)[0].files;
+
+			if (file && file[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+					var img = $(previewImg).find('img');
+
+					if (img.length == 0) {
+						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+					} else {
+						img.attr('src', e.target.result);
+					}
+
+					uploadText.val(path);
+					maskImgs();
+				}
+
+				reader.onloadstart = function() {
+					$(uploadText).val('uploading..');
+				}
+
+				reader.readAsDataURL(file[0]);
+			}
+		},
+		listenInput: function() {
+			$('.file-upload-native').on('change', function() {
+				preview.setPreviewImg(this);
+			});
+		}
+	};
+	preview.init();
+});
+</script>
+
+    <script>
+	$(document).ready(function(){
+		$(".toggle-menu").click(function(){
+			$("aside").show();
+		
+		});
+	});
+	$(document).ready(function(){
+		$(".cross-toggle").click(function(){
+			$("aside").hide();
+			
+		});
+	});	 
+	</script>
+</body>
+</html>

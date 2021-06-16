@@ -1,0 +1,53 @@
+{% load static %}
+{% include "header.html" %}
+<section class="user">
+    <div class="user_options-container">
+        <div class="user_options-text">
+            <div class="user_options-unregistered">
+                <h2 class="user_unregistered-title">Already have an account?</h2>
+                <p class="user_unregistered-text">If you are a registered user on AIVaid, you can log in to your account using your registered Email and Password.
+               </p>
+                <a href="../login" class=" user_unregistered-signup" id="signup-button">Log In</a>
+            </div>
+        </div>
+        <div class="user_options-forms gg" id="user_options-forms">
+            <div class="user_forms-login">
+               <h2 class="forms_title">Sign Up</h2>
+                     <form class="forms_form" method="post">
+                     <fieldset class="forms_fieldset">
+                        {% csrf_token %}
+                        {% for field in MyForm %}
+                             {{ field.label_tag }}<br>
+                             <div class="forms_field">
+                             <div class="input-group">
+                             {% for is_staff in field %}
+                                 {{is_staff}}
+                                 {{is_staff.label_tag}}
+                            {% endfor %}
+                             </div>
+                        {% for error in field.errors %}
+                        <p class="errorpara" style="color:red; font-size:15px;">{{ error }}</p>
+                        {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </fieldset>
+                    <div class="forms_buttons">
+                        <input type="submit" value="Sign up" class="forms_buttons-action userBtn02">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+$("#id_is_staff_0").click(function() {
+$(".input-group label[for='id_is_staff_0']").css("background","#26a69a");
+$("label[for='id_is_staff_1']").css("background","#f9f9f9");
+});
+
+$("#id_is_staff_1").click(function() {
+$("label[for='id_is_staff_1']").css("background","#26a69a" );
+$("label[for='id_is_staff_0']").css("background","#f9f9f9");
+});
+</script>
+{% include "footer.html" %}

@@ -1,0 +1,75 @@
+{% include 'doctor-panel/header.html' %}
+{% load static %}
+<!--<section class="statistics">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="row list_header">-->
+            <!--<div class="col-md-12 header-title">-->
+                <!--<h1 class="text-center">Welcome To Aivaid</h1>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-4">-->
+                <!--<div class="box">-->
+                    <!--<i class="fa fa-envelope fa-fw bg-primary"></i>-->
+                    <!--<div class="info">-->
+                        <!--<h3>1,245</h3> <span>Emails</span>-->
+                        <!--<p>Lorem ipsum dolor sit amet</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+                <!--<div class="box">-->
+                    <!--<i class="fa fa-file fa-fw danger"></i>-->
+                    <!--<div class="info">-->
+                        <!--<h3>34</h3> <span>Projects</span>-->
+                        <!--<p>Lorem ipsum dolor sit amet</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+                <!--<div class="box">-->
+                    <!--<i class="fa fa-users fa-fw success"></i>-->
+                    <!--<div class="info">-->
+                        <!--<h3>5,245</h3> <span>Users</span>-->
+                        <!--<p>Lorem ipsum dolor sit amet</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<section class='statis text-center'>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box bg-primary">
+                    <i class="fa fa-user"></i>
+                    <h3>{{patient_list}}</h3>
+                    <p class="lead">Total Patient</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box danger">
+                    <i class="fa fa-calendar"></i>
+                    <h3>{{book_appointment_list}}</h3>
+                    <p class="lead">Total Appointment</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box warning">
+                    <i class="fa fa-calendar"></i>
+                    <h3>{{appointment_accept_list}}</h3>
+                    <p class="lead">Accepted Appointment</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="box success">
+                    <i class="fa fa-calendar"></i>
+                    <h3>{{appointment_decline_list}}</h3>
+                    <p class="lead">Declined Appointment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'doctor-panel/footer.html' %}

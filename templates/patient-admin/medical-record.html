@@ -1,0 +1,429 @@
+{% include 'patient-admin/header.html' %}
+{% load static %}
+<section id="medical-record">
+    <div class="container-fluid">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                </div>
+                <h1>Medical Record</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head show-record">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="panel-header">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <a href="#" class="open-popup-link open-popup-link2" data-toggle="modal"
+                                   data-target="#myModal">
+                                    Upload Record
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="dataTables_length">
+                                    <button id="csvdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        CSV
+                                    </button>
+                                    <button id="pdfdata" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        PDF
+                                    </button>
+                                    <button id="btnexcel" class="btn btn-default buttons-excel buttons-html5 btn-sm">get
+                                        Excel
+                                    </button>
+                                    <button id="btnprint" class="btn btn-default buttons-excel buttons-html5 btn-sm">
+                                        Print
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="getData">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Type Of Record</th>
+                                <th>File</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for medical_list in medical_list %}
+                            <tr>
+                                <td>{{medical_list.rname}}</td>
+                                <td>{{medical_list.rselect_date}}</td>
+                                <td>{{medical_list.rtitle}}</td>
+                                <td>{{medical_list.rrecord}}</td>
+                                <td><a href="#" class="btn btn-primary view-file">View</a></td>
+                                <td><a href="#" data-toggle="modal" data-target="#editMedicalrecord{{medical_list.id}}"
+                                       class="btn btn-primary"><i class="fa fa-pencil-square-o"
+                                                                  aria-hidden="true"></i>
+                                </a>
+                                    <a href="../medical_record_delete/{{medical_list.id}}" class="btn btn-primary"><i class="fa fa-trash"
+                                                                           aria-hidden="true"></i></a>
+                                </td>
+                                          <!-- Edit Medical Record -->
+                        <div class="modal fade" id="editMedicalrecord{{medical_list.id}}" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Edit Medical Record</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="" class="steps" action="{% url 'edit_medical_record' %}" method="post"
+                                              enctype="multipart/form-data">
+                                            <fieldset>
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <input type="text" value="{{medical_list.id}}" name="id"/>
+                                                        <input type="file" value="{{medical_list.medrecord}}" name="medrecord"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-6 col-md-6 hs_title hs-form-field">
+                                                        <label>Title *</label>
+                                                        <input type="text" value="{{medical_list.rtitle}}"  name="rtitle">
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                                        <label>Name *</label>
+                                                        <input type="text" value="{{medical_list.rname}}"  class="" name="rname">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <label>Select Date*</label>
+                                                        <input class="datepicker" value="{{medical_list.rselect_date}}"  name="rselect_date" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <label> Type Of Record *</label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                                        <input type="radio" name="erecord"  value="Report"  {% if medical_list.erecord == 'Report' %} checked {% endif %}>
+                                                        <label for="gender-male">Report</label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                                        <input type="radio" name="erecord" value="Prescription" {% if medical_list.erecord == 'Prescription' %} checked {% endif %}>
+                                                        <label for="gender-female">Prescription</label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                                        <input type="radio" name="erecord" value="Invoice" {% if medical_list.erecord == 'Invoice' %} checked {% endif %}>
+                                                        <label for="invoice">Invoice</label>
+                                                    </div>
+                                                </div>
+                                                <input class="hs-button primary large action-button next" type="submit"
+                                                       value="Submit">
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Edit Medical Record -->
+                            </tr>
+
+
+
+
+
+
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 list-top-head view-record" style="display:none;">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="panel-header">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="user-nm">
+                                    <ul class="list">
+                                        <li><a href="#" class="back-record"><i class="fa fa-arrow-left"
+                                                                               aria-hidden="true"></i></a></li>
+                                        <li><h5><b>Prescription</b></h5>
+                                            <p class="dt"> 12/July/2018</p></li>
+                                        <li><h5>2 Records from Rakesh</h5></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <a href="#" class="open-popup-link open-popup-link2" data-toggle="modal"
+                                   data-target="#myModal">
+                                    Add More Record
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <ul class="record-ul">
+                                <li class="dropdown">
+                                    <p class="record-type">Prescription <a href="#" class="ellipse"><i
+                                            class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+                                    <div class="dlt" style="display:none;">
+                                        <a href="#">Delete</a>
+                                    </div>
+                                    </p>
+                                    <img src="{% static '' %}images/patient/doctor-profile.jpg" class="img-responsive"/>
+                                </li>
+                                <li><p class="record-type">Prescription <a href="#" class="ellipse"><i
+                                        class="fa fa-ellipsis-v" aria-hidden="true"></i></a></p>
+                                    <img src="{% static '' %}images/patient/doctor-profile.jpg" class="img-responsive"/>
+                                </li>
+                                <li><p class="record-type">Record <a href="#" class="ellipse"><i
+                                        class="fa fa-ellipsis-v" aria-hidden="true"></i></a></p>
+                                    <img src="{% static '' %}images/patient/doctor-profile.jpg" class="img-responsive"/>
+                                </li>
+                                <li><p class="record-type">Invoice <a href="#" class="ellipse"><i
+                                        class="fa fa-ellipsis-v" aria-hidden="true"></i></a></p>
+                                    <img src="{% static '' %}images/patient/doctor-profile.jpg" class="img-responsive"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="head">Upload Medical Record</h2>
+            <hr/>
+            <div class="modal-body">
+                <form id="recordForm" class="steps" action="{% url 'add_medical_record' %}" method="post"
+                      enctype="multipart/form-data">
+                    <fieldset>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input type="file" name="medrecord"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6 hs_title hs-form-field">
+                                <label for="title">Title *</label>
+                                <input id="title" type="text" name="rtitle">
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" class="" name="rname">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <label>Select Date*</label>
+                                <input class="datepicker" name="rselect_date" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <label> Type Of Record *</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <input type="radio" name="rrecord" value="Report" id="gender-male">
+                                <label for="gender-male">Report</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <input type="radio" name="rrecord" value="Prescription" id="gender-female">
+                                <label for="gender-female">Prescription</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4">
+                                <input type="radio" name="rrecord" value="Invoice" id="invoice">
+                                <label for="invoice">Invoice</label>
+                            </div>
+                        </div>
+                        <input id="submit" class="hs-button primary large action-button next" type="submit"
+                               value="Submit">
+                        <!--<input id="submit" class="hs-button primary large action-button" data-dismiss="modal"-->
+                        <!--type="submit" value="Cancel" style="float:left;">-->
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // Modal -->
+<script>
+   $(window).load(function(){        
+   $('#myModal').modal('show');
+    });
+
+</script>
+
+<script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+
+</script>
+<script>
+	$(document).ready(function(){
+		$(".ellipse").click(function(){
+			$(".dlt").toggle();
+		
+		});
+	});
+
+</script>
+<script>
+	$(document).ready(function(){
+		$(".view-file").click(function(){
+			$(".view-record").delay(1000).show();
+		    $(".show-record").delay(1000).hide();
+		});
+		$(".back-record").click(function(){
+		     $(".view-record").delay(1000).hide();
+		    $(".show-record").delay(1000).show();
+		});
+	});
+
+</script>
+<!--<script>-->
+<!--"use strict";-->
+<!--var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();-->
+
+<!--function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }-->
+
+<!--function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }-->
+
+<!--var DragAndDrop = function () {-->
+<!--function DragAndDrop(el) {-->
+<!--_classCallCheck(this, DragAndDrop);-->
+
+<!--this.el = el;-->
+<!--}-->
+
+<!--_createClass(DragAndDrop, [{-->
+<!--key: "render",-->
+<!--value: function render() {-->
+<!--this.el.innerHTML = "\n      <div id=\"drop-area\">\n        <form class=\"my-form\">\n     <input type=\"file\" id=\"fileElem\" multiple accept=\"file_extension\">\n          <label class=\"button\" for=\"fileElem\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i>Add File</label>\n        </form>\n        <progress id=\"progress-bar\" max=\"100\" value=\"10\"></progress>\n        <div id=\"gallery\"></div>\n      </div>\n    ";-->
+<!--}-->
+<!--}, {-->
+<!--key: "init",-->
+<!--value: function init() {-->
+<!--var dropArea = this.el.querySelector("#drop-area");-->
+<!--var progressBar = this.el.querySelector("#progress-bar");-->
+<!--var fileElem = this.el.querySelector("#fileElem");-->
+<!--var gallery = this.el.querySelector("#gallery");-->
+<!--var uploadProgress = [];-->
+
+<!--function preventDefaults(e) {-->
+<!--e.preventDefault();-->
+<!--e.stopPropagation();-->
+<!--}-->
+
+<!--function highlight() {-->
+<!--dropArea.classList.add("highlight");-->
+<!--}-->
+
+<!--function unHighlight() {-->
+<!--dropArea.classList.remove("active");-->
+<!--}-->
+
+<!--dropArea.addEventListener("drop", handleDrop, false);-->
+<!--fileElem.addEventListener("change", handleFiles.bind(fileElem.files));-->
+
+<!--["dragenter", "dragover", "dragleave", "drop"].forEach(function (eventName) {-->
+<!--dropArea.addEventListener(eventName, preventDefaults, false);-->
+<!--});-->
+
+<!--["dragenter", "dragover"].forEach(function (eventName) {-->
+<!--dropArea.addEventListener(eventName, highlight, false);-->
+<!--});-->
+
+<!--["dragleave", "drop"].forEach(function (eventName) {-->
+<!--dropArea.addEventListener(eventName, unHighlight, false);-->
+<!--});-->
+
+<!--function handleDrop(e) {-->
+<!--var dt = e.dataTransfer;-->
+<!--var files = dt.files;-->
+<!--files = [].concat(_toConsumableArray(files));-->
+<!--initializeProgress(files.length);-->
+<!--files.forEach(uploadFile);-->
+<!--files.forEach(previewFile);-->
+<!--}-->
+<!--function initializeProgress(numFiles) {-->
+<!--progressBar.value = 0;-->
+<!--uploadProgress = [];-->
+<!--for (var i = numFiles; i > 0; i&#45;&#45;) {-->
+<!--uploadProgress.push(0);-->
+<!--}-->
+<!--}-->
+<!--function updateProgress(fileNumber, percent) {-->
+<!--uploadProgress[fileNumber] = percent;-->
+<!--var total = uploadProgress.reduce(function (tot, curr) {-->
+<!--return tot + curr;-->
+<!--}, 0) / uploadProgress.length;-->
+<!--console.debug("update", fileNumber, percent, total);-->
+<!--progressBar.value = total;-->
+<!--}-->
+<!--function handleFiles(files) {-->
+<!--files = [].concat(_toConsumableArray(files.target.files));-->
+<!--initializeProgress(files.length);-->
+<!--files.forEach(uploadFile);-->
+<!--files.forEach(previewFile);-->
+<!--}-->
+<!--function previewFile(file) {-->
+<!--var reader = new FileReader();-->
+<!--reader.readAsDataURL(file);-->
+<!--reader.onloadend = function () {-->
+<!--if (file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/gif") {-->
+<!--var img = document.createElement("img");-->
+<!--img.src = reader.result;-->
+<!--gallery.appendChild(img);-->
+<!--} else {-->
+<!--var doc = document.createElement("img");-->
+<!--doc.src = "https://raw.githubusercontent.com/heysafronov/drag-and-drop/master/src/assets/img/document.png";-->
+<!--gallery.appendChild(doc);-->
+<!--}-->
+<!--};-->
+<!--}-->
+<!--function uploadFile(file, i) {-->
+<!--var url = "URL";-->
+<!--var formData = new FormData();-->
+<!--formData.append("file", file);-->
+<!--fetch(url, {-->
+<!--method: "POST",-->
+<!--body: formData-->
+<!--}).then(function () {-->
+<!--updateProgress(i, 100);-->
+<!--}).catch(function () {-->
+<!--console.error("change the URL /uploadFile function/ to work with your back-end");-->
+<!--});-->
+<!--}-->
+<!--}-->
+<!--}, {-->
+<!--key: "run",-->
+<!--value: function run() {-->
+<!--this.render();-->
+<!--this.init();-->
+<!--}-->
+<!--}]);-->
+<!--return DragAndDrop;-->
+<!--}();-->
+<!--var element = document.querySelector("#drag-and-drop");-->
+<!--var dragAndDrop = new DragAndDrop(element);-->
+<!--dragAndDrop.run();-->
+<!--</script>-->
+<!---------------// upload img------------------------->
+<script src="{% static '' %}admin-panel/js/get-data.js"></script>
+{% include 'patient-admin/footer.html' %}

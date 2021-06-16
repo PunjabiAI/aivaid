@@ -1,0 +1,48 @@
+{% include 'doctor-panel/header.html' %}
+{% load static %}
+
+<section id="addservices">
+    <div class="container">
+        <div class="row list_header">
+            <div class="col-md-12 header-title">
+                <div class="header-icon">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                </div>
+                <h1>Add Services</h1>
+
+            </div>
+        </div>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="servicecontainer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Service Name *</label>
+                        <input type="text" value="" name="service_name" class="" autocomplete="off"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Price *</label>
+                        <input type="text" value="" name="price" class="" autocomplete="off"/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Discount *</label>
+                        <input type="text" value="" name="discount" class="" autocomplete="off"/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% include 'doctor-panel/footer.html' %}

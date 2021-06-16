@@ -1,0 +1,131 @@
+{% load static %}
+{% include 'header.html' %}
+<div class="container" id="innertabs">
+<div class="row">
+    <section>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <!--<ul class="nav nav-tabs" role="tablist">-->
+                    <!--<li role="presentation" class="disabled">-->
+                        <!--<a title="Introduction">-->
+                            <!--<span class="round-tab">-->
+                               <!--<i class="fas fa-info"></i>-->
+                            <!--</span>-->
+                        <!--</a>-->
+                        <!--<div class="text-center"><span class="tabheading">Introduction</span></div>-->
+                    <!--</li>-->
+                    <!--<li role="presentation" class="disabled">-->
+                        <!--<a title="Patient">-->
+                            <!--<span class="round-tab">-->
+                               <!--<i class="fa fa-user" aria-hidden="true"></i>-->
+                            <!--</span>-->
+                        <!--</a>-->
+                        <!--<div class="text-center"><span class="tabheading">Patient</span></div>-->
+                    <!--</li>-->
+
+                    <!--<li role="presentation" class="disabled">-->
+                        <!--<a title="Symptom">-->
+                            <!--<span class="round-tab">-->
+                                <!--<i class="fa fa-stethoscope"></i>-->
+                            <!--</span>-->
+                        <!--</a>-->
+                        <!--<div class="text-center"><span class="tabheading">Symptom</span></div>-->
+                    <!--</li>-->
+                      <!--<li role="presentation" class="disabled">-->
+                        <!--<a title="Location">-->
+                            <!--<span class="round-tab">-->
+                               <!--<i class="fa fa-map-marker" aria-hidden="true"></i>-->
+                            <!--</span>-->
+                        <!--</a>-->
+                        <!--<div class="text-center"><span class="tabheading">Location</span></div>-->
+                    <!--</li>-->
+                    <!--<li role="presentation" class="active">-->
+                        <!--<a title="Questions">-->
+                            <!--<span class="round-tab">-->
+								<!--<i class="fas fa-question"></i>-->
+                            <!--</span>-->
+                        <!--</a>-->
+                        <!--<div class="text-center"><span class="tabheading">Questions</span></div>-->
+                    <!--</li>-->
+                    <!--<li role="presentation" class="disabled">-->
+                        <!--<a title="Complete">-->
+                            <!--<span class="round-tab">-->
+                                <!--<i class="far fa-list-alt"></i>-->
+                            <!--</span>-->
+                        <!--</a>-->
+                        <!--<div class="text-center"><span class="tabheading">Result</span></div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </div>
+            <!--ggggggggggggggggggggggggggggg-->
+<div class="add_ajax_code">
+            <form role="form" method="post">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step5">
+                        <h3>Do you have any of the following symptoms?</h3>
+                        <!--<p>Selection is required !</p>-->
+                        <div class="question1">Do you suffering from Sneezing?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name1" name="radio_name1" value="1" id="yes1"/>
+                            <label for="yes1">Yes</label>
+                            <input type="radio" class="question_name1" name="radio_name1" value="0" id="no1"/>
+                            <label for="no1">No</label>
+                        </div>
+                    <div class="question1">Do you suffering from runny nose?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name2" name="radio_name2" value="1" id="yes2"/>
+                            <label for="yes2">Yes</label>
+                            <input type="radio" class="question_name2" name="radio_name2" value="0" id="no2"/>
+                            <label for="no2">No</label>
+                        </div>
+                <div class="question1">Have You feel Fatigue?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name" name="radio_name3" value="1" id="yes3"/>
+                            <label for="yes3">Yes</label>
+                            <input type="radio" class="question_name" name="radio_name3" value="0" id="no3"/>
+                            <label for="no3">No</label>
+                        </div>
+            <div class="question1">Do you suffering from cough?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name" name="radio_name4" value="1" id="yes4"/>
+                            <label for="yes4">Yes</label>
+                            <input type="radio" class="question_name" name="radio_name4" value="0" id="no4"/>
+                            <label for="no4">No</label>
+                        </div>
+        <div class="question1">Do you suffering from fever?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name" name="radio_name5" value="1" id="yes5"/>
+                            <label for="yes5">Yes</label>
+                            <input type="radio" class="question_name" name="radio_name5" value="0" id="no5"/>
+                            <label for="no5">No</label>
+                        </div>
+    <div class="question1">Do you suffering from sore throat?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name" name="radio_name6" value="1" id="yes6"/>
+                            <label for="yes6">Yes</label>
+                            <input type="radio" class="question_name" name="radio_name6" value="0" id="no6"/>
+                            <label for="no6">No</label>
+                        </div>
+                    <div class="question1">Do you suffering from exacerbated asthma?</div>
+                        <div class="input-group" id="qus">
+                            <input type="radio" class="question_name" name="radio_name7" value="1" id="yes7"/>
+                            <label for="yes7">Yes</label>
+                            <input type="radio" class="question_name" name="radio_name7" value="0" id="no7"/>
+                            <label for="no7">No</label>
+                        </div>
+                 <div class="input-group" id="qus">
+                    <button type="button" class="btn btn-default prev-step">Submit</button>
+               <div>
+               </div>
+            </form>
+
+</div>
+<!--ggggggggggggggggggggggggggggg-->
+
+        </div>
+    </section>
+</div>
+</div>
+<script src="{% static '' %}js/progress.js"></script>
+{% include 'footer.html' %}
